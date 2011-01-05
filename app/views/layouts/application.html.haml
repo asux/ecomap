@@ -11,19 +11,8 @@
       %nav.main
         %menu
           %li= link_to('root', '/')
-          |
-          %li sign in
-          |
-          %li sign out
-          |
-          %li profile
       %aside
-        :plain
-        Lorem ipsum nec in facilis civibus. Utroque detracto vulputate vel ut, exerci option principes ex mei. Vim ut quis corpora omnesque, quo in aliquam blandit abhorreant, duo eros aliquip erroribus ne. Quem aeterno ius cu, at lorem verear est, an apeirian accusata mei. Quot partiendo hendrerit eos ad. Sed ut facilisi intellegat expetendis, tation salutandi incorrupte mea ea.
-
-        Ad pro civibus voluptatum. Vim id dicat labores, facilisis rationibus sea et. Lorem menandri delicatissimi id est, ea eam graeci honestatis. Saepe ancillae vix ex, sit quidam pertinax te.
-
-        Quo detracto officiis id. Ius an altera mnesarchum, ut ferri reque assum quo, in mel eripuit liberavisse. Usu ad sale aeque legendos. Mea alia consul ne, ex usu dicunt saperet, ex nam omnis appellantur. Eum te tempor ponderum. Has libris nostro eu, lorem aliquid temporibus an nec.
+        = render 'users/user_nav'
       %header
         - unless flash.empty?
           #flash-container

@@ -33,7 +33,8 @@ article {
   font-size: 12pt; }
 
 header {
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 8px; }
 
 nav.main {
   padding: 4px;
@@ -45,36 +46,37 @@ nav li {
 
 .notice {
   border-width: 1px;
-  border-style: none;
-  border-radius: 2px;
+  border-style: solid;
+  border-radius: 4px;
   /* CSS3 */
-  -moz-border-radius: 2px;
+  -moz-border-radius: 4px;
   /* Gecko */
-  -webkit-border-radius: 2px;
+  -webkit-border-radius: 4px;
   /* WebKit */
   padding: 8px;
-  background-color: #aceb94; }
+  background-color: #aceb94;
+  border-color: green; }
 
 .warning {
   border-width: 1px;
-  border-style: none;
-  border-radius: 2px;
+  border-style: solid;
+  border-radius: 4px;
   /* CSS3 */
-  -moz-border-radius: 2px;
+  -moz-border-radius: 4px;
   /* Gecko */
-  -webkit-border-radius: 2px;
+  -webkit-border-radius: 4px;
   /* WebKit */
   padding: 8px;
   background-color: #ffcc66; }
 
 .error {
   border-width: 1px;
-  border-style: none;
-  border-radius: 2px;
+  border-style: solid;
+  border-radius: 4px;
   /* CSS3 */
-  -moz-border-radius: 2px;
+  -moz-border-radius: 4px;
   /* Gecko */
-  -webkit-border-radius: 2px;
+  -webkit-border-radius: 4px;
   /* WebKit */
   padding: 8px;
   background-color: #ff6666; }
@@ -82,3 +84,7 @@ nav li {
 h1, h2, h3 {
   font-family: "DejaVu Serif", "Times New Roman", serif;
   margin: 4px; }
+
+#user-nav {
+  padding: 4px;
+  font-size: 12pt; }

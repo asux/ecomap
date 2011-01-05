@@ -1,0 +1,8 @@
+#user-nav
+  - if user_signed_in?
+    = raw t('users.signed_as', :default => "Signed as <strong>%{user}</strong>", :user => current_user)
+    = link_to t('users.edit', :default => "Edit"), edit_user_registration_path
+    = link_to t('users.sign_out', :default => "Sign out"), destroy_user_session_path
+  - else
+    = link_to t('users.sign_up', :default => "Sign up"), new_user_registration_path
+    = link_to t('users.sign_in', :default => "Sign in"), new_user_session_path

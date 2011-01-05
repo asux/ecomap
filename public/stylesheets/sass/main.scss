@@ -10,8 +10,8 @@
 }
 @mixin flash-msg {
   border-width: 1px;
-  border-style: none;
-  @include border-radius(2px);
+  border-style: solid;
+  @include border-radius(4px);
   padding: 8px;
 }
 html {
@@ -48,6 +48,7 @@ article {
 }
 header {
   overflow: hidden;
+  padding: 8px;
 }
 nav {
   &.main {
@@ -65,6 +66,7 @@ nav {
 .notice {
   @include flash-msg;
   background-color: #aceb94;
+  border-color: green;
 }
 .warning {
   @include flash-msg;
@@ -77,4 +79,10 @@ nav {
 h1, h2, h3 {
   font-family: "DejaVu Serif", "Times New Roman", serif;
   margin: 4px;
+}
+#user-nav {
+  padding: 4px;
+  font: {
+    size: 12pt;
+  }
 }
