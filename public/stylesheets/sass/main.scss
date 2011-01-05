@@ -1,0 +1,26 @@
+html {
+  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+  font-size: 10pt;
+}
+
+@mixin flash-msg {
+  border-width: 1px;
+  border-style: none;
+  border-radius: 2px;
+  padding: 8px;
+}
+.notice {
+  @include flash-msg;
+  background-color: #aceb94;
+}
+.warning {
+  @include flash-msg;
+  background-color: #ffcc66;
+}
+.error {
+  @include flash-msg;
+  background-color: #ff6666;
+}
+h1, h2, h3 {
+  font-family: "DejaVu Serif", "Times New Roman", serif;
+}

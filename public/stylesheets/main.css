@@ -1,0 +1,27 @@
+html {
+  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+  font-size: 10pt; }
+
+.notice {
+  border-width: 1px;
+  border-style: none;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: #aceb94; }
+
+.warning {
+  border-width: 1px;
+  border-style: none;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: #ffcc66; }
+
+.error {
+  border-width: 1px;
+  border-style: none;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: #ff6666; }
+
+h1, h2, h3 {
+  font-family: "DejaVu Serif", "Times New Roman", serif; }
