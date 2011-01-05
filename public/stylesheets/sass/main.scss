@@ -1,13 +1,66 @@
-html {
-  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
-  font-size: 10pt;
+@mixin border-radius($radius: 4px) {
+  border-radius: $radius; /* CSS3 */
+  -moz-border-radius: $radius; /* Gecko */
+  -webkit-border-radius: $radius; /* WebKit */
 }
-
+@mixin shadow($radius, $color: rgba(0,0,0,0.5)) {
+  box-shadow: 0 0 $radius $color; /* CSS 3 */
+  -moz-box-shadow: 0 0 $radius $color; /* Для Firefox */
+  -webkit-box-shadow: 0 0 $radius $color; /* Для Safari и Chrome */
+}
 @mixin flash-msg {
   border-width: 1px;
   border-style: none;
-  border-radius: 2px;
+  @include border-radius(2px);
   padding: 8px;
+}
+html {
+  font: {
+    family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+    size: 10pt;
+  }
+}
+body {
+  background-color: gray;
+}
+#container {
+  width: 1000px;
+  height: 1000px;
+  background-color: white;
+  margin: auto;
+  padding: 4px;
+  border-radius: 4px;
+  @include shadow(16px);
+}
+aside {
+  float: right;
+  width: 200px;
+  height: 100%;
+}
+article {
+  height: 100%;
+  text-align: justify;
+  padding: 0 1em 0 1em;
+  overflow: hidden;
+  font: {
+    size: 12pt;
+  }
+}
+header {
+  overflow: hidden;
+}
+nav {
+  &.main {
+    padding: 4px;
+    font: {
+      size: 14pt;
+      /*weight: bold;*/
+     }
+  }
+  li {
+    list-style-type: none;
+    display: inline-block;
+  }
 }
 .notice {
   @include flash-msg;
@@ -23,4 +76,5 @@ html {
 }
 h1, h2, h3 {
   font-family: "DejaVu Serif", "Times New Roman", serif;
+  margin: 4px;
 }

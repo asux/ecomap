@@ -1,11 +1,57 @@
+@charset "UTF-8";
 html {
   font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
   font-size: 10pt; }
+
+body {
+  background-color: gray; }
+
+#container {
+  width: 1000px;
+  height: 1000px;
+  background-color: white;
+  margin: auto;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  /* CSS 3 */
+  -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  /* Для Firefox */
+  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  /* Для Safari и Chrome */ }
+
+aside {
+  float: right;
+  width: 200px;
+  height: 100%; }
+
+article {
+  height: 100%;
+  text-align: justify;
+  padding: 0 1em 0 1em;
+  overflow: hidden;
+  font-size: 12pt; }
+
+header {
+  overflow: hidden; }
+
+nav.main {
+  padding: 4px;
+  font-size: 14pt;
+  /*weight: bold;*/ }
+nav li {
+  list-style-type: none;
+  display: inline-block; }
 
 .notice {
   border-width: 1px;
   border-style: none;
   border-radius: 2px;
+  /* CSS3 */
+  -moz-border-radius: 2px;
+  /* Gecko */
+  -webkit-border-radius: 2px;
+  /* WebKit */
   padding: 8px;
   background-color: #aceb94; }
 
@@ -13,6 +59,11 @@ html {
   border-width: 1px;
   border-style: none;
   border-radius: 2px;
+  /* CSS3 */
+  -moz-border-radius: 2px;
+  /* Gecko */
+  -webkit-border-radius: 2px;
+  /* WebKit */
   padding: 8px;
   background-color: #ffcc66; }
 
@@ -20,8 +71,14 @@ html {
   border-width: 1px;
   border-style: none;
   border-radius: 2px;
+  /* CSS3 */
+  -moz-border-radius: 2px;
+  /* Gecko */
+  -webkit-border-radius: 2px;
+  /* WebKit */
   padding: 8px;
   background-color: #ff6666; }
 
 h1, h2, h3 {
-  font-family: "DejaVu Serif", "Times New Roman", serif; }
+  font-family: "DejaVu Serif", "Times New Roman", serif;
+  margin: 4px; }
