@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= @page_title or "Ecomap"
+    %title= @page_title + " : Ecomap"
     %meta{:charset => "utf-8"}
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
@@ -10,7 +10,7 @@
     %section#container
       %nav.main
         %menu
-          %li= link_to('root', '/')
+          %li= link_to t('title.main', :default => "Main"), '/'
       %aside
         = render 'users/user_nav'
       %header
@@ -18,6 +18,11 @@
           #flash-container
             - flash.each do |type, msg|
               %p{:class => "#{type}"}= msg
-        %h1= @title or "Title"
+        - if @title
+          %h1= @title
       %article#content= yield
       %footer
+        = t('footer.created', :default => 'Created by')
+        = mail_to raw(t('footer.email', :default => "Alexander Ulyanitsky <a.ulyanitsky@gmail.com>")),
+                  t('footer.author', :default => "Alexander Ulyanitsky"), :encode => :hex
+        &copy; 2011

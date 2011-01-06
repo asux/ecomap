@@ -1,7 +1,7 @@
 #user-nav
   - if user_signed_in?
     = raw t('devise.signed_as', :default => "Signed as <strong>%{user}</strong>", :user => current_user)
-    = link_to t('devise.edit', :default => "Edit"), edit_user_registration_path
+    = link_to t('devise.edit', :default => "Edit %{resource}", :resource => User.human_name.downcase), edit_user_registration_path
     = link_to t('devise.sign_out', :default => "Sign out"), destroy_user_session_path
   - else
     = link_to t('devise.sign_up', :default => "Sign up"), new_user_registration_path

@@ -39,3 +39,4 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.1'
 end
 gem 'ruby_parser'
+gem 'ya2yaml'

@@ -1,5 +1,13 @@
 Ecomap::Application.routes.draw do
   devise_for :users
+  
+  if Rails.env == 'development'
+    scope '/translate' do
+      match '/translate_list', :to => 'translate#index'
+      match '/translate', :to => 'translate#translate'
+      match '/translate_reload', :to => 'translate#reload', :as => 'translate_reload'
+    end
+  end
 
   get "maps/index"
 

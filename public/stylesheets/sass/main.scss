@@ -9,7 +9,7 @@
   -webkit-box-shadow: 0 0 $radius $color; /* Для Safari и Chrome */
 }
 @mixin flash-msg {
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   @include border-radius(4px);
   padding: 8px;
@@ -25,7 +25,7 @@ body {
 }
 #container {
   width: 1000px;
-  height: 1000px;
+  /* height: 1000px; */
   background-color: white;
   margin: auto;
   padding: 4px;
@@ -38,7 +38,7 @@ aside {
   height: 100%;
 }
 article {
-  height: 100%;
+  height: auto;
   text-align: justify;
   padding: 0 1em 0 1em;
   overflow: hidden;
@@ -62,6 +62,17 @@ nav {
     list-style-type: none;
     display: inline-block;
   }
+}
+footer {
+  &, a, a:hover {
+    color: gray;
+  }
+  font: {
+    size: 9pt;
+  }
+  vertical-align: middle;
+  text-align: center;
+  padding: 20px;
 }
 .notice {
   @include flash-msg;

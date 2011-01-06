@@ -97,6 +97,7 @@ GEM
       i18n
     warden (1.0.3)
       rack (>= 1.0.0)
+    ya2yaml (0.30)
 
 PLATFORMS
   ruby
@@ -111,3 +112,4 @@ DEPENDENCIES
   ruby_parser
   sqlite3-ruby
   ukrainian
+  ya2yaml

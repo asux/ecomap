@@ -1,11 +1,269 @@
-uk:
-  devise:
-    sign_in: Увійти
-    sign_up: Реєструватися
-    sign_out: Вийти
-    signed_as: "Ви увійшли як <strong>%{user}</strong>"
-    edit: Редагувати
+--- 
+uk: 
+  activerecord: 
+    errors: 
+      messages: 
+        accepted: "має бути прийнятий"
+        blank: "не може містити тільки пробіли"
+        confirmation: "не збігається з підтвердженням"
+        empty: "не може бути пустим"
+        equal_to: "має дорівнювати %{count}"
+        even: "має бути парним"
+        exclusion: зарезервовано
+        greater_than: "має бути більше ніж %{count}"
+        greater_than_or_equal_to: "має бути більше ніж або дорівнювати %{count}"
+        inclusion: "не включено до переліку"
+        invalid: недійсний
+        less_than: "має бути менше ніж %{count}"
+        less_than_or_equal_to: "має бути менше ніж або дорівнювати %{count}"
+        not_a_number: "не число"
+        odd: "має бути непарним"
+        taken: "вже зайнятий"
+        too_long: 
+          few: "занадто довгий (максимум %{count} знаки)"
+          many: "занадто довгий (максимум %{count} знаків)"
+          one: "занадто довгий (максимум %{count} знак)"
+          other: "занадто довгий (максимум %{count} знаку)"
+        too_short: 
+          few: "занадто короткий (мінімум %{count} знаки)"
+          many: "занадто короткий (мінімум %{count} знаків)"
+          one: "занадто короткий (мінімум %{count} знак)"
+          other: "занадто короткий (мінімум %{count} знаку)"
+        wrong_length: 
+          few: "неправильна довжина (має бути %{count} знаки)"
+          many: "неправильна довжина (має бути %{count} знаків)"
+          one: "неправильна довжина (має бути %{count} знак)"
+          other: "неправильна довжина (має бути %{count} знаку)"
+      template: 
+        body: "Помилки виявлено в таких полях:"
+        header: 
+          few: "%{model} не збережено через %{count} помилки"
+          many: "%{model} не збережено через %{count} помилок"
+          one: "%{model} не збережено через %{count} помилку"
+          other: "%{model} не збережено через %{count} помилки"
+  date: 
+    abbr_day_names: 
+      - нд.
+      - пн.
+      - вт.
+      - ср.
+      - чт.
+      - пт.
+      - сб.
+    abbr_month_names: 
+      - ~
+      - січ.
+      - лют.
+      - бер.
+      - квіт.
+      - трав.
+      - черв.
+      - лип.
+      - серп.
+      - вер.
+      - жовт.
+      - лист.
+      - груд.
+    day_names: 
+      - неділя
+      - понеділок
+      - вівторок
+      - середа
+      - четвер
+      - п'ятниця
+      - субота
+    formats: 
+      default: "%d.%m.%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names: 
+      - ~
+      - Січень
+      - Лютий
+      - Березень
+      - Квітень
+      - Травень
+      - Червень
+      - Липень
+      - Серпень
+      - Вересень
+      - Жовтень
+      - Листопад
+      - Грудень
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        few: "близько %{count} годин"
+        many: "близько %{count} годин"
+        one: "близько %{count} години"
+        other: "близько %{count} години"
+      about_x_months: 
+        few: "близько %{count} місяців"
+        many: "близько %{count} місяців"
+        one: "близько %{count} місяця"
+        other: "близько %{count} місяця"
+      about_x_years: 
+        few: "близько %{count} років"
+        many: "близько %{count} років"
+        one: "близько %{count} року"
+        other: "близько %{count} року"
+      almost_x_years: 
+        few: "майже %{count} років"
+        many: "майже %{count} років"
+        one: "майже %{count} рік"
+        other: "майже %{count} років"
+      half_a_minute: півхвилини
+      less_than_x_minutes: 
+        few: "менше %{count} хвилин"
+        many: "менше %{count} хвилин"
+        one: "менше %{count} хвилини"
+        other: "менше %{count} хвилини"
+      less_than_x_seconds: 
+        few: "менше %{count} секунд"
+        many: "менше %{count} секунд"
+        one: "менше %{count} секунди"
+        other: "менше %{count} секунди"
+      over_x_years: 
+        few: "більше %{count} років"
+        many: "більше %{count} років"
+        one: "більше %{count} року"
+        other: "більше %{count} року"
+      x_days: 
+        few: "%{count} дні"
+        many: "%{count} днів"
+        one: "%{count} день"
+        other: "%{count} дня"
+      x_minutes: 
+        few: "%{count} хвилини"
+        many: "%{count} хвилин"
+        one: "%{count} хвилина"
+        other: "%{count} хвилини"
+      x_months: 
+        few: "%{count} місяці"
+        many: "%{count} місяців"
+        one: "%{count} місяць"
+        other: "%{count} місяця"
+      x_seconds: 
+        few: "%{count} секунди"
+        many: "%{count} секунд"
+        one: "%{count} секунда"
+        other: "%{count} секунди"
+    prompts: 
+      day: День
+      hour: Година
+      minute: Хвилина
+      month: Місяць
+      second: Секунда
+      year: Рік
+  devise: 
+    back: Назад
+    cancel: "Видалити обліковий запис"
+    change_password_head: "Змінити ваш пароль"
+    change_password_submit: "Надіслати інструкції для заміни паролю"
+    confirmation: "Надіслати код підтвердження"
+    confirmations: 
+      confirmed: "Ваша обліковий рахунок було успішно підтверджено. Ви успішно увійшли до системи."
+      send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо підтвердження Вашого облікового запису."
+    edit: "Редагувати %{resource}"
     forgot: "Забули пароль?"
+    forgot_head: "Забули пароль?"
+    forgot_submit: "Надіслати інструкції для створення нового паролю"
+    mailer: 
+      confirmation_instructions: "Інструкції щодо підтвердження"
+      reset_password_instructions: "Інструкції щодо зміни пароля"
     no_confirmation: "Не отрімали інструкції для підтведження?"
     no_unlock: "Не отрімали інструкції для розблокування?"
-    change_password_head: "Змінити ваш пароль"
+    passwords: 
+      send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо зміни Вашого пароля."
+      updated: "Ваш пароль було успішно змінено. Ви успішно увійшли до системи."
+    sessions: 
+      inactive: "Ваш обліковий рахунок ще не підтверджено."
+      invalid: "Ви ввели неправильний пароль або адресу електронної пошти."
+      signed_in: "Ви успішно увійшли до системи."
+      signed_out: "Ви успішно вийшли з системи."
+      timeout: "Ваша сесія застаріла. Будь-ласка, увійдіть до системи повторно для продовження."
+      unauthenticated: "Для продовження Вам необхідно або увійти до системи, або зареєструватись."
+      unconfirmed: "Для продовження Вам необхідно підтвердити Ваш обліковий зипис."
+    sign_in: Увійти
+    sign_out: Вийти
+    sign_up: Реєструватися
+    signed_as: "Ви увійшли як <strong>%{user}</strong>"
+    unlock: "Надіслати інструкції для розблокування"
+  flash: 
+    actions: 
+      create: 
+        notice: "%{resource_name} було успішно створено."
+      destroy: 
+        alert: "%{resource_name} не може бути видалено."
+        notice: "%{resource_name} було успішно видалено."
+      update: 
+        notice: "%{resource_name} було успішно оновлено."
+  footer: 
+    author: "Alexander Ulyanitsky"
+    created: Створено
+    email: "Alexander Ulyanitsky <a.ulyanitsky@gmail.com>"
+  formtastic: 
+    create: Створити
+    ? "false"
+    : ""
+    required: Обов'язкове
+    save: Зберегти
+    submit: Відправити
+    ? "true"
+    : ""
+  helpers: 
+    confirm: "Ви впевнені?"
+  number: 
+    currency: 
+      format: 
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        unit: грн.
+    format: 
+      delimiter: " "
+      precision: 3
+      separator: ","
+    human: 
+      format: 
+        delimiter: ""
+        precision: 1
+      storage_units: 
+        format: "%n %u"
+        units: 
+          byte: 
+            few: байти
+            many: байтів
+            one: байт
+            other: байту
+          gb: ГБ
+          kb: кБ
+          mb: МБ
+          tb: ТБ
+    percentage: 
+      format: 
+        delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
+  support: 
+    array: 
+      last_word_connector: " та "
+      sentence_connector: і
+      skip_last_comma: true
+      two_words_connector: " і "
+      words_connector: ", "
+  time: 
+    am: "до полудня"
+    formats: 
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+    pm: "по полудні"
+  title: 
+    main: Головна
