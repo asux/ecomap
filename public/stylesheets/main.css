@@ -1,4 +1,13 @@
 @charset "UTF-8";
+/* Makeshift CSS Reset */
+* {
+  margin: 0;
+  padding: 0; }
+
+/* Tell the browser to render HTML 5 elements as block */
+header, footer, aside, nav, article, section {
+  display: block; }
+
 html {
   font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
   font-size: 10pt; }

@@ -1,3 +1,5 @@
+// Mixins
+
 @mixin border-radius($radius: 4px) {
   border-radius: $radius; /* CSS3 */
   -moz-border-radius: $radius; /* Gecko */
@@ -13,6 +15,17 @@
   border-style: solid;
   @include border-radius(4px);
   padding: 8px;
+}
+
+// Elements
+/* Makeshift CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}   
+/* Tell the browser to render HTML 5 elements as block */
+header, footer, aside, nav, article, section {
+  display: block;
 }
 html {
   font: {
