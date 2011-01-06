@@ -1,0 +1,11 @@
+uk:
+  devise:
+    sign_in: Увійти
+    sign_up: Реєструватися
+    sign_out: Вийти
+    signed_as: "Ви увійшли як <strong>%{user}</strong>"
+    edit: Редагувати
+    forgot: "Забули пароль?"
+    no_confirmation: "Не отрімали інструкції для підтведження?"
+    no_unlock: "Не отрімали інструкції для розблокування?"
+    change_password_head: "Змінити ваш пароль"
