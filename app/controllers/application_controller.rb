@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     @version_info = Hash.new
     if File.file?(revision_filename)
       release = File.basename(Rails.root)
-      revision = File.open(revision_filename, 'r').read
+      revision = File.open(revision_filename, 'r').read.strip
       git_bin = "git"
       commit = %x[#{git_bin} --work-tree #{Rails.root} log --format=oneline -n 1 #{revision}]
       #@version_info[:revision] = %Q[<a href="http://redmine.dikins.org.ua/projects/gramota/repository/revisions/#{revision}" class="revision">#{revision}</a>]

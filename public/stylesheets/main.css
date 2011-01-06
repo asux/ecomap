@@ -21,7 +21,12 @@ body {
   background-color: white;
   margin: auto;
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 10px;
+  /* CSS3 */
+  -moz-border-radius: 10px;
+  /* Gecko */
+  -webkit-border-radius: 10px;
+  /* WebKit */
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
   /* CSS 3 */
   -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
@@ -61,42 +66,33 @@ footer {
   footer, footer a, footer a:hover {
     color: gray; }
 
-.notice {
+.flash-msg, .notice, .warning, .error, #error_explanation {
   border-width: 2px;
   border-style: solid;
-  border-radius: 4px;
+  border-radius: 8px;
   /* CSS3 */
-  -moz-border-radius: 4px;
+  -moz-border-radius: 8px;
   /* Gecko */
-  -webkit-border-radius: 4px;
+  -webkit-border-radius: 8px;
   /* WebKit */
-  padding: 8px;
-  background-color: #aceb94;
-  border-color: green; }
+  padding: 8px; }
+
+.notice {
+  background-color: #D8E8C2;
+  border-color: #B1D28F; }
 
 .warning {
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 4px;
-  /* CSS3 */
-  -moz-border-radius: 4px;
-  /* Gecko */
-  -webkit-border-radius: 4px;
-  /* WebKit */
-  padding: 8px;
   background-color: #ffcc66; }
 
 .error {
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 4px;
-  /* CSS3 */
-  -moz-border-radius: 4px;
-  /* Gecko */
-  -webkit-border-radius: 4px;
-  /* WebKit */
-  padding: 8px;
   background-color: #ff6666; }
+
+#error_explanation {
+  background-color: #ff6666;
+  font-size: 9pt;
+  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+  padding: 4px;
+  margin: 4px; }
 
 h1, h2, h3 {
   font-family: "DejaVu Serif", "Times New Roman", serif;
@@ -110,3 +106,7 @@ h1, h2, h3 {
   font-size: 8pt;
   font-family: "Monaco", "DejaVu Sans Mono", monospace;
   margin: 4px; }
+
+span.help {
+  color: gray;
+  font-size: 9pt; }

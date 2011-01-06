@@ -4,6 +4,6 @@
   %p
     = f.label :email
     %br/
-    = f.text_field :email
+    = f.email_field :email, :required => true
   %p= f.submit t('devise.confirmation', :default => "Resend confirmation instructions")
 = render :partial => "devise/shared/links"

@@ -1,6 +1,14 @@
 --- 
 uk: 
   activerecord: 
+    attributes: 
+      user: 
+        current_password: "Поточний пароль"
+        email: Електропошта
+        full_name: "Повне ім'я"
+        info: Інформація
+        password: Пароль
+        password_confirmation: "Підтвердження паролю"
     errors: 
       messages: 
         accepted: "має бути прийнятий"
@@ -41,6 +49,12 @@ uk:
           many: "%{model} не збережено через %{count} помилок"
           one: "%{model} не збережено через %{count} помилку"
           other: "%{model} не збережено через %{count} помилки"
+    models: 
+      user: 
+        few: користувачів
+        many: користувачів
+        one: користувач
+        other: користувачів
   date: 
     abbr_day_names: 
       - нд.
@@ -159,6 +173,11 @@ uk:
       month: Місяць
       second: Секунда
       year: Рік
+  devie: 
+    current_password_help: "(нам потрібен ваш поточний пароль, щоб ми змогли підтвердити зімни)"
+    password_help: "(залиште пустим, якщо не змінюватимете пароль)"
+    remember_me: "Запам'ятати мене"
+    update: Оновити
   devise: 
     back: Назад
     cancel: "Видалити обліковий запис"

@@ -1,3 +1,8 @@
+// Variables
+$fonts-serif: "DejaVu Serif", "Times New Roman", serif;
+$fonts-sans: "DejaVu Sans Serif", "Tahoma", sans-serif;
+$fonts-mono: "Monaco", "DejaVu Sans Mono", monospace;
+
 // Mixins
 
 @mixin border-radius($radius: 4px) {
@@ -9,12 +14,6 @@
   box-shadow: 0 0 $radius $color; /* CSS 3 */
   -moz-box-shadow: 0 0 $radius $color; /* Для Firefox */
   -webkit-box-shadow: 0 0 $radius $color; /* Для Safari и Chrome */
-}
-@mixin flash-msg {
-  border-width: 2px;
-  border-style: solid;
-  @include border-radius(4px);
-  padding: 8px;
 }
 
 // Elements
@@ -29,7 +28,7 @@ header, footer, aside, nav, article, section {
 }
 html {
   font: {
-    family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+    family: $fonts-sans;
     size: 10pt;
   }
 }
@@ -42,7 +41,7 @@ body {
   background-color: white;
   margin: auto;
   padding: 4px;
-  border-radius: 4px;
+  @include border-radius(10px);
   @include shadow(16px);
 }
 aside {
@@ -87,21 +86,37 @@ footer {
   text-align: center;
   padding: 20px;
 }
+.flash-msg {
+  border-width: 2px;
+  border-style: solid;
+  @include border-radius(8px);
+  padding: 8px;
+}
 .notice {
-  @include flash-msg;
-  background-color: #aceb94;
-  border-color: green;
+  @extend .flash-msg;
+  background-color:#D8E8C2;
+  border-color: #B1D28F;
 }
 .warning {
-  @include flash-msg;
+  @extend .flash-msg;
   background-color: #ffcc66;
 }
 .error {
-  @include flash-msg;
+  @extend .flash-msg;
   background-color: #ff6666;
 }
+#error_explanation {
+  @extend .flash-msg;
+  background-color: #ff6666;
+  font: {
+    size: 9pt;
+    family: $fonts-sans;
+  }
+  padding: 4px;
+  margin: 4px;
+}
 h1, h2, h3 {
-  font-family: "DejaVu Serif", "Times New Roman", serif;
+  font-family: $fonts-serif;
   margin: 4px;
 }
 #user-nav {
@@ -113,7 +128,13 @@ h1, h2, h3 {
 #version-info {
   font: {
     size: 8pt;
-    family: "Monaco", "DejaVu Sans Mono", monospace;
+    family: $fonts-mono;
   }
   margin: 4px;
+}
+span.help {
+  color: gray;
+  font: {
+    size: 9pt;
+  }
 }

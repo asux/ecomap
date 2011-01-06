@@ -4,6 +4,6 @@
   %p
     = f.label :email
     %br/
-    = f.text_field :email
+    = f.email_field :email, :required => true
   %p= f.submit t('devise.forgot_submit', :default => "Send me reset password instructions")
 = render :partial => "devise/shared/links"

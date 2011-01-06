@@ -5,10 +5,10 @@
   %p
     = f.label :password
     %br/
-    = f.password_field :password
+    = f.password_field :password, :required => true
   %p
     = f.label :password_confirmation
     %br/
-    = f.password_field :password_confirmation
+    = f.password_field :password_confirmation, :required => true
   %p= f.submit t('devise.change_password_submit', :default => "Change my password")
 = render :partial => "devise/shared/links"

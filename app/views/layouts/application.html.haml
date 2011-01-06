@@ -2,7 +2,6 @@
 %html
   %head
     %title= @page_title + " : Ecomap"
-    %meta{:charset => "utf-8"}
     /[if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag :all
@@ -26,7 +25,7 @@
       %footer
         = t('footer.created', :default => 'Created by')
         = mail_to raw(t('footer.email', :default => "Alexander Ulyanitsky <a.ulyanitsky@gmail.com>")),
-                  t('footer.author', :default => "Alexander Ulyanitsky"), :encode => :hex
+                  t('footer.author', :default => "Alexander Ulyanitsky"), :encode => :javascript
         &copy; 2011
         - if user_signed_in?
           - unless @version_info.nil?
