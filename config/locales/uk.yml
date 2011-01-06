@@ -267,3 +267,6 @@ uk:
     pm: "по полудні"
   title: 
     main: Головна
+  version_info: 
+    commit: Коміт
+    release: Випуск

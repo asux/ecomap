@@ -97,3 +97,10 @@ h1, h2, h3 {
     size: 12pt;
   }
 }
+#version-info {
+  font: {
+    size: 8pt;
+    family: "Monaco", "DejaVu Sans Mono", monospace;
+  }
+  margin: 4px;
+}

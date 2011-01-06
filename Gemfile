@@ -37,8 +37,6 @@ gem 'hpricot'
 gem 'ukrainian'
 group :development, :test do
   gem 'rspec-rails', '~> 2.1'
-  gem 'capistrano'
-  gem 'capistrano-ext'
 end
 gem 'ruby_parser'
 gem 'ya2yaml'
