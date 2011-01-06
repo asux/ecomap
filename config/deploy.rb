@@ -65,9 +65,20 @@ namespace :deploy do
     run "rm -rf #{release_path}/tmp/cache && ln -nfs #{shared_path}/cache #{release_path}/tmp/cache"
   end
   
+  desc "Symlink bundle folder on each release."
+  task :symlink_bundle do
+    run "rm -rf #{release_path}/vendor/bundle && ln -nfs #{shared_path}/bundle #{release_path}/vendor/bundle"
+  end
+
   desc "Bundle install"
   task :bundle do
-    sudo "bundle install --gemfile=#{current_path}/Gemfile"
+    sudo "bundle install --gemfile=#{current_path}/Gemfile --without=development,test --deployment" do |channel, stream, data|
+      puts data if stream == :out
+      if stream == :err
+        puts "[Error: #{channel[:host]}] #{data}"
+        break
+      end
+    end
   end
 end
 
@@ -99,5 +110,6 @@ end
 before "deploy:update", "deploy:git_push"
 #after "deploy:symlink", "deploy:symlink_attachments"
 after "deploy:symlink", "deploy:symlink_cache"
+after "deploy:symlink", "deploy:symlink_bundle"
 #after "deploy:symlink", "deploy:set_perms"
 after "deploy", "deploy:cleanup"
