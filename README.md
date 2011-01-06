@@ -13,8 +13,8 @@ Technical info
 Links
 -----
 
-* Homepage: https://github.com/asux/ecomap
-* Git: git://github.com/asux/ecomap.git 
+* Homepage: [https://github.com/asux/ecomap](https://github.com/asux/ecomap)
+* Git: `git://github.com/asux/ecomap.git`
 
 Author
 -----

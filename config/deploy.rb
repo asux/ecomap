@@ -72,7 +72,7 @@ namespace :deploy do
 
   desc "Bundle install"
   task :bundle do
-    sudo "bundle install --gemfile=#{current_path}/Gemfile --without=development,test --deployment" do |channel, stream, data|
+    sudo "bundle install --gemfile=#{current_path}/Gemfile --deployment" do |channel, stream, data|
       puts data if stream == :out
       if stream == :err
         puts "[Error: #{channel[:host]}] #{data}"
