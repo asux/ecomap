@@ -1,4 +1,4 @@
-class <%= controller_class_name %>Controller < ApplicationController
+class <%= controller_class_name %>Controller < ApplicationController<% orm_class %>
   load_and_authorize_resource
 
   # GET <%= route_url %>
@@ -39,7 +39,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def create
     respond_to do |format|
       if @<%= orm_instance.save %>
-        format.html { redirect_to(@<%= singular_table_name %>, :notice => '<%= human_name %> was successfully created.') }
+        format.html { redirect_to(@<%= singular_table_name %>, :notice => t(:create_message, :default => '%{model} was successfully created.', :model => @<%= singular_table_name %>.class.human_name)) }
         format.xml  { render :xml => @<%= singular_table_name %>, :status => :created, :location => @<%= singular_table_name %> }
       else
         format.html { render :action => "new" }
@@ -53,7 +53,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def update
     respond_to do |format|
       if @<%= orm_instance.update_attributes("params[:#{singular_table_name}]") %>
-        format.html { redirect_to(@<%= singular_table_name %>, :notice => '<%= human_name %> was successfully updated.') }
+        format.html { redirect_to(@<%= singular_table_name %>, :notice => t(:update_message, :default => '%{model} was successfully updated.', :model => @<%= singular_table_name %>.class.human_name)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
