@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= @page_title + " : Ecomap"
+    %title= (@page_title or "Untitled") + " : Ecomap"
     /[if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag :all
