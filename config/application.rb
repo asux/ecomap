@@ -47,6 +47,7 @@ module Ecomap
     # Default template engine for Rails Generators. Use HAML instead of ERB.
     config.generators do |g|
       g.template_engine :haml
+      g.stylesheets false
     end
   end
 end

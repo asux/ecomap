@@ -32,7 +32,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'racc'
 #gem 'autotest'
 gem 'devise'
-gem 'haml-rails' # Not haml
+gem 'haml'
+gem 'haml-rails-with-i18n'
 gem 'hpricot'
 gem 'ukrainian'
 group :development, :test do

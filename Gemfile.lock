@@ -43,7 +43,7 @@ GEM
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
     haml (3.0.25)
-    haml-rails (0.3.4)
+    haml-rails-with-i18n (0.1.3)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       haml (~> 3.0)
@@ -111,7 +111,8 @@ DEPENDENCIES
   cancan
   devise
   formtastic
-  haml-rails
+  haml
+  haml-rails-with-i18n
   hpricot
   racc
   rails (~> 3.0.3)

@@ -1,0 +1,4 @@
+#pagination
+  = page_entries_info collection
+  %br/
+  = will_paginate collection, :previous_label => t('pagination.previous_label', :default => "&laquo; Previous"), :next_label => t('pagination.next_label', :default => "Next &raquo;")
