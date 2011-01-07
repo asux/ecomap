@@ -10,14 +10,14 @@ header, footer, aside, nav, article, section {
 body {
   font-weight: normal;
   font-style: normal;
-  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
+  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
   font-size: 12pt;
   background-color: #62702E;
   color: #3e471d; }
 
 a {
   text-decoration: none;
-  color: #4D2600; }
+  color: #638000; }
   a:hover {
     text-decoration: underline; }
 
@@ -132,7 +132,7 @@ footer {
 
 .flash-msg, .notice, .warning, .error, .alert, #error_explanation {
   font-size: 12pt;
-  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
+  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
@@ -142,7 +142,8 @@ footer {
   -webkit-border-radius: 8px;
   /* WebKit */
   padding: 8px;
-  margin: 4px 0px 4px 0px; }
+  margin: 4px 0px 4px 0px;
+  text-indent: 0em; }
 
 .notice {
   background-color: #D8E8C2;
@@ -158,12 +159,12 @@ footer {
 #error_explanation {
   background-color: #ff6666;
   font-size: 9pt;
-  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
+  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
   padding: 4px;
   margin: 4px; }
 
 h1, h2, h3 {
-  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif; }
+  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif; }
 
 #user-nav {
   padding: 4px;
@@ -201,6 +202,7 @@ input[type=checkbox] {
   /* Gecko */
   -webkit-border-radius: 5px;
   /* WebKit */
+  color: #3e471d;
   padding: 4px;
   font-size: 14pt; }
 
@@ -232,3 +234,10 @@ input[type=checkbox] {
   width: 16px;
   height: 16px;
   padding: 2px; }
+
+p {
+  margin: 8px 0px 8px 0px; }
+  p.text {
+    text-align: justify;
+    margin: .5em 0em .5em 0em;
+    text-indent: 1em; }

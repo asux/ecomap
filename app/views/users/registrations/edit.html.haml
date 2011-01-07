@@ -1,4 +1,4 @@
-- title t('devise.edit', :defualt => "Edit %{resource}", :resource => resource.class.human_name)
+- title t('devise.edit', :defualt => "Edit user")
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
   %p
@@ -7,7 +7,7 @@
     = f.email_field :email
   %p
     = f.label :password
-    %span.help= t('devie.password_help', :default => "(leave blank if you don't want to change it)")
+    %span.help= t('devise.password_help', :default => "(leave blank if you don't want to change it)")
     %br/
     = f.password_field :password
   %p
@@ -16,7 +16,7 @@
     = f.password_field :password_confirmation
   %p
     = f.label :current_password, User.human_attribute_name(:current_password)
-    %span.help=  t('devie.current_password_help', :default => "(we need your current password to confirm your changes)")
+    %span.help=  t('devise.current_password_help', :default => "(we need your current password to confirm your changes)")
     %br/
     = f.password_field :current_password
   %p
@@ -26,8 +26,8 @@
   %p
     = f.label :info
     %br/
-    = f.text_area :info, :style => "resize: both;"
-  %p= f.submit t('devie.update', :default => "Update")
+    = f.text_area :info, :style => "resize: both;", :rows => 4
+  %p= f.submit t('devise.update', :default => "Update")
 %h3= t('devise.cancel', :default => "Cancel my account")
 %p
   = link_to t('devise.cancel', :default => "Cancel my account"), registration_path(resource_name),
