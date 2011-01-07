@@ -53,7 +53,8 @@ section#main {
   background-color: #e5e6df;
   overflow: hidden;
   margin-right: 8px;
-  padding: 8px; }
+  padding: 8px;
+  min-height: 400px; }
 
 section#middle {
   clear: both; }

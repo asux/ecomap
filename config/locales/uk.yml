@@ -182,7 +182,7 @@ uk:
     back: Назад
     cancel: "Видалити обліковий запис"
     change_password_head: "Змінити ваш пароль"
-    change_password_submit: "Надіслати інструкції для заміни паролю"
+    change_password_submit: "Змінити пароль"
     confirmation: "Надіслати код підтвердження"
     confirmations: 
       confirmed: "Ваша обліковий рахунок було успішно підтверджено. Ви успішно увійшли до системи."

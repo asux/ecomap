@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+  check_authorization
+
   before_filter :get_version_info
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = exception.message
+    redirect_to root_url
+  end
 
   def get_version_info
     revision_filename = Rails.root.join('REVISION')

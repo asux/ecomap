@@ -40,3 +40,4 @@ group :development, :test do
 end
 gem 'ruby_parser'
 gem 'ya2yaml'
+gem 'cancan'
