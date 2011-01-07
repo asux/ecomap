@@ -29,6 +29,9 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.1'
+end
 gem 'racc'
 #gem 'autotest'
 gem 'devise'
@@ -36,10 +39,8 @@ gem 'haml'
 gem 'haml-rails-with-i18n'
 gem 'hpricot'
 gem 'ukrainian'
-group :development, :test do
-  gem 'rspec-rails', '~> 2.1'
-end
 gem 'ruby_parser'
 gem 'ya2yaml'
 gem 'cancan'
 gem 'formtastic'
+gem 'will_paginate', '~> 3.0.beta'

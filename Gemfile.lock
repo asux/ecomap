@@ -102,6 +102,7 @@ GEM
       i18n
     warden (1.0.3)
       rack (>= 1.0.0)
+    will_paginate (3.0.pre2)
     ya2yaml (0.30)
 
 PLATFORMS
@@ -120,4 +121,5 @@ DEPENDENCIES
   ruby_parser
   sqlite3-ruby
   ukrainian
+  will_paginate (~> 3.0.beta)
   ya2yaml
