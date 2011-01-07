@@ -26,6 +26,7 @@ uk:
         less_than_or_equal_to: "має бути менше ніж або дорівнювати %{count}"
         not_a_number: "не число"
         odd: "має бути непарним"
+        record_invalid: "Помилка валідації: %{errors}"
         taken: "вже зайнятий"
         too_long: 
           few: "занадто довгий (максимум %{count} знаки)"
@@ -55,6 +56,8 @@ uk:
         many: користувачів
         one: користувач
         other: користувачів
+  back_link: Назад
+  confirm_destroy_message: "Ви впевнені?"
   date: 
     abbr_day_names: 
       - нд.
@@ -173,6 +176,7 @@ uk:
       month: Місяць
       second: Секунда
       year: Рік
+  destroy_link: Знищити
   devise: 
     back: Назад
     cancel: "Видалити обліковий запис"
@@ -184,18 +188,34 @@ uk:
       send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо підтвердження Вашого облікового запису."
     current_password_help: "(нам потрібен ваш поточний пароль, щоб ми змогли підтвердити зімни)"
     edit: "Редагувати користувача"
+    failure: 
+      inactive: "Ваш обліковий запис ще не активовано."
+      invalid: "Невірний електронна пошти або пароль."
+      invalid_token: "Невірна аутентифікація."
+      locked: "Ваш обліковий запис заблоковано."
+      timeout: "Ваша сесія закінчилася, увійдіть знову, щоб продовжити."
+      unauthenticated: "Ви повинні увійти або зареєструватися, перш ніж продовжити."
+      unconfirmed: "Ви повинні підтвердити свій обліковий запис, перш ніж продовжити."
     forgot: "Забули пароль?"
     forgot_head: "Забули пароль?"
     forgot_submit: "Надіслати інструкції для створення нового паролю"
     mailer: 
-      confirmation_instructions: "Інструкції щодо підтвердження"
-      reset_password_instructions: "Інструкції щодо зміни пароля"
+      confirmation_instructions: 
+        subject: "Інструкції щодо підтвердження"
+      reset_password_instructions: 
+        subject: "Інструкції щодо зміни пароля"
+      unlock_instructions: 
+        subject: "Інструкції щодо розблокування"
     no_confirmation: "Не отрімали інструкції для підтведження?"
     no_unlock: "Не отрімали інструкції для розблокування?"
     password_help: "(залиште пустим, якщо не змінюватимете пароль)"
     passwords: 
       send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо зміни Вашого пароля."
       updated: "Ваш пароль було успішно змінено. Ви успішно увійшли до системи."
+    registrations: 
+      destroyed: "Допобачення! Ваш акаунт був успішно скасовано. Ми сподіваємося побачити вас знову в найближчим часом."
+      signed_up: "Ви зареєструвалися успішно. Якщо підтвердження включено, воно буде надіслано на Вашу адресу електронної пошти."
+      updated: "Ви оновили обліковий запис успішно."
     remember_me: "Запам'ятати мене"
     sessions: 
       inactive: "Ваш обліковий рахунок ще не підтверджено."
@@ -210,7 +230,37 @@ uk:
     sign_up: Реєструватися
     signed_as: "Ви увійшли як <strong>%{user}</strong>"
     unlock: "Надіслати інструкції для розблокування"
+    unlocks: 
+      send_instructions: "Ви отримаєте лист з інструкціями про те, як розблокувати ваш рахунок протягом декількох хвилин."
+      unlocked: "Ваш акаунт був успішно розблоковано. Тепер ви увійшли в систему."
     update: Оновити
+  edit_link: Редагувати
+  edit_title: "Редагування: %{model}"
+  errors: 
+    format: "%{attribute} %{message}"
+    messages: 
+      accepted: "повинно бути прийнято"
+      already_confirmed: "вже підтвердили"
+      blank: "не може бути порожнім"
+      confirmation: "не збігається з підтвердженням"
+      empty: "не може бути порожнім"
+      equal_to: "має дорівнювати кількості %{count}"
+      even: "повинно бути парним"
+      exclusion: зарезервовано
+      greater_than: "повинно бути більше, ніж %{count}"
+      greater_than_or_equal_to: "повинно бути більше або дорівнює %{count}"
+      inclusion: "не включені до списку"
+      invalid: "є недійсним"
+      less_than: "повинно бути менше, ніж %{count}"
+      less_than_or_equal_to: "повинно бути менше або рівне %{count}"
+      not_a_number: "не є числом"
+      not_an_integer: "має бути цілим числом"
+      not_found: "не знайдено"
+      not_locked: "було заблоковано"
+      odd: "повинно бути непарним"
+      too_long: "занадто довгий (максимум %{count} символів)"
+      too_short: "дуже короткий (мінімум %{count} символів)"
+      wrong_length: "є неправильною довжини (повинно бути %{count} символів)"
   flash: 
     actions: 
       create: 
@@ -224,6 +274,9 @@ uk:
     author: "Alexander Ulyanitsky"
     created: Створено
     email: "Alexander Ulyanitsky <a.ulyanitsky@gmail.com>"
+  form_error_explanation: 
+    plural: "%{count} помилки виникло в %{model} підчас збереження"
+    singular: "1 помилка виникла в %{model} підчас збереження"
   formtastic: 
     create: Створити
     ? "false"
@@ -235,19 +288,36 @@ uk:
     : ""
   helpers: 
     confirm: "Ви впевнені?"
+    select: 
+      prompt: "Будь ласка, виберіть"
+    submit: 
+      create: "Створити: %{model}"
+      submit: "Зберегти: %{model}"
+      update: "Оновити: %{model}"
+  index_title: "Список: %{model}"
+  new_link: "Новий запис: %{model}"
+  new_title: "Новий запис: %{model}"
   number: 
     currency: 
       format: 
-        delimiter: " "
+        delimiter: ","
         format: "%n %u"
         precision: 2
         separator: ","
         unit: грн.
     format: 
-      delimiter: " "
+      delimiter: ","
       precision: 3
       separator: ","
     human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: Мільярд
+          million: Мільйон
+          quadrillion: Квадрильйон
+          thousand: Тисяч
+          trillion: Трильйон
       format: 
         delimiter: ""
         precision: 1
@@ -269,6 +339,10 @@ uk:
     precision: 
       format: 
         delimiter: ""
+  pagination: 
+    next_label: "наступна &raquo;"
+    previous_label: "&laquo; попередня"
+  show_link: Показати
   support: 
     array: 
       last_word_connector: " та "
