@@ -1,7 +1,9 @@
 // Variables
 $fonts-serif: "DejaVu Serif", "Times New Roman", serif;
-$fonts-sans: "DejaVu Sans Serif", "Tahoma", sans-serif;
+$fonts-sans: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
 $fonts-mono: "Monaco", "DejaVu Sans Mono", monospace;
+$bg-color: #E5E6DF;
+$fg-color: #3E471D;
 
 // Mixins
 
@@ -10,10 +12,15 @@ $fonts-mono: "Monaco", "DejaVu Sans Mono", monospace;
   -moz-border-radius: $radius; /* Gecko */
   -webkit-border-radius: $radius; /* WebKit */
 }
-@mixin shadow($radius, $color: rgba(0,0,0,0.5)) {
-  box-shadow: 0 0 $radius $color; /* CSS 3 */
-  -moz-box-shadow: 0 0 $radius $color; /* Для Firefox */
-  -webkit-box-shadow: 0 0 $radius $color; /* Для Safari и Chrome */
+@mixin box-shadow($radius, $color: rgba(0,0,0,0.5), $x: 0px, $y: 0px) {
+  box-shadow: $x $y $radius $color; /* CSS 3 */
+  -moz-box-shadow: $x $y $radius $color; /* Gecko */
+  -webkit-box-shadow: $x $y $radius $color; /* WebKit */
+}
+@mixin gradient($start, $stop) {
+  background-color: $stop;
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, $start), color-stop(0.51, $stop));
+  background-image: -moz-linear-gradient(center bottom, $start 10%, $stop 51%);
 }
 
 // Elements
@@ -26,49 +33,90 @@ $fonts-mono: "Monaco", "DejaVu Sans Mono", monospace;
 header, footer, aside, nav, article, section {
   display: block;
 }
-html {
-  font: {
-    family: $fonts-sans;
-    size: 10pt;
-  }
-}
 body {
-  background-color: gray;
+  font: {
+    weight: normal;
+    style: normal;
+    family: $fonts-sans;
+    size: 12pt;
+  }
+  background-color: #62702E;
+  color: $fg-color;
+}
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  color: #4D2600;
 }
 #container {
   width: 1000px;
-  /* height: 1000px; */
-  background-color: white;
+  //height: 1000px;
   margin: auto;
   padding: 4px;
+}
+.rounded-box {
   @include border-radius(10px);
-  @include shadow(16px);
+  @include box-shadow(16px);
 }
 aside {
+  background-color: $bg-color;
+  margin-left: 8px;
+  padding: 8px;
   float: right;
+  clear: right;
   width: 200px;
-  height: 100%;
+  min-height: 400px;
+}
+section#main {
+  background-color: $bg-color;
+  overflow: hidden;
+  margin-right: 8px;
+  padding: 8px;
+}
+section#middle {
+  clear: both;
 }
 article {
+  margin: 8px 0px 8px 0px;
+  padding: 8px;
   height: auto;
   text-align: justify;
-  padding: 0 1em 0 1em;
   overflow: hidden;
-  font: {
-    size: 12pt;
-  }
+  //font: {
+  //  size: 16px;
+  //}
 }
 header {
   overflow: hidden;
   padding: 8px;
+  margin: 8px 0px 8px 0px;
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, .5);
+  @include gradient(#7A9900, #8BB100);
+  @include border-radius(8px);
+  @include box-shadow(8px, rgba(0, 0, 0, .4), 2px, 2px);
 }
 nav {
   &.main {
-    padding: 4px;
     font: {
       size: 14pt;
       /*weight: bold;*/
      }
+    padding: 8px;
+    margin: 8px 0px 8px 0px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, .5);
+    @include gradient(#A75100, #BF5E00);
+    @include border-radius(8px);
+    @include box-shadow(16px, rgba(0, 0, 0, .4), 2px, 2px);
+    &, a, a:hover, * {
+      color: #FFFF99;
+      text-decoration: none;
+    }
+    a:hover {
+     color: white; 
+    }
   }
   li {
     list-style-type: none;
@@ -77,7 +125,7 @@ nav {
 }
 footer {
   &, a, a:hover {
-    color: gray;
+    color: $bg-color;
   }
   font: {
     size: 9pt;
@@ -85,12 +133,22 @@ footer {
   vertical-align: middle;
   text-align: center;
   padding: 20px;
+  margin-top: 8px;
+//  background-color: $bg-color;
+}
+#flash-container {
+  margin: 4px;
 }
 .flash-msg {
-  border-width: 2px;
+  font: {
+    size: 12pt;
+    family: $fonts-sans;
+  }
+  border-width: 1px;
   border-style: solid;
   @include border-radius(8px);
   padding: 8px;
+  margin: 4px 0px 4px 0px;
 }
 .notice {
   @extend .flash-msg;
@@ -101,9 +159,10 @@ footer {
   @extend .flash-msg;
   background-color: #ffcc66;
 }
-.error {
+.error, .alert {
   @extend .flash-msg;
-  background-color: #ff6666;
+  background-color: #FFBFBF;
+  border-color: #FF8080;
 }
 #error_explanation {
   @extend .flash-msg;
@@ -116,8 +175,7 @@ footer {
   margin: 4px;
 }
 h1, h2, h3 {
-  font-family: $fonts-serif;
-  margin: 4px;
+  font-family: $fonts-sans;
 }
 #user-nav {
   padding: 4px;
@@ -137,4 +195,48 @@ span.help {
   font: {
     size: 9pt;
   }
+}
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=datetime],
+input[type=time],
+input[type=date],
+input[type=number],
+textarea {
+  background-color: #FFDFBF;
+  border-color: #FF7E00;
+  border-style: solid;
+  border-width: 1px;
+  @include border-radius(5px);
+  padding: 4px;
+  font: {
+    size: 14pt;
+  }
+}
+input[type=button] {
+  @extend textarea;
+  background-color: #E7B550;
+  border-color: #CD931D;
+  @include box-shadow(10px, rgba(0, 0, 0, .5), 1px, 1px);
+  @include gradient(#CD931D, #E7B550);
+  text-align: center;
+  color: white;
+  margin: 4px;
+  &:hover {
+    @include gradient(#966B15, #C88F1B);
+    border-color: #966B15;
+  }
+}
+input[type=submit] {
+  @extend input[type=button]; 
+  font-weight: bold;
+}
+input[type=checkbox] {
+  @extend textarea;
+  width: 16px;
+  height: 16px;
+  padding: 2px;
 }

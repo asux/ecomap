@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* Makeshift CSS Reset */
 * {
   margin: 0;
@@ -8,52 +7,112 @@
 header, footer, aside, nav, article, section {
   display: block; }
 
-html {
-  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
-  font-size: 10pt; }
-
 body {
-  background-color: gray; }
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
+  font-size: 12pt;
+  background-color: #62702E;
+  color: #3e471d; }
+
+a {
+  text-decoration: none;
+  color: #4D2600; }
+  a:hover {
+    text-decoration: underline; }
 
 #container {
   width: 1000px;
-  /* height: 1000px; */
-  background-color: white;
   margin: auto;
-  padding: 4px;
+  padding: 4px; }
+
+.rounded-box {
   border-radius: 10px;
   /* CSS3 */
   -moz-border-radius: 10px;
   /* Gecko */
   -webkit-border-radius: 10px;
   /* WebKit */
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
   /* CSS 3 */
-  -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
-  /* Для Firefox */
-  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
-  /* Для Safari и Chrome */ }
+  -moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+  /* Gecko */
+  -webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+  /* WebKit */ }
 
 aside {
+  background-color: #e5e6df;
+  margin-left: 8px;
+  padding: 8px;
   float: right;
+  clear: right;
   width: 200px;
-  height: 100%; }
+  min-height: 400px; }
+
+section#main {
+  background-color: #e5e6df;
+  overflow: hidden;
+  margin-right: 8px;
+  padding: 8px; }
+
+section#middle {
+  clear: both; }
 
 article {
+  margin: 8px 0px 8px 0px;
+  padding: 8px;
   height: auto;
   text-align: justify;
-  padding: 0 1em 0 1em;
-  overflow: hidden;
-  font-size: 12pt; }
+  overflow: hidden; }
 
 header {
   overflow: hidden;
-  padding: 8px; }
+  padding: 8px;
+  margin: 8px 0px 8px 0px;
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  background-color: #8bb100;
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #7a9900), color-stop(0.51, #8bb100));
+  background-image: -moz-linear-gradient(center bottom, #7a9900 10%, #8bb100 51%);
+  border-radius: 8px;
+  /* CSS3 */
+  -moz-border-radius: 8px;
+  /* Gecko */
+  -webkit-border-radius: 8px;
+  /* WebKit */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  /* CSS 3 */
+  -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  /* Gecko */
+  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  /* WebKit */ }
 
 nav.main {
-  padding: 4px;
   font-size: 14pt;
-  /*weight: bold;*/ }
+  /*weight: bold;*/
+  padding: 8px;
+  margin: 8px 0px 8px 0px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  background-color: #bf5e00;
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #a75100), color-stop(0.51, #bf5e00));
+  background-image: -moz-linear-gradient(center bottom, #a75100 10%, #bf5e00 51%);
+  border-radius: 8px;
+  /* CSS3 */
+  -moz-border-radius: 8px;
+  /* Gecko */
+  -webkit-border-radius: 8px;
+  /* WebKit */
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  /* CSS 3 */
+  -moz-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  /* Gecko */
+  -webkit-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  /* WebKit */ }
+  nav.main, nav.main a, nav.main a:hover, nav.main * {
+    color: #FFFF99;
+    text-decoration: none; }
+  nav.main a:hover {
+    color: white; }
 nav li {
   list-style-type: none;
   display: inline-block; }
@@ -62,12 +121,18 @@ footer {
   font-size: 9pt;
   vertical-align: middle;
   text-align: center;
-  padding: 20px; }
+  padding: 20px;
+  margin-top: 8px; }
   footer, footer a, footer a:hover {
-    color: gray; }
+    color: #e5e6df; }
 
-.flash-msg, .notice, .warning, .error, #error_explanation {
-  border-width: 2px;
+#flash-container {
+  margin: 4px; }
+
+.flash-msg, .notice, .warning, .error, .alert, #error_explanation {
+  font-size: 12pt;
+  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
+  border-width: 1px;
   border-style: solid;
   border-radius: 8px;
   /* CSS3 */
@@ -75,7 +140,8 @@ footer {
   /* Gecko */
   -webkit-border-radius: 8px;
   /* WebKit */
-  padding: 8px; }
+  padding: 8px;
+  margin: 4px 0px 4px 0px; }
 
 .notice {
   background-color: #D8E8C2;
@@ -84,19 +150,19 @@ footer {
 .warning {
   background-color: #ffcc66; }
 
-.error {
-  background-color: #ff6666; }
+.error, .alert {
+  background-color: #FFBFBF;
+  border-color: #FF8080; }
 
 #error_explanation {
   background-color: #ff6666;
   font-size: 9pt;
-  font-family: "DejaVu Sans Serif", "Tahoma", sans-serif;
+  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif;
   padding: 4px;
   margin: 4px; }
 
 h1, h2, h3 {
-  font-family: "DejaVu Serif", "Times New Roman", serif;
-  margin: 4px; }
+  font-family: "Arial", "Helvetica", "DejaVu Sans Serif", sans-serif; }
 
 #user-nav {
   padding: 4px;
@@ -110,3 +176,58 @@ h1, h2, h3 {
 span.help {
   color: gray;
   font-size: 9pt; }
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=datetime],
+input[type=time],
+input[type=date],
+input[type=number],
+textarea,
+input[type=button],
+input[type=submit],
+input[type=checkbox] {
+  background-color: #FFDFBF;
+  border-color: #FF7E00;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  /* CSS3 */
+  -moz-border-radius: 5px;
+  /* Gecko */
+  -webkit-border-radius: 5px;
+  /* WebKit */
+  padding: 4px;
+  font-size: 14pt; }
+
+input[type=button], input[type=submit] {
+  background-color: #E7B550;
+  border-color: #CD931D;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  /* CSS 3 */
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  /* Gecko */
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  /* WebKit */
+  background-color: #e7b550;
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #cd931d), color-stop(0.51, #e7b550));
+  background-image: -moz-linear-gradient(center bottom, #cd931d 10%, #e7b550 51%);
+  text-align: center;
+  color: white;
+  margin: 4px; }
+  input[type=button]:hover, input[type=submit]:hover {
+    background-color: #c88f1b;
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #966b15), color-stop(0.51, #c88f1b));
+    background-image: -moz-linear-gradient(center bottom, #966b15 10%, #c88f1b 51%);
+    border-color: #966B15; }
+
+input[type=submit] {
+  font-weight: bold; }
+
+input[type=checkbox] {
+  width: 16px;
+  height: 16px;
+  padding: 2px; }
