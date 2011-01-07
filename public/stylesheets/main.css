@@ -130,7 +130,7 @@ footer {
 #flash-container {
   margin: 4px; }
 
-.flash-msg, .notice, .warning, .error, .alert, #error_explanation {
+.flash-msg, .notice, .warning, .error, .alert {
   font-size: 12pt;
   font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
   border-width: 1px;
@@ -157,11 +157,29 @@ footer {
   border-color: #FF8080; }
 
 #error_explanation {
-  background-color: #ff6666;
-  font-size: 9pt;
-  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
-  padding: 4px;
-  margin: 4px; }
+  border-radius: 4px;
+  /* CSS3 */
+  -moz-border-radius: 4px;
+  /* Gecko */
+  -webkit-border-radius: 4px;
+  /* WebKit */
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif; }
+  #error_explanation h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: #ff6666;
+    color: white;
+    padding: 4px; }
+  #error_explanation ul {
+    padding: 8px;
+    background-color: #e5e6df;
+    color: #3e471d; }
+    #error_explanation ul li {
+      font-size: 10pt;
+      margin-left: 2em; }
 
 h1, h2, h3 {
   font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif; }

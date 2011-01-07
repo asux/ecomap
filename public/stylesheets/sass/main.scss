@@ -168,14 +168,31 @@ footer {
   border-color: #FF8080;
 }
 #error_explanation {
-  @extend .flash-msg;
-  background-color: #ff6666;
+  @include border-radius(5px);
+  border: {
+    style: solid;
+    color: red;
+    width: 1px;
+  }
   font: {
-    size: 9pt;
     family: $fonts-sans;
   }
-  padding: 4px;
-  margin: 4px;
+  h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: #ff6666;
+    color: white;
+    padding: 4px;
+  }
+  ul {
+    padding: 8px;
+    background-color: $bg-color;
+    color: $fg-color;
+    li {
+      font-size: 10pt;
+      margin-left: 2em;
+    }
+  }
 }
 h1, h2, h3 {
   font-family: $fonts-sans;
