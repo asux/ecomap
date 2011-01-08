@@ -8,6 +8,8 @@
 <% for attribute in attributes -%>
     %th= <%= class_name %>.human_attribute_name '<%= attribute.name %>'
 <% end -%>
+    - 3.times do
+      %th
 
   - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
     %tr
