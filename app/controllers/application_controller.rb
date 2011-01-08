@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_version_info
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = exception.message
+    flash[:alert] = t('cancan.unauthorized', :default => exception.message)
     redirect_to root_url
   end
 

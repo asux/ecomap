@@ -9,6 +9,7 @@ uk:
         info: Інформація
         password: Пароль
         password_confirmation: "Підтвердження паролю"
+        role: Роль
     errors: 
       messages: 
         accepted: "має бути прийнятий"
@@ -52,12 +53,15 @@ uk:
           other: "%{model} не збережено через %{count} помилки"
     models: 
       user: 
-        few: користувачів
-        many: користувачів
-        one: користувач
-        other: користувачів
+        few: Користувача
+        many: Користувачів
+        one: Користувач
+        other: Користувачі
   back_link: Назад
+  cancan: 
+    unauthorized: "Ви не маєте достатньо прав для цієї операції"
   confirm_destroy_message: "Ви впевнені?"
+  create_message: "%{model} успішно створено."
   date: 
     abbr_day_names: 
       - нд.
@@ -342,6 +346,10 @@ uk:
   pagination: 
     next_label: "наступна &raquo;"
     previous_label: "&laquo; попередня"
+  role: 
+    admin: Адміністратор
+    manager: Менеджер
+    normal: Звичайний
   show_link: Показати
   support: 
     array: 
@@ -359,6 +367,9 @@ uk:
     pm: "по полудні"
   title: 
     main: Головна
+  update_message: "%{model} успішно оновлено."
+  users: 
+    unable_assign_role: "Ви не можете призначити роль <strong>%{role}</strong> користувачу <strong>%{user}</strong>."
   version_info: 
     commit: Коміт
     release: Випуск
