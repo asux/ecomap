@@ -10,8 +10,13 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      if user.normal?
+      unless user.role.nil?
         can :manage, User, :id => user.id
+
+        if user.manager?
+          can :update, User, :role => 'normal'
+          #can :assign_role, User
+        end
       end
     end
   end

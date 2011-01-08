@@ -1,8 +1,9 @@
 Ecomap::Application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "users/registrations",
-                                       :sessions => "users/sessions",
-                                       :passwords => "users/passwords"}
-  
+  devise_for :users, :controllers => {:registrations => "users/registrations",
+                                      :sessions => "users/sessions",                                    
+                                      :passwords => "users/passwords"}
+  resources :users
+
   if Rails.env == 'development'
     scope '/translate' do
       match '/translate_list', :to => 'translate#index'

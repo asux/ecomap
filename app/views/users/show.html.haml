@@ -1,0 +1,21 @@
+- title "User: #{@user}"
+
+.action_links
+  = link_to t(:edit_link), edit_user_path(@user)
+  \|
+  = link_to t(:back_link), users_path
+
+.attribute
+  %strong= "#{User.human_attribute_name 'email'}:"
+  = mail_to @user.email_to, @user.email, :encode => :javascript
+.attribute
+  %strong= "#{User.human_attribute_name 'full_name'}:"
+  = @user.full_name
+.attribute
+  %strong= "#{User.human_attribute_name 'info'}:"
+  = @user.info
+.attribute
+  %strong= "#{User.human_attribute_name 'role'}:"
+  = @user.role_instance.human_name
+
+
