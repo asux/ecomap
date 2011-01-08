@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   ROLES = %w(normal manager admin)
+  ROLES_INSTANCES = ROLES.map { |role| Role.new(role) }
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :trackable and :timeoutable
@@ -13,6 +14,10 @@ class User < ActiveRecord::Base
   before_validation :assign_default_role
 
   validates :role, :presence => true, :inclusion => {:in => ROLES}
+
+  def role_instance
+    Role.new(role) if role
+  end
 
   def normal?
     role == 'normal'
@@ -28,6 +33,14 @@ class User < ActiveRecord::Base
 
   def to_s
     full_name or email
+  end
+
+  def email_to
+    if full_name
+      "#{full_name} <#{email}>".strip
+    else
+      email
+    end
   end
 
   protected
