@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "users/new.html.haml" do
+  stub_current_user
+
   before(:each) do
     assign(:user, stub_model(User,
       :email => "MyString",
@@ -24,7 +26,7 @@ describe "users/new.html.haml" do
       assert_select "input#user_remember_me", :name => "user[remember_me]"
       assert_select "input#user_full_name", :name => "user[full_name]"
       assert_select "textarea#user_info", :name => "user[info]"
-      assert_select "input#user_role", :name => "user[role]"
+#      assert_select "input[name=user_role]", :name => "user[role]"
     end
   end
 end

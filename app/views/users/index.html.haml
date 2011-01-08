@@ -15,7 +15,7 @@
     %tr
       %td= mail_to(user.email_to, user.email, :encode => :javascript)
       %td= user.full_name
-      %td= user.role
+      %td= user.role_instance.human_name
       %td.object_link
         = link_to user, :title => t(:show_link) do
           = image_tag "icons/22x22/show.png", :alt => t(:show_link)

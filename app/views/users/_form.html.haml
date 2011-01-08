@@ -1,9 +1,10 @@
 - semantic_form_for(@user) do |f|
   - f.inputs do
     = f.input :email
-    -# f.input :password
-    -# f.input :password_confirmation
-    -# f.input :remember_me
+    - if @user.new_record?
+      = f.input :password
+      = f.input :password_confirmation
+      = f.input :remember_me, :as => :boolean
     = f.input :full_name
     = f.input :info
     - if can? :assign_role, @user
