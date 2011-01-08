@@ -9,15 +9,21 @@
     %th= <%= class_name %>.human_attribute_name '<%= attribute.name %>'
 <% end -%>
     - 3.times do
-      %th
+      %th.object_link
 
   - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
     %tr
 <% for attribute in attributes -%>
       %td= <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
-      %td= link_to t(:show_link), <%= singular_table_name %>
-      %td= link_to t(:edit_link), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
-      %td= link_to t(:destroy_link), <%= singular_table_name %>, :confirm => t(:confirm_destroy_message), :method => :delete
+      %td.object_link
+        = link_to <%= singular_table_name %>, :title => t(:show_link) do
+          = image_tag "icons/22x22/show.png", :alt => t(:show_link)
+      %td.object_link
+        = link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:edit_link) do
+          = image_tag "icons/22x22/edit.png", :alt => t(:edit_link)
+      %td.object_link
+        = link_to <%= singular_table_name %>, :confirm => t(:confirm_destroy_message), :method => :delete, :title => t(:destroy_link) do
+          = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
 
 = render :partial => 'shared/pagination', :locals => {:collection => @<%= singular_table_name %>}
