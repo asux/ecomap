@@ -105,6 +105,15 @@ describe UsersController do
         put :update, :id => "1"
         response.should render_template("edit")
       end
+
+      it "removes role from params if cannot assign role to user" do
+        current_user = User.make(:role => 'normal')
+        other_user = User.make(:role => 'normal')
+        other_user.role = 'manager'
+        session[:user_id] = current_user.id
+        put :update, other_user.attributes
+        assigns(:user).role.should eql('normal')
+      end
     end
   end
 

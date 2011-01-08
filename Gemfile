@@ -31,9 +31,11 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.1'
+  gem 'autotest'
+  gem 'faker'
+  gem 'machinist', '>= 2.0.0.beta2'
 end
 gem 'racc'
-#gem 'autotest'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails-with-i18n'

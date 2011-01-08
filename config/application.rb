@@ -48,6 +48,7 @@ module Ecomap
     config.generators do |g|
       g.template_engine :haml
       g.stylesheets false
+      g.fixture_replacement :machinist
     end
   end
 end

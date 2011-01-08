@@ -10,7 +10,7 @@ header, footer, aside, nav, article, section {
 body {
   font-weight: normal;
   font-style: normal;
-  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif;
   font-size: 12pt;
   background-color: #62702E;
   color: #3e471d; }
@@ -133,7 +133,7 @@ footer {
 
 .flash-msg, .notice, .warning, .error, .alert {
   font-size: 12pt;
-  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif;
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
@@ -167,7 +167,7 @@ footer {
   border-style: solid;
   border-color: red;
   border-width: 1px;
-  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif; }
+  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif; }
   #error_explanation h2 {
     font-size: 12pt;
     font-weight: bold;
@@ -183,7 +183,7 @@ footer {
       margin-left: 2em; }
 
 h1, h2, h3 {
-  font-family: "Helvetica", "Arial", "DejaVu Sans Serif", sans-serif; }
+  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif; }
 
 #user-nav {
   padding: 4px;
