@@ -105,7 +105,7 @@ nav {
     font: {
       size: 14pt;
       /*weight: bold;*/
-     }
+    }
     padding: 8px;
     margin: 8px 0px 8px 0px;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, .5);
@@ -117,12 +117,13 @@ nav {
       text-decoration: none;
     }
     a:hover {
-     color: white; 
+      color: white; 
     }
   }
   li {
     list-style-type: none;
     display: inline-block;
+    margin: 0px 8px 0px 8px;
   }
 }
 footer {
@@ -246,6 +247,7 @@ input[type=button] {
   text-align: center;
   color: white;
   margin: 4px;
+  padding: 8px;
   &:hover {
     @include gradient(#966B15, #C88F1B);
     border-color: #966B15;
@@ -267,5 +269,66 @@ p {
     text-align: justify;
     margin: .5em 0em .5em 0em;
     text-indent: 1em;
+  }
+}
+
+#pagination {
+  font-size: 10pt;
+}
+.action_links {
+  margin: 8px;
+  a {
+    padding: 4px 8px 4px 8px;
+    background-color: $fg-color;
+    color: $bg-color;
+    font-size: 10pt;
+    @include border-radius(4px);
+  }
+}
+#scaffold {
+  font: {
+    size: 10pt;
+  }
+  margin: 8px auto 8px auto;
+  width: 98%;
+  th, td {
+    @include border-radius(4px);
+    &, a {
+      color: $bg-color;
+    }
+    &.object_link {
+      background-color: transparent;
+      width: 26px;
+      padding: 2px;
+      text-align: center;
+      vertical-align: middle;
+      a {
+        color: $fg-color;
+      }
+    }
+  }
+  th {
+    padding: 4px;
+    background-color: #555;
+  }
+  td {
+    padding: 0px 4px 0px 4px;
+    background-color: #888;
+  }
+}
+.attribute {
+  margin: 8px;
+}
+li.required {
+  label {
+    font-weight: bold;
+    abbr {
+      color: red;
+      margin: 2px;
+      font: {
+        size: 16pt;
+        weight: bold;
+      }
+    }
   }
 }

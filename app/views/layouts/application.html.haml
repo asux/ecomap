@@ -12,6 +12,7 @@
       %nav.main
         %menu
           %li= link_to t('title.main', :default => "Main"), '/'
+          %li= link_to t(User.human_name(:count => 10), :default => "Users"), users_path
       %section#middle
         %aside.rounded-box
           = render 'users/user_nav'
@@ -19,7 +20,7 @@
           - unless flash.empty?
             #flash-container
               - flash.each do |type, msg|
-                %p{:class => "#{type}"}= msg
+                %p{:class => "#{type}"}= raw(msg)
           %header
             %h1= @title or "Untitled"
           %article#content= yield
