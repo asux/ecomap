@@ -10,7 +10,7 @@ header, footer, aside, nav, article, section {
 body {
   font-weight: normal;
   font-style: normal;
-  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif;
+  font-family: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif;
   font-size: 12pt;
   background-color: #62702E;
   color: #3e471d; }
@@ -72,6 +72,8 @@ header {
   margin: 8px 0px 8px 0px;
   color: white;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  -webkit-text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  -moz-text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
   background-color: #8bb100;
   background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #7a9900), color-stop(0.51, #8bb100));
   background-image: -moz-linear-gradient(center bottom, #7a9900 10%, #8bb100 51%);
@@ -94,6 +96,8 @@ nav.main {
   padding: 8px;
   margin: 8px 0px 8px 0px;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  -webkit-text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  -moz-text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
   background-color: #bf5e00;
   background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #a75100), color-stop(0.51, #bf5e00));
   background-image: -moz-linear-gradient(center bottom, #a75100 10%, #bf5e00 51%);
@@ -133,7 +137,7 @@ footer {
 
 .flash-msg, .notice, .warning, .error, .alert {
   font-size: 12pt;
-  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif;
+  font-family: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif;
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
@@ -167,7 +171,7 @@ footer {
   border-style: solid;
   border-color: red;
   border-width: 1px;
-  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif; }
+  font-family: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif; }
   #error_explanation h2 {
     font-size: 12pt;
     font-weight: bold;
@@ -183,7 +187,7 @@ footer {
       margin-left: 2em; }
 
 h1, h2, h3 {
-  font-family: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif; }
+  font-family: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif; }
 
 #user-nav {
   padding: 4px;
@@ -198,23 +202,23 @@ span.help {
   color: gray;
   font-size: 9pt; }
 
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=url],
-input[type=tel],
-input[type=datetime],
-input[type=time],
-input[type=date],
-input[type=number],
-textarea,
-input[type=button],
-input[type=submit],
-input[type=checkbox] {
+form input[type=text],
+form input[type=password],
+form input[type=email],
+form input[type=url],
+form input[type=tel],
+form input[type=datetime],
+form input[type=time],
+form input[type=date],
+form input[type=number],
+form input[type=button],
+form input[type=submit],
+form textarea {
   background-color: #FFDFBF;
   border-color: #FF7E00;
   border-style: solid;
   border-width: 1px;
+  font-size: 12pt;
   border-radius: 5px;
   /* CSS3 */
   -moz-border-radius: 5px;
@@ -222,17 +226,18 @@ input[type=checkbox] {
   -webkit-border-radius: 5px;
   /* WebKit */
   color: #3e471d;
-  padding: 4px;
-  font-size: 14pt; }
-
-input[type=button], input[type=submit] {
-  background-color: #E7B550;
-  border-color: #CD931D;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  padding: 4px; }
+form input[type=button], form input[type=submit] {
+  border-color: #cd931d #a07216 #a07216 #cd931d;
+  border-width: 2px;
+  text-shadow: -1px -1px 0px #a07216;
+  -webkit-text-shadow: -1px -1px 0px #a07216;
+  -moz-text-shadow: -1px -1px 0px #a07216;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
   /* CSS 3 */
-  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
   /* Gecko */
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
   /* WebKit */
   background-color: #e7b550;
   background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #cd931d), color-stop(0.51, #e7b550));
@@ -241,16 +246,14 @@ input[type=button], input[type=submit] {
   color: white;
   margin: 4px;
   padding: 8px; }
-  input[type=button]:hover, input[type=submit]:hover {
-    background-color: #c88f1b;
-    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #966b15), color-stop(0.51, #c88f1b));
-    background-image: -moz-linear-gradient(center bottom, #966b15 10%, #c88f1b 51%);
-    border-color: #966B15; }
-
-input[type=submit] {
+  form input[type=button]:hover, form input[type=submit]:hover {
+    background-color: #cd931d;
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, #e7b550), color-stop(0.51, #cd931d));
+    background-image: -moz-linear-gradient(center bottom, #e7b550 10%, #cd931d 51%);
+    border-color: #a07216 #cd931d #cd931d #a07216; }
+form input[type=submit] {
   font-weight: bold; }
-
-input[type=checkbox] {
+form input[type=checkbox] {
   width: 16px;
   height: 16px;
   padding: 2px; }

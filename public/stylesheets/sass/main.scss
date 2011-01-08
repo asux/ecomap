@@ -1,6 +1,6 @@
 // Variables
 $fonts-serif: "DejaVu Serif", "Times New Roman", serif;
-$fonts-sans: "Lucida Sans", "Lucida Grande", "Verdana", "Arial", "DejaVu Sans Serif", sans-serif;
+$fonts-sans: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif;
 $fonts-mono: "Monaco", "DejaVu Sans Mono", monospace;
 $bg-color: #E5E6DF;
 $fg-color: #3E471D;
@@ -22,6 +22,11 @@ $link-color: #638000;
   background-color: $stop;
   background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.1, $start), color-stop(0.51, $stop));
   background-image: -moz-linear-gradient(center bottom, $start 10%, $stop 51%);
+}
+@mixin text-shadow($x: 1px, $y: 1px, $blur: 0px, $color: rgba(0, 0, 0, .5)) {
+  text-shadow: $x $y $blur $color;
+  -webkit-text-shadow: $x $y $blur $color;
+  -moz-text-shadow: $x $y $blur $color;
 }
 
 // Elements
@@ -95,7 +100,7 @@ header {
   padding: 8px;
   margin: 8px 0px 8px 0px;
   color: white;
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, .5);
+  @include text-shadow(3px, 3px);
   @include gradient(#7A9900, #8BB100);
   @include border-radius(8px);
   @include box-shadow(8px, rgba(0, 0, 0, .4), 2px, 2px);
@@ -108,7 +113,7 @@ nav {
     }
     padding: 8px;
     margin: 8px 0px 8px 0px;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, .5);
+    @include text-shadow(2px, 2px);
     @include gradient(#A75100, #BF5E00);
     @include border-radius(8px);
     @include box-shadow(16px, rgba(0, 0, 0, .4), 2px, 2px);
@@ -217,51 +222,59 @@ span.help {
     size: 9pt;
   }
 }
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=url],
-input[type=tel],
-input[type=datetime],
-input[type=time],
-input[type=date],
-input[type=number],
-textarea {
-  background-color: #FFDFBF;
-  border-color: #FF7E00;
-  border-style: solid;
-  border-width: 1px;
-  @include border-radius(5px);
-  color: $fg-color;
-  padding: 4px;
-  font: {
-    size: 14pt;
+form {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=url],
+  input[type=tel],
+  input[type=datetime],
+  input[type=time],
+  input[type=date],
+  input[type=number],
+  input[type=button],
+  input[type=submit], 
+  textarea {
+    background-color: #FFDFBF;
+    border: {
+      color: #FF7E00;
+      style: solid;
+      width: 1px;
+    }
+    font: {
+      size: 12pt;
+    }
+    @include border-radius(5px);
+    color: $fg-color;
+    padding: 4px;
   }
-}
-input[type=button] {
-  @extend textarea;
-  background-color: #E7B550;
-  border-color: #CD931D;
-  @include box-shadow(10px, rgba(0, 0, 0, .5), 1px, 1px);
-  @include gradient(#CD931D, #E7B550);
-  text-align: center;
-  color: white;
-  margin: 4px;
-  padding: 8px;
-  &:hover {
-    @include gradient(#966B15, #C88F1B);
-    border-color: #966B15;
+  input[type=button], input[type=submit] {
+    $border-light: #CD931D;
+    $border-shadow: #A07216; 
+    $grad-start: #CD931D;
+    $grad-stop: #E7B550;
+    border-color: $border-light $border-shadow $border-shadow $border-light;
+    border-width: 2px;
+    @include text-shadow(-1px, -1px, 0px, $border-shadow);
+    @include box-shadow(8px, rgba(0, 0, 0, .5), 1px, 1px);
+    @include gradient($grad-start, $grad-stop);
+    text-align: center;
+    color: white;
+    margin: 4px;
+    padding: 8px;
+    &:hover {
+      @include gradient($grad-stop, $grad-start);
+      border-color: $border-shadow $border-light $border-light $border-shadow;
+    }
   }
-}
-input[type=submit] {
-  @extend input[type=button]; 
-  font-weight: bold;
-}
-input[type=checkbox] {
-  @extend textarea;
-  width: 16px;
-  height: 16px;
-  padding: 2px;
+  input[type=submit] {
+    font-weight: bold;
+  }
+  input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+  }
 }
 p {
   margin: 8px 0px 8px 0px;
@@ -271,7 +284,6 @@ p {
     text-indent: 1em;
   }
 }
-
 #pagination {
   font-size: 10pt;
 }
