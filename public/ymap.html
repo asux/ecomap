@@ -29,6 +29,24 @@
         }
         return null;
       }
+      EcoMap.onLoadML = function(map) {
+        console.debug('onLoadML');
+        var mlListener = YMaps.Evets.observer(map, map.Events.AddLayer, function(pMap, pLayer) {
+          console.debug('onAddLayer');
+          YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
+            console.debug(this);
+            var href = $(this).attr('href');
+            conole.debug(href);
+            var path = EcoMap.extractPathFromURL(href);
+            if (path) {
+              var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
+              YMaps.jQuery('#path').append(link);
+            } else {
+              alert('Не удалось найти путь метки');
+            }
+          });
+        })
+      }
 
     // Создает обработчик события window.onLoad
     YMaps.jQuery(function () {
@@ -85,25 +103,12 @@
         });
 
         var ml = new YMaps.YMapsML("http://ecomap.heroku.com/points.xml");
-        ml.onAddToMap = function(map, parentContainer) {
-          YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
-            console.debug(this);
-            var href = $(this).attr('href');
-            conole.debug(href);
-            var path = EcoMap.extractPathFromURL(href);
-            if (path) {
-              var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
-              YMaps.jQuery('#path').append(link);
-            } else {
-              alert('Не удалось найти путь метки');
-            }
-          });
-        }
         var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
             alert("Error on load YMapsML: "+error);
         });
         var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
           map.addOverlay(ml);
+          EcoMap.onLoadML(map);
         });
     });
 </script>
