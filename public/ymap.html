@@ -22,7 +22,7 @@
       EcoMap.extractPathFromURL = function(url) {
         var regexp = /^#!(.*)$/ig;
         var m = url.match(regexp);
-        if (m) 
+        if (m) { 
           var path = m[0].toString();
           console.debug("PATH: " + path);
           return path;
