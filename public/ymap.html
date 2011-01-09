@@ -11,47 +11,36 @@
     </style>
     <script src="http://api-maps.yandex.ru/1.1/index.xml?key=AILDKU0BAAAAsQjfRQMAw-S-o_yl-oG8XnezYNb2KmEnVg0AAAAAAAAAAAA2wsfqnr7pFXwMijB8cB1Y2bCreQ==" type="text/javascript"></script>
     <script type="text/javascript">
+      $ = YMaps.jQuery;
       EcoMap = function(){};
       EcoMap.updateCoordinates = function(point) {
-        YMaps.jQuery('#lng').val(point.getLng());
-        YMaps.jQuery('#lat').val(point.getLat());
+        $('#lng').val(point.getLng());
+        $('#lat').val(point.getLat());
       }
       EcoMap.addPlacemark = function(map, lng, lat) {
         return map.addOverlay(new YMaps.Placemark(new YMaps.GeoPoint(lng, lat)));
       }
-      EcoMap.extractPathFromURL = function(url) {
+      EcoMap.extractPathFromAnchorURL = function(url) {
         var regexp = /^#!(.*)$/ig;
         var m = url.match(regexp);
         if (m) { 
-          var path = m[0].toString();
-          console.debug("PATH: " + path);
-          return path;
+          return m[0].toString();
         }
         return null;
       }
-      EcoMap.onLoadML = function(map) {
-        console.debug('onLoadML');
-        var mlListener = YMaps.Evets.observer(map, map.Events.AddLayer, function(pMap, pLayer) {
-          console.debug('onAddLayer');
-          YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
-            console.debug(this);
-            var href = $(this).attr('href');
-            conole.debug(href);
-            var path = EcoMap.extractPathFromURL(href);
-            if (path) {
-              var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
-              YMaps.jQuery('#path').append(link);
-            } else {
-              alert('Не удалось найти путь метки');
-            }
-          });
-        })
+      EcoMap.loadFromAnchor = function(anchorURL) {
+        var path = EcoMap.extractPathFromAnchorURL(anchorURL);
+        if (path) {
+          var newLink = $('<a>').attr('href', path).html("Sample: "+path);
+          $('#path').append($('<li>').append(newLink));
+        } else {
+          alert('Не удалось найти путь метки');
+        }
       }
-
     // Создает обработчик события window.onLoad
-    YMaps.jQuery(function () {
+    $(function () {
         // Создает экземпляр карты и привязывает его к созданному контейнеру
-        EcoMap.map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+        EcoMap.map = new YMaps.Map($("#YMapsID")[0]);
         var map = EcoMap.map;
 
         // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
@@ -98,8 +87,16 @@
         }, this);
         clickEventListener.disable();
 
-        YMaps.jQuery('#b_set_coord').click(function(){
+        $('#b_set_coord').click(function(){
           clickEventListener.enable();
+        });
+
+        var mlBalloonListener = YMaps.Events.observe(map, map.Events.BalloonOpen, function(pMap) {
+          var balloon = pMap.getBalloon();
+          var link = $(balloon._container).find('a')[0];
+          $(link).click(function() {
+            EcoMap.loadFromAnchor($(this).attr('href'));
+          });
         });
 
         var ml = new YMaps.YMapsML("http://ecomap.heroku.com/points.xml");
@@ -108,7 +105,6 @@
         });
         var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
           map.addOverlay(ml);
-          EcoMap.onLoadML(map);
         });
     });
 </script>
@@ -123,7 +119,7 @@
         <label for="lat">Latitude:</label>
         <input type="text" id="lat" />
       </form>
-      <div id="path"></div>
+      <ol id="path"></ol>
     </div>
   </body>
 </html>
