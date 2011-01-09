@@ -13,7 +13,7 @@ class YAMLConfiguration
   # Load configuration from file
   def self.load!
     @@settings = OpenStruct.new(YAML.load(ERB.new(File.read(Rails.root.join('config', 'application.yml'))).result))
-    @@settings = OpenStruct.new(@@settings.send(RAILS_ENV))
+    @@settings = OpenStruct.new(@@settings.send(Rails.env))
   end
 
   def self.method_missing(sym)
