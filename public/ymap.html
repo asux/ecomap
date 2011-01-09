@@ -85,11 +85,7 @@
         });
 
         var ml = new YMaps.YMapsML("http://ecomap.heroku.com/points.xml");
-        var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
-            alert("Error on load YMapsML: "+error);
-        });
-        var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
-          map.addOverlay(ml);
+        ml.onAddToMap = function(map, parentContainer) {
           YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
             console.debug(this);
             var href = $(this).attr('href');
@@ -102,6 +98,12 @@
               alert('Не удалось найти путь метки');
             }
           });
+        }
+        var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
+            alert("Error on load YMapsML: "+error);
+        });
+        var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
+          map.addOverlay(ml);
         });
     });
 </script>
