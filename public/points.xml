@@ -13,7 +13,7 @@
     </repr:Style>
 
     <repr:Template gml:id="customTemplate">
-      <repr:text><![CDATA[<div style="color:green">$[description]</div><br/><a href="#" data-sample-id="$[metaDataProperty.AnyMetaData.sampleId]">Go</a>]]></repr:text>
+      <repr:text><![CDATA[<div style="color:green">$[description]</div><br/><a href="#!/samples/$[metaDataProperty.AnyMetaData.sampleId]">Go</a>]]></repr:text>
     </repr:Template>
   </repr:Representation>
 
