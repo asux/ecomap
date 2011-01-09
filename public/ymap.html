@@ -85,14 +85,16 @@
             alert("Error on load YMapsML: "+error);
         });
         var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
-          map.addOverlay(pMl);
-          var path = EcoMap.extractPathFromLink(YMaps.jQuery('.YMaps-b-balloon-content a')[0].attr('href'));
-          if (path) {
-            var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
-            YMaps.jQuery('#path').append(link);
-          } else {
-            alert('Не удалось найти путь метки');
-          }
+          map.addOverlay(ml);
+          YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
+            var path = EcoMap.extractPathFromLink($(this).attr('href'));
+            if (path) {
+              var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
+              YMaps.jQuery('#path').append(link);
+            } else {
+              alert('Не удалось найти путь метки');
+            }
+          });
         });
     });
 </script>
