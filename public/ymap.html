@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>EcoMap</title>
+    <style type="text/css">
+      #YMapsID {
+        float: left;
+        margin: 8px;
+      }
+    </style>
+    <script src="http://api-maps.yandex.ru/1.1/index.xml?key=AILDKU0BAAAAsQjfRQMAw-S-o_yl-oG8XnezYNb2KmEnVg0AAAAAAAAAAAA2wsfqnr7pFXwMijB8cB1Y2bCreQ==" type="text/javascript"></script>
+    <script type="text/javascript">
+      EcoMap = function(){};
+      EcoMap.updateCoordinates = function(point) {
+        YMaps.jQuery('#lng').val(point.getLng());
+        YMaps.jQuery('#lat').val(point.getLat());
+      }
+      EcoMap.addPlacemark = function(map, lng, lat) {
+        return map.addOverlay(new YMaps.Placemark(new YMaps.GeoPoint(lng, lat)));
+      }
+    // Создает обработчик события window.onLoad
+    YMaps.jQuery(function () {
+        // Создает экземпляр карты и привязывает его к созданному контейнеру
+        EcoMap.map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+        var map = EcoMap.map;
+
+        // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+        var centerLng = 30.634439;
+        var centerLat = 50.39837;
+        map.setCenter(new YMaps.GeoPoint(centerLng, centerLat), 14);
+        map.enableScrollZoom();
+        toolbar = new YMaps.ToolBar();
+        map.addControl(new YMaps.TypeControl());
+        map.addControl(new YMaps.Zoom());
+        //map.addControl(new YMaps.MiniMap());
+        map.addControl(new YMaps.ScaleLine());
+
+        // Создает кнопку
+        var button = new YMaps.ToolBarButton({ 
+          caption: "Добавить метку", 
+          hint: "Добавляет метку в центр карты"
+        });
+
+        // При щелчке по кнопке включается линейка
+        YMaps.Events.observe(button, button.Events.Click, function () {
+          this.addOverlay(new YMaps.Placemark(map.getCenter(), {draggable: true}));
+        }, map);
+
+        toolbar.add(button);
+        map.addControl(toolbar);
+
+        //Search
+        var searchControl = new YMaps.SearchControl({
+          resultsPerPage: 5,  // Количество объектов на странице
+          useMapBounds: 1     // Объекты, найденные в видимой области карты 
+                              // будут показаны в начале списка
+          });
+        map.addControl(searchControl);
+
+
+        //Placemark
+        var clickEventListener = YMaps.Events.observe(map, map.Events.Click, function (map, mEvent) {
+          var point = mEvent.getGeoPoint();
+          var myHtml = "Значение: " + point + " на масштабе " + map.getZoom();
+          map.openBalloon(point, myHtml);
+          clickEventListener.disable();
+          EcoMap.updateCoordinates(point);
+        }, this);
+        clickEventListener.disable();
+
+        YMaps.jQuery('#b_set_coord').click(function(){
+          clickEventListener.enable();
+        });
+
+        var ml = new YMaps.YMapsML("http://ecomap.heroku.com/points.xml");
+        var mlEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
+            alert("Error on load YMapsML: "+error);
+        });
+        map.addOverlay(ml);
+    });
+</script>
+  </head>
+  <body>
+    <div id="YMapsID" style="width: 800px; height: 600px;"></div>
+    <div id="data">
+      <form id="form" action="" method="post">
+        <input type="button" id="b_set_coord" value="set coordinates" /><br/>
+        <label for="lng">Longitude:</label>
+        <input type="text" id="lng" /><br/>
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" />
+      </form>
+    </div>
+  </body>
+</html>
