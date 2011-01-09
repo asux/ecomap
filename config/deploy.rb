@@ -30,6 +30,13 @@ depend :remote, :command, "bundle"
 depend :remote, :command, "rake"
 depend :remote, :command, "rails"
 
+def pretty_out(channel, stream, data)
+  puts ">> #{data}" if stream == :out
+  if stream == :err
+    puts "[Error: #{channel[:host]}] #{data}"
+  end
+end
+
 namespace :deploy do
   desc "Do nothing"
   task :start do ; end
@@ -69,15 +76,32 @@ namespace :deploy do
   task :symlink_bundle do
     run "rm -rf #{release_path}/vendor/bundle && ln -nfs #{shared_path}/bundle #{release_path}/vendor/bundle"
   end
+  
+  desc "Symlink SQLite3 databases on each release."
+  task :symlink_databases do
+    cmd = []
+    %w(development test staging production).each do |env|
+      shared_file = "#{shared_path}/db/#{env}.sqlite3" 
+      symlink_file = "#{release_path}/db/#{env}.sqlite3" 
+      cmd << "test -e #{shared_file} && rm -rf #{symlink_file} && ln -nfs #{shared_file} #{symlink_file}"
+    end
+    run "#{cmd.join("; ")}; true"
+  end
 
+end
+
+namespace :bundle do
   desc "Bundle install"
-  task :bundle do
+  task :install do
     sudo "bundle install --gemfile=#{current_path}/Gemfile --deployment" do |channel, stream, data|
-      puts data if stream == :out
-      if stream == :err
-        puts "[Error: #{channel[:host]}] #{data}"
-        break
-      end
+      pretty_out(channel, stream, data)
+    end
+  end
+
+  desc "Bundle update"
+  task :update do
+    sudo "bundle update --gemfile=#{current_path}/Gemfile --deployment" do |channel, stream, data|
+      pretty_out(channel, stream, data)
     end
   end
 end
@@ -98,11 +122,7 @@ namespace :log do
   desc "Watch server log"
   task :watch do
     run "tail -f #{current_path}/log/#{rails_env}.log" do |channel, stream, data|
-      puts data if stream == :out
-      if stream == :err
-        puts "[Error: #{channel[:host]}] #{data}"
-        break
-      end
+      pretty_out(channel, stream, data)
     end
   end
 end
@@ -111,5 +131,6 @@ before "deploy:update", "deploy:git_push"
 #after "deploy:symlink", "deploy:symlink_attachments"
 after "deploy:symlink", "deploy:symlink_cache"
 after "deploy:symlink", "deploy:symlink_bundle"
+after "deploy:symlink", "deploy:symlink_databases"
 #after "deploy:symlink", "deploy:set_perms"
 after "deploy", "deploy:cleanup"
