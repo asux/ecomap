@@ -11,6 +11,7 @@ class Ability
       can :manage, :all
     else
       unless user.role.nil?
+        can :view_map, :all
         can :manage, User, :id => user.id
 
         if user.manager?

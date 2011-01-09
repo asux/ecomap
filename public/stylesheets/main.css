@@ -22,7 +22,7 @@ a {
     text-decoration: underline; }
 
 #container {
-  width: 1000px;
+  width: 1064px;
   margin: auto;
   padding: 4px; }
 
@@ -59,7 +59,7 @@ section#main {
 section#middle {
   clear: both; }
 
-article {
+#content {
   margin: 8px 0px 8px 0px;
   padding: 8px;
   height: auto;
@@ -320,3 +320,18 @@ li.required label {
     margin: 2px;
     font-size: 16pt;
     font-weight: bold; }
+
+/* Yandex Map */
+#yandex-map {
+  clear: both;
+  margin: auto 0px auto 0px;
+  width: 800px;
+  height: 600px;
+  border-color: #3e471d;
+  border-width: 2px;
+  border-radius: 5px;
+  /* CSS3 */
+  -moz-border-radius: 5px;
+  /* Gecko */
+  -webkit-border-radius: 5px;
+  /* WebKit */ }

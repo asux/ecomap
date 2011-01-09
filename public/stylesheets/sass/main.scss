@@ -57,8 +57,7 @@ a {
   color: $link-color;
 }
 #container {
-  width: 1000px;
-  //height: 1000px;
+  width: 1064px;
   margin: auto;
   padding: 4px;
 }
@@ -85,15 +84,12 @@ section#main {
 section#middle {
   clear: both;
 }
-article {
+#content {
   margin: 8px 0px 8px 0px;
   padding: 8px;
   height: auto;
   text-align: justify;
   overflow: hidden;
-  //font: {
-  //  size: 16px;
-  //}
 }
 header {
   overflow: hidden;
@@ -343,4 +339,16 @@ li.required {
       }
     }
   }
+}
+/* Yandex Map */
+#yandex-map {
+  clear: both;
+  margin: auto 0px auto 0px;
+  width: 800px;
+  height: 600px;
+  border: {
+    color: $fg-color;
+    width: 2px;
+  }
+  @include border-radius(5px);
 }

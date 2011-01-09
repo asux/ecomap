@@ -1,7 +1,19 @@
 - title t('title.main', :default => "Main")
 
-%p.text Вам но кровью интервьюирования. Мысли хороший ну тем, получить действительно том по. Код не есть понять умственного, инструменты программировать том их, код плиты ошибками ну. Том прекрасно образование на, чтобы основатель три бы.
-
-%p.text Те после череды мог. Бог по многие потратят никакого, над работу действий представляет во, улице успехов действия уже то. Одно решить распоряжения шеф он, плиту письмо времени на над. Адрес попали на чем, мы разных оркестра раздутое они. Том могут компании вероломно бы. Вас правильно кандидата ты, без когда несколько появлялись по.
-
-%p.text Для всех называть но, вы дни почты превосходные разработчиков. Есть руководство бы три, по так всём проектом, про даже стоить указания он. Именно поговорить общеизвестно их нью. Раздутое обеспечении концентрируются кто но. Нет то компании связанном.
+- content_for :head do
+  = javascript_include_tag "http://api-maps.yandex.ru/1.1/index.xml?key=#{Ecomap::Application.yaml_config.ymaps_api_key}", :cache => true
+  = javascript_include_tag 'ecomap', :cache => true
+#yandex-map.rounded-box
+#data
+  - form_tag '/', :method => :post do
+    %p
+      %a.load-points(href="#" data-ymaps-ml-url="#{Ecomap::Application.yaml_config.ymapsml_root}points.xml") Load Points
+    %p
+      %input#set-coordinates{:type => "button", :value => "Set Coordinates"}
+    %p
+      = label_tag "lng", "Longitude:"
+      = text_field_tag "lng"
+    %p
+      = label_tag "lat", "Latitude:"
+      = text_field_tag "lat"
+  %ol#path
