@@ -1,5 +1,5 @@
 common: &common
-  from_email: admin@ecomap.heroku.com
+  from_email: a.ulyanitsky@gmail.com
   per_page: 20
   revisions_url: ""
 
@@ -15,10 +15,13 @@ test:
 
 staging:
   <<: *common
+  host: ecomap.dikins.org.ua
+  ymaps_api_key: AB9KKk0BAAAAeRzPFQQAZgfAfxQA_pAwHZB8CBZeKNrkkdMAAAAAAAAAAADVv5M8zEYU8eus_xSsUn8lnR6OVA==
+  ymapsml_root: http://ecomap.dikins.org.ua
+
+production:
+  <<: *common
   host: ecomap.heroku.com
   ymaps_api_key: AILDKU0BAAAAsQjfRQMAw-S-o_yl-oG8XnezYNb2KmEnVg0AAAAAAAAAAAA2wsfqnr7pFXwMijB8cB1Y2bCreQ==
   ymapsml_root: http://ecomap.heroku.com/
 
-production:
-  <<: *common
-  host: ecomap.com
