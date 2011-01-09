@@ -19,11 +19,15 @@ class Role
     human_name
   end
 
- # def ==(other)
- #   if other.is_a? self.class
- #     @name == other.name
- #   else
- #     @name == other.to_sym if other.respond_to? :to_sym
- #   end
- # end
+  def id
+    to_s
+  end
+
+  def ==(other)
+    if other.is_a? self.class
+      @name == other.name
+    else
+      @name == other.to_sym if other.respond_to? :to_sym
+    end
+  end
 end
