@@ -19,6 +19,13 @@
       EcoMap.addPlacemark = function(map, lng, lat) {
         return map.addOverlay(new YMaps.Placemark(new YMaps.GeoPoint(lng, lat)));
       }
+      EcoMap.extractPathFromLink(link) = function {
+        var regexp = /^#!(.*)$/ig;
+        var path = link.match(regexp)[1];
+        console.debug("PATH: " + path.toString());
+        return path;
+      }
+
     // Создает обработчик события window.onLoad
     YMaps.jQuery(function () {
         // Создает экземпляр карты и привязывает его к созданному контейнеру
@@ -74,10 +81,19 @@
         });
 
         var ml = new YMaps.YMapsML("http://ecomap.heroku.com/points.xml");
-        var mlEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
+        var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
             alert("Error on load YMapsML: "+error);
         });
-        map.addOverlay(ml);
+        var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
+          map.addOverlay(pMl);
+          var path = EcoMap.extractPathFromLink(YMaps.jQuery('.YMaps-b-balloon-content a')[0].attr('href'));
+          if (path) {
+            var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
+            YMaps.jQuery('#path').append(link);
+          } else {
+            alert('Не удалось найти путь метки');
+          }
+        });
     });
 </script>
   </head>
@@ -91,6 +107,7 @@
         <label for="lat">Latitude:</label>
         <input type="text" id="lat" />
       </form>
+      <div id="path"></div>
     </div>
   </body>
 </html>
