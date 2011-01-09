@@ -19,7 +19,7 @@
       EcoMap.addPlacemark = function(map, lng, lat) {
         return map.addOverlay(new YMaps.Placemark(new YMaps.GeoPoint(lng, lat)));
       }
-      EcoMap.extractPathFromLink(link) = function {
+      EcoMap.extractPathFromLink = function(link) {
         var regexp = /^#!(.*)$/ig;
         var path = link.match(regexp)[1];
         console.debug("PATH: " + path.toString());
