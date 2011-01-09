@@ -13,7 +13,7 @@
     </repr:Style>
     
     <repr:Style gml:id="soilStyle">
-      <repr:parentStyle>default#brownPoint</repr:parentStyle>
+      <repr:parentStyle>default#darkredPoint</repr:parentStyle>
       <repr:balloonContentStyle>
         <repr:template>#sampleTemplate</repr:template>
       </repr:balloonContentStyle>
@@ -22,7 +22,7 @@
     <repr:Template gml:id="sampleTemplate">
       <repr:text><![CDATA[
         <div>$[description]</div><br/>
-        <a href="#!$[metaDataProperty.AnyMetaData.path]" data-sample-id="$[metaDataProperty.AnyMetaData.sampleId]">Details</a>
+        <a href="#!$[metaDataProperty.AnyMetaData.path]" id="$[metaDataProperty.AnyMetaData.sampleId]">Details</a>
       ]]></repr:text>
     </repr:Template>
   </repr:Representation>
