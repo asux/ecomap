@@ -1,0 +1,24 @@
+common: &common
+  from_email: admin@ecomap.heroku.com
+  per_page: 20
+  revisions_url: ""
+
+development:
+  <<: *common
+  host: ecomap.local:3000
+  ymaps_api_key: AB8EKk0BAAAAEY3zAAIAur0TzA9MyMIOb6zbizh2C-Lph24AAAAAAAAAAAD8Lu4BkgFPaSWsGJ_X-mAvXBI-ig==
+  ymapsml_root: http://ecomap.heroku.com/
+  
+test:
+  <<: *common
+  host: test.host
+
+staging:
+  <<: *common
+  host: ecomap.heroku.com
+  ymaps_api_key: AILDKU0BAAAAsQjfRQMAw-S-o_yl-oG8XnezYNb2KmEnVg0AAAAAAAAAAAA2wsfqnr7pFXwMijB8cB1Y2bCreQ==
+  ymapsml_root: http://ecomap.heroku.com/
+
+production:
+  <<: *common
+  host: ecomap.com
