@@ -19,11 +19,15 @@
       EcoMap.addPlacemark = function(map, lng, lat) {
         return map.addOverlay(new YMaps.Placemark(new YMaps.GeoPoint(lng, lat)));
       }
-      EcoMap.extractPathFromLink = function(link) {
+      EcoMap.extractPathFromURL = function(url) {
         var regexp = /^#!(.*)$/ig;
-        var path = link.match(regexp)[1];
-        console.debug("PATH: " + path.toString());
-        return path;
+        var m = url.match(regexp);
+        if (m) 
+          var path = m[0].toString();
+          console.debug("PATH: " + path);
+          return path;
+        }
+        return null;
       }
 
     // Создает обработчик события window.onLoad
@@ -87,7 +91,10 @@
         var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
           map.addOverlay(ml);
           YMaps.jQuery('.YMaps-b-balloon-content a').live('click', function(src) {
-            var path = EcoMap.extractPathFromLink($(this).attr('href'));
+            console.debug(this);
+            var href = $(this).attr('href');
+            conole.debug(href);
+            var path = EcoMap.extractPathFromURL(href);
             if (path) {
               var link = YMaps.jQuery('a').attr('href', path).html("Sample: "+path);
               YMaps.jQuery('#path').append(link);
