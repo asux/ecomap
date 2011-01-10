@@ -56,7 +56,6 @@ $.extend(Ecomap, {
   extractPathFromAnchorURL: function(url) {
     var regexp = /^#!(.*)$/ig;
     var m = regexp.exec(url);
-    console.debug(m);
     if (m) { 
       var path = m[1];
       if(path) {
