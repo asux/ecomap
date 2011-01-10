@@ -28,7 +28,7 @@ $(function () {
 
     $('.load-points').click(function(eventObject) {
       // Load YMapsML
-      var yMapsMlUrl = this.getAttribute('data-ymaps-ml-url');
+      var yMapsMlUrl = this.getAttribute('data-ymaps_ml_url');
       if (yMapsMlUrl) {
         var ml = new YMaps.YMapsML(yMapsMlUrl);
         var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {

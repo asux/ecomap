@@ -30,6 +30,11 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # end
 
 group :development, :test do
+  if RUBY_VERSION >= '1.9'
+    gem 'ruby-debug19'
+  else
+    gem 'ruby-debug'
+  end
   gem 'rspec-rails', '~> 2.1'
   gem 'autotest'
   gem 'faker'
