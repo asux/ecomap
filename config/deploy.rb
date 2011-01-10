@@ -93,14 +93,14 @@ end
 namespace :bundle do
   desc "Bundle install"
   task :install do
-    sudo "bundle install --gemfile=#{current_path}/Gemfile --deployment" do |channel, stream, data|
+    sudo "bundle install --gemfile=#{current_path}/Gemfile --deployment && chown -R #{user}:#{user} #{current_path}" do |channel, stream, data|
       pretty_out(channel, stream, data)
     end
   end
 
   desc "Bundle update"
   task :update do
-    sudo "bundle update --gemfile=#{current_path}/Gemfile --deployment" do |channel, stream, data|
+    sudo "bundle update --gemfile=#{current_path}/Gemfile && chown -R #{user}:#{user} #{current_path}" do |channel, stream, data|
       pretty_out(channel, stream, data)
     end
   end
