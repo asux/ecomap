@@ -1,9 +1,7 @@
 - title t('title.main', :default => "Main")
 
 - content_for :head do
-  = debug Ecomap::Application.yaml_config.inspect
-  = debug Ecomap::Application.yaml_config.ymaps_api_key.inspect
-  -# javascript_include_tag "http://api-maps.yandex.ru/1.1/index.xml?key=#{Ecomap::Application.yaml_config.ymaps_api_key}", :cache => true
+  = javascript_include_tag "http://api-maps.yandex.ru/1.1/index.xml?key=#{Ecomap::Application.yaml_config.ymaps_api_key}", :cache => true
   = javascript_include_tag 'ecomap', :cache => true
 #yandex-map.rounded-box
 #data
