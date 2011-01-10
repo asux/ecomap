@@ -16,8 +16,13 @@ class YAMLConfiguration
     @@settings = OpenStruct.new(@@settings.send(Rails.env))
   end
 
-  def self.method_missing(sym)
+  # Reload if not loded
+  def self.reload
     self.load! if @@settings.nil?
+  end
+
+  def self.method_missing(sym)
+    self.reload
     raise MissingConfigOptionError, "#{sym.to_s} is not in the application configuration file" unless @@settings.respond_to?(sym)
     @@settings.send(sym)
   end
