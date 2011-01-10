@@ -17,7 +17,7 @@ staging:
   <<: *common
   host: ecomap.dikins.org.ua
   ymaps_api_key: AB9KKk0BAAAAeRzPFQQAZgfAfxQA_pAwHZB8CBZeKNrkkdMAAAAAAAAAAADVv5M8zEYU8eus_xSsUn8lnR6OVA==
-  ymapsml_root: http://ecomap.dikins.org.ua
+  ymapsml_root: http://ecomap.dikins.org.ua/
 
 production:
   <<: *common
