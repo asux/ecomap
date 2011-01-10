@@ -19,6 +19,7 @@ class YAMLConfiguration
   # Reload if not loded
   def self.reload
     self.load! if @@settings.nil?
+    self
   end
 
   def self.method_missing(sym)
