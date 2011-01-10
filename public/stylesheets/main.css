@@ -335,3 +335,8 @@ li.required label {
   /* Gecko */
   -webkit-border-radius: 5px;
   /* WebKit */ }
+
+pre, code {
+  font-family: "Monaco", "DejaVu Sans Mono", monospace;
+  font-size: 10pt;
+  background-color: white; }

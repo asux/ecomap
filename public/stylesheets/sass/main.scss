@@ -352,3 +352,10 @@ li.required {
   }
   @include border-radius(5px);
 }
+pre, code {
+  font: {
+    family: $fonts-mono;
+    size: 10pt;
+  }
+  background-color: white;
+}
