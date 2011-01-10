@@ -1,7 +1,7 @@
 - title t('title.main', :default => "Main")
 
 - content_for :head do
-  = javascript_include_tag "http://api-maps.yandex.ru/1.1/index.xml?key=#{@ymaps_api_key}", :cache => true
+  = javascript_include_tag "http://api-maps.yandex.ru/1.1/index.xml?key=#{@ymaps_api_key}"
   = javascript_include_tag 'ecomap', :cache => true
 #yandex-map.rounded-box
 #data
