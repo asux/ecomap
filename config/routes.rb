@@ -12,8 +12,7 @@ Ecomap::Application.routes.draw do
     end
   end
 
-  get 'maps/home'
-  match 'map(/:action)', :controller => 'maps'
+  get 'maps(/:action)', :controller => 'maps'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe "maps/index.html.haml" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  stub_current_user
+
+  it "should have div#yandex-map" do
+    render
+
+    assert_select("div#yandex-map")
+  end
 end

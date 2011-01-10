@@ -14,7 +14,7 @@
         %menu
           %li= link_to t('title.main', :default => "Main"), '/'
           - if can? :view_map, :all
-            %li= link_to t('title.map', :default => "Map"), {:controller => 'maps', :action =>'index'}
+            %li= link_to t('title.map', :default => "Map"), :controller => '/maps', :action => 'index'
           - if can? :index, User
             %li= link_to t(User.human_name(:count => 10), :default => "Users"), users_path
       %section#middle
