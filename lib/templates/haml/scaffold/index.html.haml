@@ -1,4 +1,4 @@
-- title t(:index_title, :model => '<%= plural_table_name %>')
+- title t(:index_title, :model => <%= class_name %>.human_name)
 
 .action_links
   = link_to t(:new_link, :model => '<%= human_name %>'), new_<%= singular_table_name %>_path

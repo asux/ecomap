@@ -1,4 +1,4 @@
-- title t(:edit_title, :model => '<%= singular_table_name %>')
+- title t(:edit_title, :model => <%= class_name %>.human_name)
 
 .action_links
   = link_to t(:show_link), @<%= singular_table_name %>

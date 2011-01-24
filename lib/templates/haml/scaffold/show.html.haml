@@ -1,4 +1,4 @@
-- title "<%= human_name %>: #{@<%= singular_table_name %>}"
+- title "#{<%= class_name %>.human_name}: #{@<%= singular_table_name %>}"
 
 .action_links
   = link_to t(:edit_link), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
