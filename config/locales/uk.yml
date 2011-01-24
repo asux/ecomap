@@ -1,8 +1,16 @@
---- 
-uk: 
-  activerecord: 
-    attributes: 
-      user: 
+---
+uk:
+  activerecord:
+    attributes:
+      sample:
+        description: Опис
+        kind: Вид
+        lat: Широта
+        lng: Довгота
+        object_name: "Назва об'єкту"
+        owner: Власник
+        to_s: "Зразок №%{id}"
+      user:
         current_password: "Поточний пароль"
         email: Електропошта
         full_name: "Повне ім'я"
@@ -10,8 +18,8 @@ uk:
         password: Пароль
         password_confirmation: "Підтвердження паролю"
         role: Роль
-    errors: 
-      messages: 
+    errors:
+      messages:
         accepted: "має бути прийнятий"
         blank: "не може містити тільки пробіли"
         confirmation: "не збігається з підтвердженням"
@@ -29,41 +37,46 @@ uk:
         odd: "має бути непарним"
         record_invalid: "Помилка валідації: %{errors}"
         taken: "вже зайнятий"
-        too_long: 
+        too_long:
           few: "занадто довгий (максимум %{count} знаки)"
           many: "занадто довгий (максимум %{count} знаків)"
           one: "занадто довгий (максимум %{count} знак)"
           other: "занадто довгий (максимум %{count} знаку)"
-        too_short: 
+        too_short:
           few: "занадто короткий (мінімум %{count} знаки)"
           many: "занадто короткий (мінімум %{count} знаків)"
           one: "занадто короткий (мінімум %{count} знак)"
           other: "занадто короткий (мінімум %{count} знаку)"
-        wrong_length: 
+        wrong_length:
           few: "неправильна довжина (має бути %{count} знаки)"
           many: "неправильна довжина (має бути %{count} знаків)"
           one: "неправильна довжина (має бути %{count} знак)"
           other: "неправильна довжина (має бути %{count} знаку)"
-      template: 
+      template:
         body: "Помилки виявлено в таких полях:"
-        header: 
+        header:
           few: "%{model} не збережено через %{count} помилки"
           many: "%{model} не збережено через %{count} помилок"
           one: "%{model} не збережено через %{count} помилку"
           other: "%{model} не збережено через %{count} помилки"
-    models: 
-      user: 
+    models:
+      sample:
+        few: Зразка
+        many: Зразків
+        one: Зразок
+        other: Зразка
+      user:
         few: Користувача
         many: Користувачів
         one: Користувач
         other: Користувачі
   back_link: Назад
-  cancan: 
+  cancan:
     unauthorized: "Ви не маєте достатньо прав для цієї операції"
   confirm_destroy_message: "Ви впевнені?"
   create_message: "%{model} успішно створено."
-  date: 
-    abbr_day_names: 
+  date:
+    abbr_day_names:
       - нд.
       - пн.
       - вт.
@@ -71,7 +84,7 @@ uk:
       - чт.
       - пт.
       - сб.
-    abbr_month_names: 
+    abbr_month_names:
       - ~
       - січ.
       - лют.
@@ -85,7 +98,7 @@ uk:
       - жовт.
       - лист.
       - груд.
-    day_names: 
+    day_names:
       - неділя
       - понеділок
       - вівторок
@@ -93,11 +106,11 @@ uk:
       - четвер
       - п'ятниця
       - субота
-    formats: 
+    formats:
       default: "%d.%m.%Y"
       long: "%d %B %Y"
       short: "%d %b"
-    month_names: 
+    month_names:
       - ~
       - Січень
       - Лютий
@@ -111,69 +124,69 @@ uk:
       - Жовтень
       - Листопад
       - Грудень
-    order: 
+    order:
       - !ruby/symbol day
       - !ruby/symbol month
       - !ruby/symbol year
-  datetime: 
-    distance_in_words: 
-      about_x_hours: 
+  datetime:
+    distance_in_words:
+      about_x_hours:
         few: "близько %{count} годин"
         many: "близько %{count} годин"
         one: "близько %{count} години"
         other: "близько %{count} години"
-      about_x_months: 
+      about_x_months:
         few: "близько %{count} місяців"
         many: "близько %{count} місяців"
         one: "близько %{count} місяця"
         other: "близько %{count} місяця"
-      about_x_years: 
+      about_x_years:
         few: "близько %{count} років"
         many: "близько %{count} років"
         one: "близько %{count} року"
         other: "близько %{count} року"
-      almost_x_years: 
+      almost_x_years:
         few: "майже %{count} років"
         many: "майже %{count} років"
         one: "майже %{count} рік"
         other: "майже %{count} років"
       half_a_minute: півхвилини
-      less_than_x_minutes: 
+      less_than_x_minutes:
         few: "менше %{count} хвилин"
         many: "менше %{count} хвилин"
         one: "менше %{count} хвилини"
         other: "менше %{count} хвилини"
-      less_than_x_seconds: 
+      less_than_x_seconds:
         few: "менше %{count} секунд"
         many: "менше %{count} секунд"
         one: "менше %{count} секунди"
         other: "менше %{count} секунди"
-      over_x_years: 
+      over_x_years:
         few: "більше %{count} років"
         many: "більше %{count} років"
         one: "більше %{count} року"
         other: "більше %{count} року"
-      x_days: 
+      x_days:
         few: "%{count} дні"
         many: "%{count} днів"
         one: "%{count} день"
         other: "%{count} дня"
-      x_minutes: 
+      x_minutes:
         few: "%{count} хвилини"
         many: "%{count} хвилин"
         one: "%{count} хвилина"
         other: "%{count} хвилини"
-      x_months: 
+      x_months:
         few: "%{count} місяці"
         many: "%{count} місяців"
         one: "%{count} місяць"
         other: "%{count} місяця"
-      x_seconds: 
+      x_seconds:
         few: "%{count} секунди"
         many: "%{count} секунд"
         one: "%{count} секунда"
         other: "%{count} секунди"
-    prompts: 
+    prompts:
       day: День
       hour: Година
       minute: Хвилина
@@ -181,18 +194,18 @@ uk:
       second: Секунда
       year: Рік
   destroy_link: Знищити
-  devise: 
+  devise:
     back: Назад
     cancel: "Видалити обліковий запис"
     change_password_head: "Змінити ваш пароль"
     change_password_submit: "Змінити пароль"
     confirmation: "Надіслати код підтвердження"
-    confirmations: 
+    confirmations:
       confirmed: "Ваша обліковий рахунок було успішно підтверджено. Ви успішно увійшли до системи."
       send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо підтвердження Вашого облікового запису."
     current_password_help: "(нам потрібен ваш поточний пароль, щоб ми змогли підтвердити зімни)"
     edit: "Редагувати користувача"
-    failure: 
+    failure:
       inactive: "Ваш обліковий запис ще не активовано."
       invalid: "Невірний електронна пошти або пароль."
       invalid_token: "Невірна аутентифікація."
@@ -203,25 +216,25 @@ uk:
     forgot: "Забули пароль?"
     forgot_head: "Забули пароль?"
     forgot_submit: "Надіслати інструкції для створення нового паролю"
-    mailer: 
-      confirmation_instructions: 
+    mailer:
+      confirmation_instructions:
         subject: "Інструкції щодо підтвердження"
-      reset_password_instructions: 
+      reset_password_instructions:
         subject: "Інструкції щодо зміни пароля"
-      unlock_instructions: 
+      unlock_instructions:
         subject: "Інструкції щодо розблокування"
     no_confirmation: "Не отрімали інструкції для підтведження?"
     no_unlock: "Не отрімали інструкції для розблокування?"
     password_help: "(залиште пустим, якщо не змінюватимете пароль)"
-    passwords: 
+    passwords:
       send_instructions: "За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо зміни Вашого пароля."
       updated: "Ваш пароль було успішно змінено. Ви успішно увійшли до системи."
-    registrations: 
+    registrations:
       destroyed: "Допобачення! Ваш акаунт був успішно скасовано. Ми сподіваємося побачити вас знову в найближчим часом."
       signed_up: "Ви зареєструвалися успішно. Якщо підтвердження включено, воно буде надіслано на Вашу адресу електронної пошти."
       updated: "Ви оновили обліковий запис успішно."
     remember_me: "Запам'ятати мене"
-    sessions: 
+    sessions:
       inactive: "Ваш обліковий рахунок ще не підтверджено."
       invalid: "Ви ввели неправильний пароль або адресу електронної пошти."
       signed_in: "Ви успішно увійшли до системи."
@@ -234,15 +247,15 @@ uk:
     sign_up: Реєструватися
     signed_as: "Ви увійшли як <strong>%{user}</strong>"
     unlock: "Надіслати інструкції для розблокування"
-    unlocks: 
+    unlocks:
       send_instructions: "Ви отримаєте лист з інструкціями про те, як розблокувати ваш рахунок протягом декількох хвилин."
       unlocked: "Ваш акаунт був успішно розблоковано. Тепер ви увійшли в систему."
     update: Оновити
   edit_link: Редагувати
   edit_title: "Редагування: %{model}"
-  errors: 
+  errors:
     format: "%{attribute} %{message}"
-    messages: 
+    messages:
       accepted: "повинно бути прийнято"
       already_confirmed: "вже підтвердили"
       blank: "не може бути порожнім"
@@ -265,23 +278,23 @@ uk:
       too_long: "занадто довгий (максимум %{count} символів)"
       too_short: "дуже короткий (мінімум %{count} символів)"
       wrong_length: "є неправильною довжини (повинно бути %{count} символів)"
-  flash: 
-    actions: 
-      create: 
+  flash:
+    actions:
+      create:
         notice: "%{resource_name} було успішно створено."
-      destroy: 
+      destroy:
         alert: "%{resource_name} не може бути видалено."
         notice: "%{resource_name} було успішно видалено."
-      update: 
+      update:
         notice: "%{resource_name} було успішно оновлено."
-  footer: 
+  footer:
     author: "Alexander Ulyanitsky"
     created: Створено
     email: "Alexander Ulyanitsky <a.ulyanitsky@gmail.com>"
-  form_error_explanation: 
+  form_error_explanation:
     plural: "%{count} помилки виникло в %{model} підчас збереження"
     singular: "1 помилка виникла в %{model} підчас збереження"
-  formtastic: 
+  formtastic:
     create: Створити
     ? "false"
     : ""
@@ -290,45 +303,45 @@ uk:
     submit: Відправити
     ? "true"
     : ""
-  helpers: 
+  helpers:
     confirm: "Ви впевнені?"
-    select: 
+    select:
       prompt: "Будь ласка, виберіть"
-    submit: 
+    submit:
       create: "Створити: %{model}"
       submit: "Зберегти: %{model}"
       update: "Оновити: %{model}"
   index_title: "Список: %{model}"
   new_link: "Новий запис: %{model}"
   new_title: "Новий запис: %{model}"
-  number: 
-    currency: 
-      format: 
+  number:
+    currency:
+      format:
         delimiter: ","
         format: "%n %u"
         precision: 2
         separator: ","
         unit: грн.
-    format: 
+    format:
       delimiter: ","
       precision: 3
       separator: ","
-    human: 
-      decimal_units: 
+    human:
+      decimal_units:
         format: "%n %u"
-        units: 
+        units:
           billion: Мільярд
           million: Мільйон
           quadrillion: Квадрильйон
           thousand: Тисяч
           trillion: Трильйон
-      format: 
+      format:
         delimiter: ""
         precision: 1
-      storage_units: 
+      storage_units:
         format: "%n %u"
-        units: 
-          byte: 
+        units:
+          byte:
             few: байти
             many: байтів
             one: байт
@@ -337,39 +350,44 @@ uk:
           kb: кБ
           mb: МБ
           tb: ТБ
-    percentage: 
-      format: 
+    percentage:
+      format:
         delimiter: ""
-    precision: 
-      format: 
+    precision:
+      format:
         delimiter: ""
-  pagination: 
+  pagination:
     next_label: "наступна &raquo;"
     previous_label: "&laquo; попередня"
-  role: 
+  role:
     admin: Адміністратор
     manager: Менеджер
     normal: Звичайний
+  sample_kind:
+    soil: Ґрунт
+    water: Вода
   show_link: Показати
-  support: 
-    array: 
+  support:
+    array:
       last_word_connector: " та "
       sentence_connector: і
       skip_last_comma: true
       two_words_connector: " і "
       words_connector: ", "
-  time: 
+  time:
     am: "до полудня"
-    formats: 
+    formats:
       default: "%a, %d %b %Y, %H:%M:%S %z"
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: "по полудні"
-  title: 
+  title:
+    home: Головна
     main: Головна
+    map: Мапа
   update_message: "%{model} успішно оновлено."
-  users: 
+  users:
     unable_assign_role: "Ви не можете призначити роль <strong>%{role}</strong> користувачу <strong>%{user}</strong>."
-  version_info: 
+  version_info:
     commit: Коміт
     release: Випуск

@@ -1,0 +1,27 @@
+- title "Sample: #{@sample}"
+
+.action_links
+  = link_to t(:edit_link), edit_sample_path(@sample)
+  \|
+  = link_to t(:back_link), samples_path
+
+.attribute
+  %strong= "#{Sample.human_attribute_name 'kind'}:"
+  = @sample.kind
+.attribute
+  %strong= "#{Sample.human_attribute_name 'object_name'}:"
+  = @sample.object_name
+.attribute
+  %strong= "#{Sample.human_attribute_name 'lng'}:"
+  = @sample.lng
+.attribute
+  %strong= "#{Sample.human_attribute_name 'lat'}:"
+  = @sample.lat
+.attribute
+  %strong= "#{Sample.human_attribute_name 'owner'}:"
+  = @sample.owner
+.attribute
+  %strong= "#{Sample.human_attribute_name 'description'}:"
+  = @sample.description
+
+

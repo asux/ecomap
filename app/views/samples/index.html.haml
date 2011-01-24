@@ -1,0 +1,35 @@
+- title t(:index_title, :model => Sample.human_name)
+
+.action_links
+  = link_to t(:new_link, :model => Sample.human_name), new_sample_path
+
+%table#scaffold
+  %tr
+    %th= Sample.human_attribute_name 'kind'
+    %th= Sample.human_attribute_name 'object_name'
+    %th= Sample.human_attribute_name 'lng'
+    %th= Sample.human_attribute_name 'lat'
+    %th= Sample.human_attribute_name 'owner'
+    -# %th= Sample.human_attribute_name 'description'
+    - 3.times do
+      %th.object_link
+
+  - @samples.each do |sample|
+    %tr
+      %td= sample.kind_instance.human_name
+      %td= sample.object_name
+      %td= sample.lng
+      %td= sample.lat
+      %td= sample.owner
+      -# %td= sample.description
+      %td.object_link
+        = link_to sample, :title => t(:show_link) do
+          = image_tag "icons/22x22/show.png", :alt => t(:show_link)
+      %td.object_link
+        = link_to edit_sample_path(sample), :title => t(:edit_link) do
+          = image_tag "icons/22x22/edit.png", :alt => t(:edit_link)
+      %td.object_link
+        = link_to sample, :confirm => t(:confirm_destroy_message), :method => :delete, :title => t(:destroy_link) do
+          = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
+
+= render :partial => 'shared/pagination', :locals => {:collection => @sample}

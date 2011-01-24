@@ -1,7 +1,7 @@
-- title t(:index_title, :model => 'users')
+- title t(:index_title, :model => User.human_name)
 
 .action_links
-  = link_to t(:new_link, :model => 'User'), new_user_path
+  = link_to t(:new_link, :model => User.human_name), new_user_path
 
 %table#scaffold
   %tr

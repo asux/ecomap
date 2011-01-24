@@ -9,3 +9,6 @@ nbproject/*
 *~
 REVISION
 tags
+*.kdev4
+.eric4project*
+.redcar*

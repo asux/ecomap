@@ -1,0 +1,11 @@
+- semantic_form_for(@sample) do |f|
+  - f.inputs do
+    - if @sample.new_record?
+      = f.input :kind, :as => :radio, :collection => Sample::KIND_INSTANCES
+    = f.input :object_name
+    = f.input :lng
+    = f.input :lat
+    = f.input :owner
+    = f.input :description
+  - f.buttons do
+    = f.commit_button
