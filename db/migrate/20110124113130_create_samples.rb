@@ -3,8 +3,8 @@ class CreateSamples < ActiveRecord::Migration
     create_table :samples do |t|
       t.string :kind, :default => Sample::KINDS.first
       t.string :object_name
-      t.float :lng, :precision => 15
-      t.float :lat, :precision => 15
+      t.decimal :lng, :precision => 17, :scale => 14
+      t.decimal :lat, :precision => 17, :scale => 14
       t.references :owner
       t.text :description
 
