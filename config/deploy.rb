@@ -20,6 +20,8 @@ default_run_options[:pty] = true
 
 set :chmod755, %w(app config db lib public vendor script tmp public/dispatch.cgi public/dispatch.fcgi public/dispatch.rb)
 set :use_sudo, false
+set :rake, "bundle exec rake"
+set :shared_children, %w(system log pids cache bundle mysql_data sockets)
 
 role :web, "ecomap.dikins.org.ua"                          # Your HTTP server, Apache/etc
 role :app, "ecomap.dikins.org.ua"                          # This may be the same as your `Web` server
@@ -27,8 +29,6 @@ role :db,  "ecomap.dikins.org.ua", :primary => true # This is where Rails migrat
 
 depend :local, :command, "git"
 depend :remote, :command, "bundle"
-depend :remote, :command, "rake"
-depend :remote, :command, "rails"
 
 pretty_out = lambda do |channel, stream, data|
   puts "... #{data}" if stream == :out
@@ -79,9 +79,10 @@ namespace :deploy do
 
   desc "Symlink MySQL data directory on each release."
   task :symlink_databases do
-    shared_file = "#{shared_path}/mysql_data"
-    symlink_file = "#{release_path}/db/mysql_data"
-    run "rm -rf #{symlink_file} && ln -nfs #{shared_file} #{symlink_file}"
+    run <<-CMD
+    rm -rf #{release_path}/db/mysql_data && ln -nfs #{shared_path}/mysql_data #{release_path}/db/mysql_data
+    rm -rf #{shared_path}/sockets && ln -nfs #{shared_path}/sockets #{current_path}/tmp/sockets
+    CMD
   end
 
 end
