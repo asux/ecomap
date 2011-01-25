@@ -94,7 +94,7 @@ namespace :bundle do
 
   desc "Bundle update"
   task :update do
-    run "bundle update", &pretty_out
+    run "cd #{current_path}; bundle update vendor/bundle", &pretty_out
   end
 end
 
