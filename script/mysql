@@ -88,7 +88,8 @@ stop_server() {
   fi
   if [ -n "${MYSQLD_PID}" ]; then
     [ -n "${VERBOSE}" ]  && echo "Stopping server (PID ${MYSQLD_PID})..."
-    kill -s QUIT ${MYSQLD_PID} && rm -f ${MYSQLD_PID_FILE}
+    kill -s QUIT ${MYSQLD_PID}
+    rm -f ${MYSQLD_PID_FILE}
   fi
 }
 
@@ -102,7 +103,7 @@ start_server() {
   check_rails_root
   setup_mysql
   [ -n "${VERBOSE}" ]  && echo "Running embedded MySQL server..."
-  ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} &
+  ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} --pid-file=${MYSQLD_PID_FILE} &
   if [ $? -eq 0 ]; then
     MYSQLD_PID=$(jobs -p %1)
     echo ${MYSQLD_PID} > ${MYSQLD_PID_FILE}
