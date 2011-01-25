@@ -15,8 +15,8 @@ gem 'formtastic'
 gem 'will_paginate', '~> 3.0.beta'
 
 group :development, :test do
-  gem 'ruby-debug', :platforms => [:ruby_18, :mingw_18]
-  gem 'ruby-debug19', :platforms => [:ruby_19, :mingw_19]
+  gem 'ruby-debug', :platforms => [:ruby_18]
+  gem 'ruby-debug19', :platforms => [:ruby_19]
   gem 'rspec-rails', '~> 2.1'
   gem 'autotest'
   gem 'faker'
