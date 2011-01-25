@@ -120,7 +120,7 @@ end
 namespace :mysql do
   desc "Start embedded MySQL server"
   task :start do
-    run "#{current_path}/script/mysql -b /usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld -vD start"
+    run "#{current_path}/script/mysql -b '/usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld' -vD start"
   end
 
   desc "Stop embedded MySQL server"
@@ -130,7 +130,7 @@ namespace :mysql do
 
   desc "Restart embedded MySQL server"
   task :restart do
-    run "#{current_path}/script/mysql -b /usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld -vD restart"
+    run "#{current_path}/script/mysql -b '/usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld' -vD restart"
   end
 end
 
