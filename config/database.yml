@@ -29,7 +29,10 @@ staging:
   socket: tmp/sockets/mysql.socket
 
 production:
-  adapter: sqlite3
+  adapter: mysql2
   encoding: utf8
-  database: db/production.sqilte3
+  database: production
   pool: 5
+  username: root
+  password:
+  socket: tmp/sockets/mysql.socket
