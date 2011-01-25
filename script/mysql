@@ -5,16 +5,42 @@
 # Author: Alexander Ulyanitsky <a.ulyanitsky@gmail.com>.
 # License: Rails (BSD).
 
-setup_bin() {
-  MYSQLD_BIN="/usr/sbin/mysqld"
+MYSQLD_BIN="/usr/sbin/mysqld"
+RAILS_ROOT=$(readlink -f $(dirname $(readlink -f $0))/..)
+MYSQL_CONFIG="${RAILS_ROOT}/config/mysql.conf"
+MYSQL_DATA="${RAILS_ROOT}/db/mysql_data"
+MYSQL_SOCKET="${RAILS_ROOT}/tmp/sockets/mysql.socket"
+MYSQLD_PID_FILE="${RAILS_ROOT}/tmp/pids/mysql.pid"
+
+print_help() {
+  cat >&1 <<HERE
+Usage:
+$0 [options] start|stop|restart
+
+options is:
+  -b mysqld         Path to mysqld binary (default: /usr/sbin/mysqld)
+  -c mysql.conf     Path to MySQL config file (default: \$RAILS_ROOT/config/mysql.conf)
+  -d mysql_data     Path to MySQL datadir (default \$RAILS_ROOT/db/mysql_data)
+  -p mysql.pid      Path to MySQL pidfile (default: \$RAILS_ROOT/tmp/pids/mysql.pid)
+  -D                Daemonize (default: false)
+  -v                Be verbose (default: false)
+  -h                Read this help
+HERE
+}
+
+make_dirs() {
+  mkdir -p ${MYSQL_DATA} $(dirname ${MYSQL_CONFIG}) $(dirname ${MYSQL_SOCKET}) $(dirname ${MYSQLD_PID_FILE})
+}
+
+check_mysql_bin() {
+  [ ! -z $1 ] && MYSQLD_BIN=$1
   if [ ! -x ${MYSQLD_BIN} ]; then
     echo "mysqld binary not executable (${MYSQLD_BIN})" >&2
     exit 1
   fi
 }
 
-setup_rails_root() {
-  RAILS_ROOT=$(readlink -f $(dirname $(readlink -f $0))/..)
+check_rails_root() {
   if [ -z ${RAILS_ROOT} ]; then
     echo "Rails root is empty string" >&2
     exit 2
@@ -23,52 +49,89 @@ setup_rails_root() {
     echo "Rails root is not directory (${RAILS_ROOT})" >&2
     exit 3
   fi
-  echo "Rails root is ${RAILS_ROOT}"
+  [ -n "${VERBOSE}" ]  && echo "Rails root is ${RAILS_ROOT}"
 }
 
 setup_mysql() {
-  MYSQL_CONFIG="${RAILS_ROOT}/config/mysql.conf"
-  echo "MySQL config is ${MYSQL_CONFIG}"
-  MYSQL_DATA="${RAILS_ROOT}/db/mysql_data"
-  echo "MySQL data root is ${MYSQL_DATA}"
-  MYSQL_SOCKET="${RAILS_ROOT}/tmp/sockets/mysql.socket"
-  echo "MySQL socket is ${MYSQL_SOCKET}"
-  MYSQLD_PID_FILE="${RAILS_ROOT}/tmp/pids/mysql.pid"
-  echo "MySQL pidfile is ${MYSQLD_PID_FILE}"
+  if [ -n "${VERBOSE}" ]; then
+    echo "MySQL config is ${MYSQL_CONFIG}"
+    echo "MySQL data root is ${MYSQL_DATA}"
+    echo "MySQL socket is ${MYSQL_SOCKET}"
+    echo "MySQL pidfile is ${MYSQLD_PID_FILE}"
+  fi
 
   if [ ! -f ${MYSQL_CONFIG} ]; then
     if [ -f ${MYSQL_CONFIG}.example ]; then
       cp ${MYSQL_CONFIG}.example ${MYSQL_CONFIG}
+      [ -n "${VERBOSE}" ]  && echo "Coping config from example file"
     else
-      echo "MySQL configuration file example not found (${MYSQL_CONFIG}.example)" >&2
+      echo "MySQL confg file not found (${MYSQL_CONFIG})" >&2
       exit 4
+    fi
+  fi
+  if [ ! -d ${MYSQL_DATA} ]; then
+    echo "MySQL datadir is not directory" >&2
+    exit 6
+  fi
+}
+
+stop_server() {
+  if [ ! -f ${MYSQLD_PID_FILE} ] && [ ! -s ${MYSQL_SOCKET} ]; then
+    echo "Server not runned" >&2
+  else
+    [ -z "${MYSQLD_PID}" ] && MYSQLD_PID=$(cat ${MYSQLD_PID_FILE})
+  fi
+  if [ -n "${MYSQLD_PID}" ]; then
+    [ -n "${VERBOSE}" ]  && echo "Stopping server (PID ${MYSQLD_PID})..."
+    kill -s QUIT ${MYSQLD_PID} && rm -f ${MYSQLD_PID_FILE}
+  fi
+}
+
+start_server() {
+  if [ -f ${MYSQLD_PID_FILE} ] || [ -s ${MYSQL_SOCKET} ]; then
+    echo "Server already runned" >&2
+    exit 7
+  fi
+  make_dirs
+  check_mysql_bin
+  check_rails_root
+  setup_mysql
+  [ -n "${VERBOSE}" ]  && echo "Running embedded MySQL server..."
+  ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} &
+  if [ $? -eq 0 ]; then
+    MYSQLD_PID=$(jobs -p %1)
+    echo ${MYSQLD_PID} > ${MYSQLD_PID_FILE}
+    [ -n "${VERBOSE}" ]  && echo "MySQL server PID is ${MYSQLD_PID}"
+    if [ -z "${DAEMONIZE}" ]; then
+      echo "Interrupt to stop server"
+      trap stop_server INT
+      wait %1
     fi
   fi
 }
 
-make_dirs() {
-  mkdir -p ${MYSQL_DATA} $(dirname ${MYSQL_CONFIG}) $(dirname ${MYSQL_SOCKET}) $(dirname ${MYSQLD_PID_FILE})
-}
+if [ $# -eq 0 ]; then
+  print_help
+  exit 10
+fi
 
-stop_server() {
-  echo "Stopping server..."
-  kill -s QUIT ${MYSQLD_PID}
-  rm -f ${MYSQLD_PID_FILE}
-}
-
-run_server() {
-  echo "Running embedded MySQL server..."
-  ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} &
-  MYSQLD_PID=$(jobs -p %1)
-  echo ${MYSQLD_PID} > ${MYSQLD_PID_FILE}
-  echo "Interrupt to stop server"
-  trap stop_server INT
-  echo "MySQL server PID is ${MYSQLD_PID}"
-  wait %1
-}
-
-setup_bin
-setup_rails_root
-setup_mysql
-make_dirs
-run_server
+while getopts "b:c:d:p:Dvh" option; do
+  case ${option} in
+    b) MYSQLD_BIN=${OPTARG};;
+    c) MYSQL_CONFIG=${OPTARG};;
+    d) MYSQL_DATA=${OPTARG};;
+    p) MYSQLD_PID_FILE=${OPTARG};;
+    D) DAEMONIZE="true";;
+    v) VERBOSE="true";;
+    h) print_help; exit 0;;
+    *) print_help; exit 10;;
+  esac
+done
+shift $(($OPTIND - 1))
+CMD=$1
+case ${CMD} in
+  start) start_server;;
+  stop) stop_server;;
+  restart) stop_server; start_server;;
+  *) print_help;;
+esac

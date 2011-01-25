@@ -30,8 +30,8 @@ depend :remote, :command, "bundle"
 depend :remote, :command, "rake"
 depend :remote, :command, "rails"
 
-def pretty_out(channel, stream, data)
-  puts ">> #{data}" if stream == :out
+pretty_out = lambda do |channel, stream, data|
+  puts "... #{data}" if stream == :out
   if stream == :err
     puts "[Error: #{channel[:host]}] #{data}"
   end
@@ -71,21 +71,17 @@ namespace :deploy do
   task :symlink_cache do
     run "rm -rf #{release_path}/tmp/cache && ln -nfs #{shared_path}/cache #{release_path}/tmp/cache"
   end
-  
+
   desc "Symlink bundle folder on each release."
   task :symlink_bundle do
     run "rm -rf #{release_path}/vendor/bundle && ln -nfs #{shared_path}/bundle #{release_path}/vendor/bundle"
   end
-  
-  desc "Symlink SQLite3 databases on each release."
+
+  desc "Symlink MySQL data directory on each release."
   task :symlink_databases do
-    cmd = []
-    %w(development test staging production).each do |env|
-      shared_file = "#{shared_path}/db/#{env}.sqlite3" 
-      symlink_file = "#{release_path}/db/#{env}.sqlite3" 
-      cmd << "test -e #{shared_file} && rm -rf #{symlink_file} && ln -nfs #{shared_file} #{symlink_file}"
-    end
-    run "#{cmd.join("; ")}; true"
+    shared_file = "#{shared_path}/mysql_data"
+    symlink_file = "#{release_path}/db/mysql_data"
+    run "rm -rf #{symlink_file} && ln -nfs #{shared_file} #{symlink_file}"
   end
 
 end
@@ -93,16 +89,12 @@ end
 namespace :bundle do
   desc "Bundle install"
   task :install do
-    sudo "bundle install --gemfile=#{current_path}/Gemfile --deployment && chown -R #{user}:#{user} #{current_path}" do |channel, stream, data|
-      pretty_out(channel, stream, data)
-    end
+    run "bundle install --gemfile=#{current_path}/Gemfile --deployment", &pretty_out
   end
 
   desc "Bundle update"
   task :update do
-    sudo "bundle update --gemfile=#{current_path}/Gemfile && chown -R #{user}:#{user} #{current_path}" do |channel, stream, data|
-      pretty_out(channel, stream, data)
-    end
+    run "bundle update", &pretty_out
   end
 end
 
@@ -121,9 +113,24 @@ end
 namespace :log do
   desc "Watch server log"
   task :watch do
-    run "tail -f #{current_path}/log/#{rails_env}.log" do |channel, stream, data|
-      pretty_out(channel, stream, data)
-    end
+    run "tail -f #{current_path}/log/#{rails_env}.log", &pretty_out
+  end
+end
+
+namespace :mysql do
+  desc "Start embedded MySQL server"
+  task :start do
+    run "#{current_path}/script/mysql -b /usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld -vD start"
+  end
+
+  desc "Stop embedded MySQL server"
+  task :stop do
+    run "#{current_path}/script/mysql -v stop"
+  end
+
+  desc "Restart embedded MySQL server"
+  task :restart do
+    run "#{current_path}/script/mysql -b /usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld -vD restart"
   end
 end
 
