@@ -54,7 +54,7 @@ check_rails_root() {
     echo "Rails root is not directory (${RAILS_ROOT})" >&2
     exit 3
   fi
-  [ -n "${VERBOSE}" ]  && echo "Rails root is ${RAILS_ROOT}"
+  [ -n "${VERBOSE}" ] && echo "Rails root is ${RAILS_ROOT}"
 }
 
 setup_mysql() {
@@ -68,7 +68,7 @@ setup_mysql() {
   if [ ! -f ${MYSQL_CONFIG} ]; then
     if [ -f ${MYSQL_CONFIG}.example ]; then
       cp ${MYSQL_CONFIG}.example ${MYSQL_CONFIG}
-      [ -n "${VERBOSE}" ]  && echo "Coping config from example file"
+      [ -n "${VERBOSE}" ] && echo "Coping config from example file"
     else
       echo "MySQL confg file not found (${MYSQL_CONFIG})" >&2
       exit 4
@@ -83,13 +83,16 @@ setup_mysql() {
 stop_server() {
   if [ ! -f ${MYSQLD_PID_FILE} ] && [ ! -s ${MYSQL_SOCKET} ]; then
     echo "Server not runned" >&2
-  else
-    [ -z "${MYSQLD_PID}" ] && MYSQLD_PID=$(cat ${MYSQLD_PID_FILE})
   fi
+  [ -f ${MYSQLD_PID_FILE} ] && MYSQLD_PID=$(cat ${MYSQLD_PID_FILE})
   if [ -n "${MYSQLD_PID}" ]; then
-    [ -n "${VERBOSE}" ]  && echo "Stopping server (PID ${MYSQLD_PID})..."
-    kill -s QUIT ${MYSQLD_PID}
-    rm -f ${MYSQLD_PID_FILE}
+    [ -n "${VERBOSE}" ] && echo -n "Stopping server (PID ${MYSQLD_PID})"
+    kill -s TERM ${MYSQLD_PID}
+    while [ -f ${MYSQLD_PID_FILE} ]; do
+      [ -n "${VERBOSE}" ] && echo -n "."
+      sleep 0.1
+    done
+    [ -n "${VERBOSE}" ] && echo
   fi
 }
 
@@ -102,15 +105,18 @@ start_server() {
   check_mysql_bin
   check_rails_root
   setup_mysql
-  [ -n "${VERBOSE}" ]  && echo "Running embedded MySQL server..."
+  [ -n "${VERBOSE}" ] && echo -n "Running embedded MySQL server"
   ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} --pid-file=${MYSQLD_PID_FILE} &
   if [ $? -eq 0 ]; then
-    MYSQLD_PID=$(jobs -p %1)
-    echo ${MYSQLD_PID} > ${MYSQLD_PID_FILE}
-    [ -n "${VERBOSE}" ]  && echo "MySQL server PID is ${MYSQLD_PID}"
+    while [ ! -f ${MYSQLD_PID_FILE} ]; do
+      echo -n "."
+      sleep 0.1
+    done
+    MYSQLD_PID=$(cat ${MYSQLD_PID_FILE})
+    [ -n "${VERBOSE}" ] && echo -e "\nMySQL server PID is ${MYSQLD_PID}"
     if [ -z "${DAEMONIZE}" ]; then
       echo "Interrupt to stop server"
-      trap stop_server INT
+      trap "echo; stop_server" INT
       wait %1
     fi
   fi
