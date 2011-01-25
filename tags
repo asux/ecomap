@@ -1,0 +1,76 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+==	app/models/role.rb	/^  def ==(other)$/;"	f	class:Role
+Ability	app/models/ability.rb	/^class Ability$/;"	c
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+MapsController	app/controllers/maps_controller.rb	/^class MapsController < ApplicationController$/;"	c
+MapsHelper	app/helpers/maps_helper.rb	/^module MapsHelper$/;"	m
+MissingConfigOptionError	lib/yaml_configuration.rb	/^  class MissingConfigOptionError < StandardError; end$/;"	c	class:YAMLConfiguration
+Role	app/models/role.rb	/^class Role $/;"	c
+Sample	app/models/sample.rb	/^class Sample < ActiveRecord::Base$/;"	c
+SampleKind	app/models/sample_kind.rb	/^class SampleKind$/;"	c
+SamplesController	app/controllers/samples_controller.rb	/^class SamplesController < ApplicationController$/;"	c
+SamplesHelper	app/helpers/samples_helper.rb	/^module SamplesHelper$/;"	m
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+Users	app/controllers/users/passwords_controller.rb	/^class Users::PasswordsController < Devise::PasswordsController$/;"	c
+Users	app/controllers/users/registrations_controller.rb	/^class Users::RegistrationsController < Devise::RegistrationsController$/;"	c
+Users	app/controllers/users/sessions_controller.rb	/^class Users::SessionsController < Devise::SessionsController$/;"	c
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
+YAMLConfiguration	lib/yaml_configuration.rb	/^class YAMLConfiguration$/;"	c
+admin?	app/models/user.rb	/^  def admin?$/;"	f	class:User
+assign_default_role	app/models/user.rb	/^    def assign_default_role$/;"	f	class:User
+check_permissions	app/controllers/users/registrations_controller.rb	/^  def check_permissions$/;"	f	class:Users
+check_role_changing	app/controllers/users_controller.rb	/^    def check_role_changing$/;"	f	class:UsersController
+create	app/controllers/samples_controller.rb	/^  def create$/;"	f	class:SamplesController
+create	app/controllers/users_controller.rb	/^  def create$/;"	f	class:UsersController
+create	lib/templates/rails/scaffold_controller/controller.rb	/^  def create$/;"	f
+destroy	app/controllers/samples_controller.rb	/^  def destroy$/;"	f	class:SamplesController
+destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
+destroy	lib/templates/rails/scaffold_controller/controller.rb	/^  def destroy$/;"	f
+edit	app/controllers/samples_controller.rb	/^  def edit$/;"	f	class:SamplesController
+edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
+edit	lib/templates/rails/scaffold_controller/controller.rb	/^  def edit$/;"	f
+email_to	app/models/user.rb	/^  def email_to$/;"	f	class:User
+get_version_info	app/controllers/application_controller.rb	/^  def get_version_info$/;"	f	class:ApplicationController
+home	app/controllers/maps_controller.rb	/^  def home$/;"	f	class:MapsController
+human_name	app/models/role.rb	/^  def human_name$/;"	f	class:Role
+human_name	app/models/sample_kind.rb	/^  def human_name$/;"	f	class:SampleKind
+id	app/models/role.rb	/^  def id$/;"	f	class:Role
+id	app/models/sample_kind.rb	/^  def id$/;"	f	class:SampleKind
+index	app/controllers/maps_controller.rb	/^  def index$/;"	f	class:MapsController
+index	app/controllers/samples_controller.rb	/^  def index$/;"	f	class:SamplesController
+index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
+index	lib/templates/rails/scaffold_controller/controller.rb	/^  def index$/;"	f
+initialize	app/models/ability.rb	/^  def initialize(user)$/;"	f	class:Ability
+initialize	app/models/role.rb	/^  def initialize(name)$/;"	f	class:Role
+initialize	app/models/sample_kind.rb	/^  def initialize(name)$/;"	f	class:SampleKind
+kind_instance	app/models/sample.rb	/^  def kind_instance$/;"	f	class:Sample
+load	lib/yaml_configuration.rb	/^  def self.load!$/;"	F	class:YAMLConfiguration
+manager?	app/models/user.rb	/^  def manager?$/;"	f	class:User
+method_missing	lib/yaml_configuration.rb	/^  def self.method_missing(method)$/;"	F	class:YAMLConfiguration
+new	app/controllers/samples_controller.rb	/^  def new$/;"	f	class:SamplesController
+new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
+new	lib/templates/rails/scaffold_controller/controller.rb	/^  def new$/;"	f
+normal?	app/models/user.rb	/^  def normal?$/;"	f	class:User
+pos	app/models/sample.rb	/^  def pos$/;"	f	class:Sample
+reload	lib/yaml_configuration.rb	/^  def self.reload$/;"	F	class:YAMLConfiguration
+role_instance	app/models/user.rb	/^  def role_instance$/;"	f	class:User
+show	app/controllers/samples_controller.rb	/^  def show$/;"	f	class:SamplesController
+show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
+show	lib/templates/rails/scaffold_controller/controller.rb	/^  def show$/;"	f
+title	app/helpers/application_helper.rb	/^  def title(text, &block)$/;"	f	class:ApplicationHelper
+to_label	app/models/role.rb	/^  def to_label$/;"	f	class:Role
+to_label	app/models/sample_kind.rb	/^  def to_label$/;"	f	class:SampleKind
+to_s	app/models/role.rb	/^  def to_s$/;"	f	class:Role
+to_s	app/models/sample.rb	/^  def to_s$/;"	f	class:Sample
+to_s	app/models/sample_kind.rb	/^  def to_s$/;"	f	class:SampleKind
+to_s	app/models/user.rb	/^  def to_s$/;"	f	class:User
+update	app/controllers/samples_controller.rb	/^  def update$/;"	f	class:SamplesController
+update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController
+update	lib/templates/rails/scaffold_controller/controller.rb	/^  def update$/;"	f
