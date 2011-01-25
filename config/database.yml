@@ -29,7 +29,7 @@ staging:
   socket: tmp/sockets/mysql.socket
 
 production:
-  adapter: mysql2
+  adapter: mysql
   encoding: utf8
   database: production
   pool: 5
