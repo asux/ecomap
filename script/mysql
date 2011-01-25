@@ -6,7 +6,9 @@
 # License: Rails (BSD).
 
 MYSQLD_BIN="/usr/sbin/mysqld"
-RAILS_ROOT="$(dirname $0)/.."
+gnu_readlink_bin="greadlink"
+[ ! -x gnu_readlink_bin ] && gnu_readlink_bin="readlink"
+RAILS_ROOT=$(${gnu_readlink_bin} -f $(dirname $(${gnu_readlink_bin} -f $0))/..)
 MYSQL_CONFIG="${RAILS_ROOT}/config/mysql.conf"
 MYSQL_DATA="${RAILS_ROOT}/db/mysql_data"
 MYSQL_SOCKET="${RAILS_ROOT}/tmp/sockets/mysql.socket"
