@@ -1,45 +1,8 @@
-source 'http://rubygems.org'
+source :rubygems
 
 gem 'rails', '~> 3.0.3'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3-ruby', :require => 'sqlite3'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
-
-group :development, :test do
-  if RUBY_VERSION >= '1.9'
-    gem 'ruby-debug19'
-  else
-    gem 'ruby-debug'
-  end
-  gem 'rspec-rails', '~> 2.1'
-  gem 'autotest'
-  gem 'faker'
-  gem 'machinist', '>= 2.0.0.beta2'
-end
+gem 'mysql2'
 gem 'racc'
 gem 'devise'
 gem 'haml'
@@ -47,7 +10,18 @@ gem 'haml-rails-with-i18n'
 gem 'hpricot'
 gem 'ukrainian'
 gem 'ruby_parser'
-gem 'ya2yaml'
 gem 'cancan'
 gem 'formtastic'
 gem 'will_paginate', '~> 3.0.beta'
+
+group :development, :test do
+  gem 'ruby-debug', :platforms => [:ruby_18, :mingw_18]
+  gem 'ruby-debug19', :platforms => [:ruby_19, :mingw_19]
+  gem 'rspec-rails', '~> 2.1'
+  gem 'autotest'
+  gem 'faker'
+  gem 'machinist', '>= 2.0.0.beta2'
+  gem 'ya2yaml'
+  gem 'syntax'
+end
+

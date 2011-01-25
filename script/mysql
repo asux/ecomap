@@ -1,0 +1,74 @@
+#!/bin/sh
+# This BASH script for Rails project.
+# It runs MySQL embedded server (mysql server must be compiled with embedded feature).
+# It must by under $RAILS_ROOT/script directory.
+# Author: Alexander Ulyanitsky <a.ulyanitsky@gmail.com>.
+# License: Rails (BSD).
+
+setup_bin() {
+  MYSQLD_BIN="/usr/sbin/mysqld"
+  if [ ! -x ${MYSQLD_BIN} ]; then
+    echo "mysqld binary not executable (${MYSQLD_BIN})" >&2
+    exit 1
+  fi
+}
+
+setup_rails_root() {
+  RAILS_ROOT=$(readlink -f $(dirname $(readlink -f $0))/..)
+  if [ -z ${RAILS_ROOT} ]; then
+    echo "Rails root is empty string" >&2
+    exit 2
+  fi
+  if [ ! -d ${RAILS_ROOT} ]; then
+    echo "Rails root is not directory (${RAILS_ROOT})" >&2
+    exit 3
+  fi
+  echo "Rails root is ${RAILS_ROOT}"
+}
+
+setup_mysql() {
+  MYSQL_CONFIG="${RAILS_ROOT}/config/mysql.conf"
+  echo "MySQL config is ${MYSQL_CONFIG}"
+  MYSQL_DATA="${RAILS_ROOT}/db/mysql_data"
+  echo "MySQL data root is ${MYSQL_DATA}"
+  MYSQL_SOCKET="${RAILS_ROOT}/tmp/sockets/mysql.socket"
+  echo "MySQL socket is ${MYSQL_SOCKET}"
+  MYSQLD_PID_FILE="${RAILS_ROOT}/tmp/pids/mysql.pid"
+  echo "MySQL pidfile is ${MYSQLD_PID_FILE}"
+
+  if [ ! -f ${MYSQL_CONFIG} ]; then
+    if [ -f ${MYSQL_CONFIG}.example ]; then
+      cp ${MYSQL_CONFIG}.example ${MYSQL_CONFIG}
+    else
+      echo "MySQL configuration file example not found (${MYSQL_CONFIG}.example)" >&2
+      exit 4
+    fi
+  fi
+}
+
+make_dirs() {
+  mkdir -p ${MYSQL_DATA} $(dirname ${MYSQL_CONFIG}) $(dirname ${MYSQL_SOCKET}) $(dirname ${MYSQLD_PID_FILE})
+}
+
+stop_server() {
+  echo "Stopping server..."
+  kill -s QUIT ${MYSQLD_PID}
+  rm -f ${MYSQLD_PID_FILE}
+}
+
+run_server() {
+  echo "Running embedded MySQL server..."
+  ${MYSQLD_BIN} --defaults-file=${MYSQL_CONFIG} --datadir=${MYSQL_DATA} --socket=${MYSQL_SOCKET} &
+  MYSQLD_PID=$(jobs -p %1)
+  echo ${MYSQLD_PID} > ${MYSQLD_PID_FILE}
+  echo "Interrupt to stop server"
+  trap stop_server INT
+  echo "MySQL server PID is ${MYSQLD_PID}"
+  wait %1
+}
+
+setup_bin
+setup_rails_root
+setup_mysql
+make_dirs
+run_server
