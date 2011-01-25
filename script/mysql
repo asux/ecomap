@@ -5,9 +5,12 @@
 # Author: Alexander Ulyanitsky <a.ulyanitsky@gmail.com>.
 # License: Rails (BSD).
 
+case ${OSTYPE} in
+  linux-gnu) gnu_readlink_bin="readlink";;
+  freebsd*) gnu_readlink_bin="greadlink";;
+  *) echo "Can't find GNU readlink utility" >&2; exit 11;;
+esac
 MYSQLD_BIN="/usr/sbin/mysqld"
-gnu_readlink_bin="greadlink"
-[ ! -x gnu_readlink_bin ] && gnu_readlink_bin="readlink"
 RAILS_ROOT=$(${gnu_readlink_bin} -f $(dirname $(${gnu_readlink_bin} -f $0))/..)
 MYSQL_CONFIG="${RAILS_ROOT}/config/mysql.conf"
 MYSQL_DATA="${RAILS_ROOT}/db/mysql_data"
