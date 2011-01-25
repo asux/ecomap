@@ -84,7 +84,7 @@ namespace :deploy do
   task :symlink_databases do
     run <<-CMD
     rm -rf #{release_path}/db/mysql_data && ln -nfs #{shared_path}/mysql_data #{release_path}/db/mysql_data
-    rm -rf #{shared_path}/sockets && ln -nfs #{shared_path}/sockets #{current_path}/tmp/sockets
+    rm -rf #{release_path}/tmp/sockets && ln -nfs #{shared_path}/sockets #{current_path}/tmp/sockets
     CMD
   end
 
