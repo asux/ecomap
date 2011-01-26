@@ -8,15 +8,16 @@
 
 %table#scaffold
   %tr
+    %th
     %th= Sample.human_attribute_name 'object_name'
     - 4.times do
       %th.object_link
 
   - @samples.each do |sample|
     %tr
-      %td{:class => "kind-#{sample.kind}"}
-        = link_to sample.object_name, "#!#{sample_path(sample)}",
+      %td= link_to sample, "#!#{sample_path(sample)}",
           :class => 'load-data', :title => t('ymaps.load_data', :default => "Load data")
+      %td{:class => "kind-#{sample.kind}"}= sample.object_name
       %td.object_link
         %a.find-on-map{:href => "#!#{sample_path(sample)}", :title => t('ymaps.find_on_map', :default => "Find on map"),
           :data => {:lat => sample.lat, :lng => sample.lng}}
@@ -32,3 +33,7 @@
           = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
 
 = render :partial => 'shared/pagination', :locals => {:collection => @sample}
+
+#sample-data
+
+

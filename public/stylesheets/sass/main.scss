@@ -196,8 +196,12 @@ footer {
     }
   }
 }
-h1, h2, h3 {
+h1 {
   font-family: $fonts-sans;
+}
+h2, h3 {
+  @extends h1;
+  text-align: center;
 }
 #user-nav {
   padding: 4px;

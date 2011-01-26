@@ -186,8 +186,12 @@ footer {
       font-size: 10pt;
       margin-left: 2em; }
 
-h1, h2, h3 {
+h1 {
   font-family: "Tahoma", "Arial", "DejaVu Sans Serif", sans-serif; }
+
+h2, h3 {
+@extends h1;
+  text-align: center; }
 
 #user-nav {
   padding: 4px;

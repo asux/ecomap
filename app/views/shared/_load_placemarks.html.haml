@@ -1,6 +1,6 @@
 %p
-  = link_to(t('ymaps.ymapsml_link', :default => "Link to YMapsML"), {:format => :ymapsml})
-  \|
   %a.load-placemarks{:href => "#",
     :data => {:ymapsml_url => url_for({:only_path => false, :format => :ymapsml})}}
     = t('ymaps.load_placemarks', :default=> "Load Placemarks")
+  \|
+  = link_to(t('ymaps.ymapsml_link', :default => "Link to YMapsML"), {:format => :ymapsml})

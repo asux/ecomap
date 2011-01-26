@@ -80,11 +80,13 @@ window.Ecomap = {
     }
     return null;
   },
+  loadSampleData: function(path) {
+    $.getScript(path);
+  },
   loadFromAnchor: function(anchorURL) {
     var path = Ecomap.extractPathFromAnchorURL(anchorURL);
     if (path) {
-      var newLink = $('<a>').attr('href', path).html("Sample: "+path);
-      $('#path').append($('<li>').append(newLink));
+      Ecomap.loadSampleData(path);
     } else {
       Ecomap.alert("Can't find placemark path");
     }
