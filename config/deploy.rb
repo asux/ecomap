@@ -69,18 +69,18 @@ namespace :deploy do
 
   desc "Symlink cache folder on each release."
   task :symlink_cache do
-    run "rm -rf #{release_path}/tmp/cache
-    ln -nfs #{shared_path}/cache #{release_path}/tmp/cache
+    run "rm -rf #{release_path}/tmp/cache;
+    ln -nfs #{shared_path}/cache #{release_path}/tmp/cache;
     true"
   end
 
   desc "Symlink bundle folder on each release."
   task :symlink_bundle do
     run <<-CMD
-    rm -rf #{release_path}/vendor/bundle
-    ln -nfs #{shared_path}/gems #{release_path}/vendor/bundle
-    rm -rf #{release_path}/.bundle
-    ln -nfs #{shared_path}/bundle #{release_path}/.bundle
+    rm -rf #{release_path}/vendor/bundle;
+    ln -nfs #{shared_path}/gems #{release_path}/vendor/bundle;
+    rm -rf #{release_path}/.bundle;
+    ln -nfs #{shared_path}/bundle #{release_path}/.bundle;
     true
     CMD
   end
@@ -88,10 +88,10 @@ namespace :deploy do
   desc "Symlink MySQL data directory on each release."
   task :symlink_databases do
     run <<-CMD
-    rm -rf #{release_path}/db/mysql_data
-    ln -nfs #{shared_path}/mysql_data #{release_path}/db/mysql_data
-    rm -rf #{release_path}/tmp/sockets
-    ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets
+    rm -rf #{release_path}/db/mysql_data;
+    ln -nfs #{shared_path}/mysql_data #{release_path}/db/mysql_data;
+    rm -rf #{release_path}/tmp/sockets;
+    ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets;
     true
     CMD
   end
