@@ -8,23 +8,19 @@
 
 %table#scaffold
   %tr
-    %th= Sample.human_attribute_name 'kind'
     %th= Sample.human_attribute_name 'object_name'
-    %th= Sample.human_attribute_name 'lng'
-    %th= Sample.human_attribute_name 'lat'
-    %th= Sample.human_attribute_name 'owner'
-    -# %th= Sample.human_attribute_name 'description'
-    - 3.times do
+    - 4.times do
       %th.object_link
 
   - @samples.each do |sample|
     %tr
-      %td= sample.kind_instance.human_name
-      %td= sample.object_name
-      %td= sample.lng
-      %td= sample.lat
-      %td= sample.owner
-      -# %td= sample.description
+      %td{:class => "kind-#{sample.kind}"}
+        = link_to sample.object_name, "#!#{sample_path(sample)}",
+          :class => 'load-data', :title => t('ymaps.load_data', :default => "Load data")
+      %td.object_link
+        %a.find-on-map{:href => "#!#{sample_path(sample)}", :title => t('ymaps.find_on_map', :default => "Find on map"),
+          :data => {:lat => sample.lat, :lng => sample.lng}}
+          = image_tag "icons/22x22/find.png", :alt => t('ymaps.find_on_map', :default => "Find on map")
       %td.object_link
         = link_to sample, :title => t(:show_link) do
           = image_tag "icons/22x22/show.png", :alt => t(:show_link)

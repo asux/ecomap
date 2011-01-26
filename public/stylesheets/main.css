@@ -313,6 +313,12 @@ p {
   #scaffold td {
     padding: 0px 4px 0px 4px;
     background-color: #888; }
+    #scaffold td.kind-water {
+      color: white;
+      background-color: #404764; }
+    #scaffold td.kind-soil {
+      color: white;
+      background-color: #A75100; }
 
 .attribute {
   margin: 8px; }

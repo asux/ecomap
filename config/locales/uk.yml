@@ -369,6 +369,8 @@ uk:
     admin: Адміністратор
     manager: Менеджер
     normal: Звичайний
+  sample: 
+    details: докладніше
   sample_kind: 
     auto: Автоматично
     soil: Ґрунт
@@ -399,6 +401,8 @@ uk:
     commit: Коміт
     release: Випуск
   ymaps: 
+    find_on_map: "Знайти на мапі"
+    load_data: "Завантажити данні"
     load_placemarks: "Завантажити мітки"
     set_coorinates: "Встановити координати"
     ymapsml_link: "Посилання на YMapsML"

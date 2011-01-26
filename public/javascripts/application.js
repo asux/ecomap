@@ -18,7 +18,7 @@ window.Ecomap = {
     Ecomap.centerLng = mapContainer.getAttribute("data-center_lng");
     Ecomap.defaultScale = mapContainer.getAttribute("data-default_scale");
     if (Ecomap.centerLat && Ecomap.centerLng && Ecomap.defaultScale) {
-      var center =new YMaps.GeoPoint(Ecomap.centerLng, Ecomap.centerLat);
+      var center = new YMaps.GeoPoint(Ecomap.centerLng, Ecomap.centerLat);
       var zoom = Ecomap.defaultScale;
     } else if (YMaps.location) {
       var center = new YMaps.GeoPoint(YMaps.location.longitude, YMaps.location.latitude);
@@ -97,5 +97,8 @@ window.Ecomap = {
     var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
       Ecomap.map.addOverlay(ml);
     });
-  }
+  },
+  findOnMap: function(lng, lat) {
+    Ecomap.map.panTo(new YMaps.GeoPoint(lng, lat), {flying: true});
+  },
 }

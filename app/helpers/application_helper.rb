@@ -6,4 +6,7 @@ module ApplicationHelper
     title = text.to_s || (yield if block_given?)
     @page_title = @title = strip_tags(title)
   end
+
+  # TODO: Write link helpers
+
 end

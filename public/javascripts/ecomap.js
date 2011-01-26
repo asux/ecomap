@@ -32,7 +32,7 @@ $(function () {
       });
     });
 
-    $('.load-placemarks').click(function(eventObject) {
+    $('.load-placemarks').live('click', function(eventObject) {
       // Load YMapsML
       var url = this.getAttribute('data-ymapsml_url');
       if (url) {
@@ -43,5 +43,21 @@ $(function () {
       }
       return false;
     });
+
+    $('.find-on-map').live('click', function(eventObject) {
+      var lng = this.getAttribute('data-lng');
+      var lat = this.getAttribute('data-lat');
+      if (lng && lat) {
+        Ecomap.findOnMap(lng, lat);
+      } else {
+        Ecomap.alert("Can't find coordinates");
+      }
+    });
+
+    $('.load-data').live('click', function(eventObject) {
+      Ecomap.loadFromAnchor($(this).attr('href'));
+    });
+
+    $('.load-placemarks').trigger('click');
 });
 
