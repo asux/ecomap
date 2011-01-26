@@ -128,7 +128,7 @@ if [ $# -eq 0 ]; then
   exit 10
 fi
 
-while getopts "b:c:d:p:Dvh" option; do
+while getopts "b:c:d:s:p:Dvh" option; do
   case ${option} in
     b) MYSQLD_BIN=${OPTARG};;
     c) MYSQL_CONFIG=${OPTARG};;

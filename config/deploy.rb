@@ -4,7 +4,7 @@ require 'capistrano/ext/multistage'
 
 set :application, "ecomap"
 set :application_root, "/var/www/html/#{application}"
-#set :deploy_to, "#{application_root}/staging"
+set :deploy_to, "#{application_root}/staging"
 
 set :scm, :git
 set :repository,  "git://github.com/asux/ecomap.git"
@@ -85,7 +85,6 @@ namespace :deploy do
   task :symlink_databases do
     run "rm -rf #{release_path}/tmp/sockets && ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
   end
-
 end
 
 namespace :bundle do
