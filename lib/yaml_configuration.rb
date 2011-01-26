@@ -24,7 +24,7 @@ class YAMLConfiguration
 
   def self.method_missing(method)
     self.reload
-    raise MissingConfigOptionError, "#{sym.to_s} is not in the application configuration file" unless @@settings.respond_to?(method)
+    raise MissingConfigOptionError, "#{method.to_s} is not in the application configuration file" unless @@settings.respond_to?(method)
     @@settings.send(method).clone
   end
 end
