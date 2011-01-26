@@ -1,7 +1,6 @@
 class SamplesController < ApplicationController
   load_and_authorize_resource
   before_filter :set_owner, :only => :create
-  after_filter :set_ymapsml_url, :only => [:index, :new, :show, :edit]
 
   # GET /samples
   # GET /samples.xml
@@ -29,11 +28,16 @@ class SamplesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sample }
+      format.ymapsml { render :action => "index" }
     end
   end
 
   # GET /samples/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.ymapsml { render :action => "show" }
+    end
   end
 
   # POST /samples
@@ -78,9 +82,5 @@ class SamplesController < ApplicationController
   protected
     def set_owner
       @sample.owner = current_user
-    end
-
-    def set_ymapsml_url
-      @ymaps_ml_url = Ecomap::Application.yaml_config.ymapsml_root + "points.xml"
     end
 end

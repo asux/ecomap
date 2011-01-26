@@ -34,7 +34,7 @@ $(function () {
 
     $('.load-placemarks').click(function(eventObject) {
       // Load YMapsML
-      var url = this.getAttribute('data-ymaps_ml_url');
+      var url = this.getAttribute('data-ymapsml_url');
       if (url) {
         Ecomap.loadYMapsML(url);
       }

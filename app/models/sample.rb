@@ -12,6 +12,10 @@ class Sample < ActiveRecord::Base
 
   before_validation :geocode
 
+  def name
+    object_name
+  end
+
   def to_s
     self.class.human_attribute_name(:to_s, :id => id)
   end
