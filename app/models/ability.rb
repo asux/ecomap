@@ -6,6 +6,7 @@ class Ability
 
     can :show, :all
     can :create, User
+    can :read, Sample
 
     if user.admin?
       can :manage, :all
@@ -13,7 +14,6 @@ class Ability
       unless user.role.nil?
         can :view_map, :all
         can :manage, User, :id => user.id
-        can :read, Sample
 
         if user.manager?
           can :update, User, :role => 'normal'
