@@ -1,6 +1,6 @@
 // On page load
 $(function () {
-    // Initialize map instance  
+    // Initialize map instance
     var map = Ecomap.initYMap(YMaps, $("#yandex-map")[0]);
 
     //Placemark
@@ -14,7 +14,13 @@ $(function () {
     clickEventListener.disable();
 
     $('#set-coordinates').click(function(){
-      clickEventListener.enable();
+      var objectName = this.getAttribute('data-object_name');
+      if(objectName) {
+        Ecomap.objectName = objectName.toString();
+        clickEventListener.enable();
+        } else {
+          Ecomap.alert("Can't determine objectName");
+        }
     });
 
     // Load from balloon anchor
@@ -26,20 +32,14 @@ $(function () {
       });
     });
 
-    $('.load-points').click(function(eventObject) {
+    $('.load-placemarks').click(function(eventObject) {
       // Load YMapsML
-      var yMapsMlUrl = this.getAttribute('data-ymaps_ml_url');
-      if (yMapsMlUrl) {
-        var ml = new YMaps.YMapsML(yMapsMlUrl);
-        var mlFaultEventListener = YMaps.Events.observe(ml, ml.Events.Fault, function(pMl, error) {
-          alert("Error on load YMapsML: "+error);
-        });
-        var mlLoadEventListener = YMaps.Events.observe(ml, ml.Events.Load, function(pMl) {
-          map.addOverlay(ml);
-        });
+      var url = this.getAttribute('data-ymaps_ml_url');
+      if (url) {
+        Ecomap.loadYMapsML(url);
       }
       else {
-        alert("Can't find YMapsML URL");
+        Ecomap.alert("Can't find YMapsML URL");
       }
       return false;
     });

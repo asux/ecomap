@@ -13,6 +13,9 @@ gem 'ruby_parser'
 gem 'cancan'
 gem 'formtastic'
 gem 'will_paginate', '~> 3.0.beta'
+gem 'geokit'
+gem 'geokit-rails3'
+gem 'ymaps', :git => 'git://github.com/alsemyonov/ymaps.git'
 
 group :development, :test do
   gem 'ruby-debug', :platforms => [:ruby_18]

@@ -1,5 +1,7 @@
 class SamplesController < ApplicationController
   load_and_authorize_resource
+  before_filter :set_owner, :only => :create
+  before_filter :set_ymaps_ml_url, :only => [:new, :edit, :show]
 
   # GET /samples
   # GET /samples.xml
@@ -72,4 +74,13 @@ class SamplesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  protected
+    def set_owner
+      @sample.owner = current_user
+    end
+
+    def set_ymaps_ml_url
+      @ymaps_ml_url = Ecomap::Application.yaml_config.ymapsml_root + "points.xml"
+    end
 end

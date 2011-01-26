@@ -257,6 +257,8 @@ form input[type=checkbox] {
   width: 16px;
   height: 16px;
   padding: 2px; }
+form p.inline-errors {
+  font-weight: bold; }
 
 p {
   margin: 8px 0px 8px 0px; }

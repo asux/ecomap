@@ -34,7 +34,7 @@ $link-color: #638000;
 * {
   margin: 0;
   padding: 0;
-}   
+}
 /* Tell the browser to render HTML 5 elements as block */
 header, footer, aside, nav, article, section {
   display: block;
@@ -118,7 +118,7 @@ nav {
       text-decoration: none;
     }
     a:hover {
-      color: white; 
+      color: white;
     }
   }
   li {
@@ -229,7 +229,7 @@ form {
   input[type=date],
   input[type=number],
   input[type=button],
-  input[type=submit], 
+  input[type=submit],
   textarea {
     background-color: #FFDFBF;
     border: {
@@ -246,7 +246,7 @@ form {
   }
   input[type=button], input[type=submit] {
     $border-light: #CD931D;
-    $border-shadow: #A07216; 
+    $border-shadow: #A07216;
     $grad-start: #CD931D;
     $grad-stop: #E7B550;
     border-color: $border-light $border-shadow $border-shadow $border-light;
@@ -270,6 +270,9 @@ form {
     width: 16px;
     height: 16px;
     padding: 2px;
+  }
+  p.inline-errors {
+    font-weight: bold;
   }
 }
 p {

@@ -5,9 +5,12 @@
   \|
   = link_to t(:back_link), samples_path
 
+= render 'shared/load_placemarks'
+= render 'shared/yandex_map'
+
 .attribute
   %strong= "#{Sample.human_attribute_name 'kind'}:"
-  = @sample.kind
+  = @sample.kind_instance.human_name
 .attribute
   %strong= "#{Sample.human_attribute_name 'object_name'}:"
   = @sample.object_name
