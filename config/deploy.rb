@@ -4,6 +4,7 @@ require 'capistrano/ext/multistage'
 
 set :application, "ecomap"
 set :application_root, "/var/www/html/#{application}"
+#set :deploy_to, "#{application_root}/staging"
 
 set :scm, :git
 set :repository,  "git://github.com/asux/ecomap.git"
@@ -69,31 +70,20 @@ namespace :deploy do
 
   desc "Symlink cache folder on each release."
   task :symlink_cache do
-    run "rm -rf #{release_path}/tmp/cache;
-    ln -nfs #{shared_path}/cache #{release_path}/tmp/cache;
-    true"
+    run "rm -rf #{release_path}/tmp/cache && ln -nfs #{shared_path}/cache #{release_path}/tmp/cache"
   end
 
   desc "Symlink bundle folder on each release."
   task :symlink_bundle do
     run <<-CMD
-    rm -rf #{release_path}/vendor/bundle;
-    ln -nfs #{shared_path}/gems #{release_path}/vendor/bundle;
-    rm -rf #{release_path}/.bundle;
-    ln -nfs #{shared_path}/bundle #{release_path}/.bundle;
-    true
+    rm -rf #{release_path}/vendor/bundle && ln -nfs #{shared_path}/gems #{release_path}/vendor/bundle;
+    rm -rf #{release_path}/.bundle && ln -nfs #{shared_path}/bundle #{release_path}/.bundle
     CMD
   end
 
-  desc "Symlink MySQL data directory on each release."
+  desc "Symlink MySQL socket on each release."
   task :symlink_databases do
-    run <<-CMD
-    rm -rf #{release_path}/db/mysql_data;
-    ln -nfs #{shared_path}/mysql_data #{release_path}/db/mysql_data;
-    rm -rf #{release_path}/tmp/sockets;
-    ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets;
-    true
-    CMD
+    run "rm -rf #{release_path}/tmp/sockets && ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
   end
 
 end
@@ -130,9 +120,14 @@ namespace :log do
 end
 
 namespace :mysql do
+  set :mysqld_bin, "/usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld"
+  set :mysql_data, "#{shared_path}/mysql_data"
+  set :mysql_socket, "#{shared_path}/sockets/mysql.socket"
+  set :mysql_pid, "#{shared_path}/pids/mysql.pid"
+
   desc "Start embedded MySQL server"
   task :start do
-    run "#{current_path}/script/mysql -b '/usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld' -vD start", &pretty_out
+    run "#{current_path}/script/mysql -b '#{mysqld_bin}' -d '#{mysql_data}' -s '#{mysql_socket}' -p '#{mysql_pid}' -vD start", &pretty_out
   end
 
   desc "Stop embedded MySQL server"
@@ -142,7 +137,7 @@ namespace :mysql do
 
   desc "Restart embedded MySQL server"
   task :restart do
-    run "#{current_path}/script/mysql -b '/usr/local/mysql-5.0.51a-freebsd7.0-i386/bin/mysqld' -vD restart", &pretty_out
+    run "#{current_path}/script/mysql -b '#{mysqld_bin}' -d '#{mysql_data}' -s '#{mysql_socket}' -p '#{mysql_pid}' -vD restart", &pretty_out
   end
 end
 

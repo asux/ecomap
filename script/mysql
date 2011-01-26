@@ -26,6 +26,7 @@ options is:
   -b mysqld         Path to mysqld binary (default: /usr/sbin/mysqld)
   -c mysql.conf     Path to MySQL config file (default: \$RAILS_ROOT/config/mysql.conf)
   -d mysql_data     Path to MySQL datadir (default \$RAILS_ROOT/db/mysql_data)
+  -s mysql.socket   Path to MySQL socket (default: \$RAILS_ROOT/tmp/sockets/mysql.socket)
   -p mysql.pid      Path to MySQL pidfile (default: \$RAILS_ROOT/tmp/pids/mysql.pid)
   -D                Daemonize (default: false)
   -v                Be verbose (default: false)
@@ -132,6 +133,7 @@ while getopts "b:c:d:p:Dvh" option; do
     b) MYSQLD_BIN=${OPTARG};;
     c) MYSQL_CONFIG=${OPTARG};;
     d) MYSQL_DATA=${OPTARG};;
+    s) MYSQL_SOCKET=${OPTARG};;
     p) MYSQLD_PID_FILE=${OPTARG};;
     D) DAEMONIZE="true";;
     v) VERBOSE="true";;
