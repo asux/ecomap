@@ -1,4 +1,4 @@
 %p
-  %p= link_to('Placemarks XML', {:format => :xml})
+  %p= link_to(t('ymaps.ymapsml_link', :default => "Link to YMapsML"), {:format => :ymapsml})
   %p
     %a.load-placemarks{:href => "#", :data => {:ymaps_ml_url => @ymaps_ml_url}}= t('ymaps.load_placemarks', :default=> "Load Placemarks")

@@ -401,3 +401,4 @@ uk:
   ymaps: 
     load_placemarks: "Завантажити мітки"
     set_coorinates: "Встановити координати"
+    ymapsml_link: "Посилання на YMapsML"

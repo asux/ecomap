@@ -19,12 +19,12 @@ describe "samples/new.html.haml" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => samples_path, :method => "post" do
+      assert_select "input#sample_kind_auto", :name => "sample[kind]"
       assert_select "input#sample_kind_water", :name => "sample[kind]"
       assert_select "input#sample_kind_soil", :name => "sample[kind]"
       assert_select "input#sample_object_name", :name => "sample[object_name]"
       assert_select "input#sample_lng", :name => "sample[lng]"
       assert_select "input#sample_lat", :name => "sample[lat]"
-      assert_select "select#sample_owner_id", :name => "sample[owner_id]"
       assert_select "textarea#sample_description", :name => "sample[description]"
     end
   end

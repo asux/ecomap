@@ -56,6 +56,12 @@ describe SamplesController do
         post :create, :sample => {}
         response.should redirect_to(sample_url(mock_sample))
       end
+
+      it "sets current_user as owner" do
+        Sample.stub(:new) { mock_sample(:save => true) }
+        mock_sample.should_receive(:owner=).with(controller.current_user)
+        post :create, :sample => {}
+      end
     end
 
     describe "with invalid params" do
