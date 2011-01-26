@@ -288,6 +288,8 @@ p {
   font-size: 10pt;
   margin: 8px auto 8px auto;
   width: 98%; }
+  #scaffold img {
+    border-style: none; }
   #scaffold th, #scaffold td {
     border-radius: 4px;
     /* CSS3 */

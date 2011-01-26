@@ -2,9 +2,9 @@ window.Ecomap = {
   objectName: "sample",
   mapContainer: null,
   map: null,
-  centerLng: 30.634439,
-  centerLat: 50.39837,
-  defaultScale: 14,
+  centerLng: null,
+  centerLat: null,
+  defaultScale: 0,
   alert: function (message) {
     alert("[Ecomap] "+message.toString());
   },
@@ -14,7 +14,20 @@ window.Ecomap = {
     Ecomap.map = map;
 
     // Sets default parameters of map rendering: center and scale coeficient
-    map.setCenter(new YMaps.GeoPoint(Ecomap.centerLng, Ecomap.centerLat), Ecomap.defaultScale);
+    Ecomap.centerLat = mapContainer.getAttribute("data-center_lat");
+    Ecomap.centerLng = mapContainer.getAttribute("data-center_lng");
+    Ecomap.defaultScale = mapContainer.getAttribute("data-default_scale");
+    if (Ecomap.centerLat && Ecomap.centerLng && Ecomap.defaultScale) {
+      var center =new YMaps.GeoPoint(Ecomap.centerLng, Ecomap.centerLat);
+      var zoom = Ecomap.defaultScale;
+    } else if (YMaps.location) {
+      var center = new YMaps.GeoPoint(YMaps.location.longitude, YMaps.location.latitude);
+      if (YMaps.location.zoom) {
+        var zoom = YMaps.location.zoom;
+      }
+    }
+    map.setCenter(center, zoom);
+
     //map.enableScrollZoom();
     map.addControl(new YMaps.ToolBar());
     map.addControl(new YMaps.TypeControl());

@@ -1,6 +1,7 @@
 class SamplesController < ApplicationController
   load_and_authorize_resource
   before_filter :set_owner, :only => :create
+  before_filter :set_location, :only => [:show, :edit, :index, :new]
 
   # GET /samples
   # GET /samples.xml
@@ -82,5 +83,13 @@ class SamplesController < ApplicationController
   protected
     def set_owner
       @sample.owner = current_user
+    end
+
+    def set_location
+      @location = if @sample
+        @sample.latlng
+      else
+        GeoKit::GeoLoc.new
+      end
     end
 end

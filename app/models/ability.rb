@@ -13,9 +13,11 @@ class Ability
       unless user.role.nil?
         can :view_map, :all
         can :manage, User, :id => user.id
+        can :read, Sample
 
         if user.manager?
           can :update, User, :role => 'normal'
+          can :manage, Sample
           #can :assign_role, User
         end
       end
