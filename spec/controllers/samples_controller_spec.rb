@@ -25,6 +25,13 @@ describe SamplesController do
       get :show, :id => "37"
       assigns(:sample).should be(mock_sample)
     end
+
+    it "assigns location" do
+      mock_sample(:latlng => :latlng)
+      Sample.stub(:find) { mock_sample }
+      get :show, :id => "37"
+      assigns(:location).should eq(:latlng)
+    end
   end
 
   describe "GET new" do
@@ -40,6 +47,13 @@ describe SamplesController do
       Sample.stub(:find) { mock_sample }
       get :edit, :id => "37"
       assigns(:sample).should be(mock_sample)
+    end
+
+    it "assigns location" do
+      mock_sample(:latlng => :latlng)
+      Sample.stub(:find) { mock_sample }
+      get :show, :id => "37"
+      assigns(:location).should eq(:latlng)
     end
   end
 

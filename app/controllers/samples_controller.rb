@@ -1,7 +1,7 @@
 class SamplesController < ApplicationController
   load_and_authorize_resource
   before_filter :set_owner, :only => :create
-  before_filter :set_location, :only => [:show, :edit, :index, :new]
+  before_filter :set_location, :only => [:show, :edit]
 
   # GET /samples
   # GET /samples.xml
@@ -82,6 +82,6 @@ class SamplesController < ApplicationController
     end
 
     def set_location
-      @location if @sample
+      @location = @sample.latlng if @sample
     end
 end
