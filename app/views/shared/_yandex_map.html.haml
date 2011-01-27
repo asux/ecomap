@@ -3,4 +3,7 @@
   = javascript_include_tag 'ecomap', :cache => true
   = map_link
 
-#yandex-map.rounded-box{:data => {:center_lat => @location.lat, :center_lng => @location.lng, :default_scale => 12}}
+- if @location
+  #yandex-map.rounded-box{:data => {:center_lat => @location.lat, :center_lng => @location.lng, :default_scale => 12}}
+- else
+  #yandex-map.rounded-box

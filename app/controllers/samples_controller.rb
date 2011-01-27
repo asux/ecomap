@@ -30,16 +30,11 @@ class SamplesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sample }
-      format.ymapsml { redirect_to :action => "index", :format => :ymapsml }
     end
   end
 
   # GET /samples/1/edit
   def edit
-    respond_to do |format|
-      format.html
-      format.ymapsml { redirect_to :action => "show", :format => :ymapsml }
-    end
   end
 
   # POST /samples
@@ -87,10 +82,6 @@ class SamplesController < ApplicationController
     end
 
     def set_location
-      @location = if @sample
-        @sample.latlng
-      else
-        GeoKit::GeoLoc.new
-      end
+      @location if @sample
     end
 end
