@@ -30,7 +30,7 @@ class SamplesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sample }
-      format.ymapsml { render :action => "index" }
+      format.ymapsml { redirect_to :action => "index", :format => :ymapsml }
     end
   end
 
@@ -38,7 +38,7 @@ class SamplesController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.ymapsml { render :action => "show" }
+      format.ymapsml { redirect_to :action => "show", :format => :ymapsml }
     end
   end
 
