@@ -13,12 +13,8 @@
       %nav.main
         %menu
           %li= link_to t('title.main', :default => "Main"), '/'
-          - if can? :view_map, :all
-            %li= link_to t('title.map', :default => "Map"), :controller => '/maps', :action => 'index'
-          - if can? :index, User
-            %li= link_to User.human_name(:count => 1, :default => "Users"), users_path
-          - if can? :index, Sample
-            %li= link_to Sample.human_name(:count => 1, :default => "Samples"), samples_path
+          %li= index_link User
+          %li= index_link Sample
       %section#middle
         %aside.rounded-box
           = render 'users/user_nav'

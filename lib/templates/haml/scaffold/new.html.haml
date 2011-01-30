@@ -1,7 +1,7 @@
 - title t(:new_title, :model => <%= class_name %>.human_name)
 
 .action_links
-  = link_to t(:back_link), <%= index_helper %>_path
+  = back_link <%= class_name %>
 
 = render 'form'
 

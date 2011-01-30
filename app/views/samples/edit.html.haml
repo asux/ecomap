@@ -1,9 +1,9 @@
 - title t(:edit_title, :model => Sample.human_name)
 
 .action_links
-  = link_to t(:show_link), @sample
+  = show_link(@sample)
   \|
-  = link_to t(:back_link), samples_path
+  = back_link(@sample)
 
 = render 'shared/load_placemarks'
 = render 'shared/yandex_map'

@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "users/show.html.haml" do
+  stub_current_user
+  stub_id_for_url
+
   before(:each) do
     @user = assign(:user, stub_model(User,
       :email => "Email",

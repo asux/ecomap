@@ -1,9 +1,9 @@
 - title "Sample: #{@sample}"
 
 .action_links
-  = link_to t(:edit_link), edit_sample_path(@sample)
+  = edit_link(@sample)
   \|
-  = link_to t(:back_link), samples_path
+  = back_link(@sample)
 
 = render 'shared/load_placemarks'
 = render 'shared/yandex_map'

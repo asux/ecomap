@@ -1,8 +1,8 @@
 - title t(:edit_title, :model => User.human_name)
 
 .action_links
-  = link_to t(:show_link), @user
+  = show_link @user
   \|
-  = link_to t(:back_link), users_path
+  = back_link User
 
 = render 'form'

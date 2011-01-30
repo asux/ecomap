@@ -1,7 +1,7 @@
 - title t(:index_title, :model => Sample.human_name)
 
 .action_links
-  = link_to t(:new_link, :model => Sample.human_name), new_sample_path
+  = new_link(Sample)
 
 = render 'shared/load_placemarks'
 = render 'shared/yandex_map'
@@ -23,13 +23,13 @@
           :data => {:lat => sample.lat, :lng => sample.lng}}
           = image_tag "icons/22x22/find.png", :alt => t('ymaps.find_on_map', :default => "Find on map")
       %td.object_link
-        = link_to sample, :title => t(:show_link) do
+        = show_link(sample) do
           = image_tag "icons/22x22/show.png", :alt => t(:show_link)
       %td.object_link
-        = link_to edit_sample_path(sample), :title => t(:edit_link) do
+        = edit_link(sample) do
           = image_tag "icons/22x22/edit.png", :alt => t(:edit_link)
       %td.object_link
-        = link_to sample, :confirm => t(:confirm_destroy_message), :method => :delete, :title => t(:destroy_link) do
+        = destroy_link(sample) do
           = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
 
 = render :partial => 'shared/pagination', :locals => {:collection => @sample}

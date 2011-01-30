@@ -1,7 +1,7 @@
 - title t(:index_title, :model => <%= class_name %>.human_name)
 
 .action_links
-  = link_to t(:new_link, :model => '<%= human_name %>'), new_<%= singular_table_name %>_path
+  = new_link <%= class_name %>
 
 %table#scaffold
   %tr
@@ -17,13 +17,13 @@
       %td= <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
       %td.object_link
-        = link_to <%= singular_table_name %>, :title => t(:show_link) do
+        = show_link <%= singular_table_name %> do
           = image_tag "icons/22x22/show.png", :alt => t(:show_link)
       %td.object_link
-        = link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:edit_link) do
+        = edit_link <%= singular_table_name %> do
           = image_tag "icons/22x22/edit.png", :alt => t(:edit_link)
       %td.object_link
-        = link_to <%= singular_table_name %>, :confirm => t(:confirm_destroy_message), :method => :delete, :title => t(:destroy_link) do
+        = destroy_link <%= singular_table_name %> do
           = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
 
 = render :partial => 'shared/pagination', :locals => {:collection => @<%= singular_table_name %>}
