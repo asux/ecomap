@@ -13,8 +13,6 @@ Ecomap::Application.routes.draw do
     end
   end
 
-  get 'maps(/:action)', :controller => 'maps'
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -64,7 +62,7 @@ Ecomap::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "maps#home"
+  root :to => "samples#index"
 
   # See how all your routes lay out with "rake routes"
 
