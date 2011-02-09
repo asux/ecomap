@@ -25,3 +25,13 @@ Sample.blueprint do
   owner { User.first or User.make! }
   description { object_name }
 end
+
+EcoParameter.blueprint do
+  name { "parameter#{sn}" }
+  unit { "unit#{sn}" }
+  kind { Ecomap::HasSampleKinds::KINDS.first }
+end
+
+EcoProperty.blueprint do
+  value { 3.14 }
+end
