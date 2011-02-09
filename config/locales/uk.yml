@@ -7,6 +7,11 @@ uk:
           kind_unable_auto: "не можливо автоматично визначити вид зразку"
   activerecord:
     attributes:
+      eco_parameter:
+        description: Опис
+        kind: Вид
+        name: Назва
+        unit: "Одиниця виміру"
       sample:
         description: Опис
         kind: Вид
@@ -65,6 +70,11 @@ uk:
           one: "%{model} не збережено через %{count} помилку"
           other: "%{model} не збережено через %{count} помилки"
     models:
+      eco_parameter:
+        few: Екопараметрів
+        many: Екопараметрів
+        one: Екопараметр
+        other: Екопараметрів
       sample:
         few: Зразка
         many: Зразків

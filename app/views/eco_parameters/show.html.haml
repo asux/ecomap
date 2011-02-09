@@ -1,0 +1,21 @@
+- title "#{EcoParameter.human_name}: #{@eco_parameter}"
+
+.action_links
+  = edit_link @eco_parameter
+  \|
+  = back_link EcoParameter
+
+.attribute
+  %strong= "#{EcoParameter.human_attribute_name 'name'}:"
+  = @eco_parameter.name
+.attribute
+  %strong= "#{EcoParameter.human_attribute_name 'description'}:"
+  = @eco_parameter.description
+.attribute
+  %strong= "#{EcoParameter.human_attribute_name 'unit'}:"
+  = @eco_parameter.unit
+.attribute
+  %strong= "#{EcoParameter.human_attribute_name 'kind'}:"
+  = @eco_parameter.kind_instance.human_name
+
+

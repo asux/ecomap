@@ -1,0 +1,8 @@
+- semantic_form_for(@eco_parameter) do |f|
+  - f.inputs do
+    = f.input :name
+    = f.input :description
+    = f.input :unit
+    = f.input :kind, :as => :radio, :collection => Ecomap::HasSampleKinds::KIND_INSTANCES
+  - f.buttons do
+    = f.commit_button

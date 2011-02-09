@@ -4,7 +4,7 @@
       %input#set-coordinates{:type => "button",
       :data => {:object_name => 'sample'},
       :value => t('ymaps.set_coorinates', :default => "Set Coordinates")}
-    = f.input :kind, :as => :radio, :collection => [SampleKind.new('auto')] + Sample::KIND_INSTANCES
+    = f.input :kind, :as => :radio, :collection => [SampleKind.new('auto')] + Ecomap::HasSampleKinds::KIND_INSTANCES
     = f.input :object_name
     = f.input :lng
     = f.input :lat

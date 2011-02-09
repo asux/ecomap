@@ -1,0 +1,8 @@
+- title t(:edit_title, :model => EcoParameter.human_name)
+
+.action_links
+  = show_link @eco_parameter
+  \|
+  = back_link EcoParameter
+
+= render 'form'

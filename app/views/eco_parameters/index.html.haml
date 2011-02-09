@@ -1,0 +1,29 @@
+- title t(:index_title, :model => EcoParameter.human_name)
+
+.action_links
+  = new_link EcoParameter
+
+%table#scaffold
+  %tr
+    %th= EcoParameter.human_attribute_name 'name'
+    %th= EcoParameter.human_attribute_name 'unit'
+    %th= EcoParameter.human_attribute_name 'kind'
+    - 3.times do
+      %th.object_link
+
+  - @eco_parameters.each do |eco_parameter|
+    %tr
+      %td= eco_parameter.name
+      %td= eco_parameter.unit
+      %td= eco_parameter.kind_instance.human_name
+      %td.object_link
+        = show_link eco_parameter do
+          = image_tag "icons/22x22/show.png", :alt => t(:show_link)
+      %td.object_link
+        = edit_link eco_parameter do
+          = image_tag "icons/22x22/edit.png", :alt => t(:edit_link)
+      %td.object_link
+        = destroy_link eco_parameter do
+          = image_tag "icons/22x22/destroy.png", :alt => t(:destroy_link)
+
+= render :partial => 'shared/pagination', :locals => {:collection => @eco_parameter}

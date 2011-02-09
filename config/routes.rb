@@ -4,6 +4,7 @@ Ecomap::Application.routes.draw do
                                       :passwords => "users/passwords"}
   resources :users
   resources :samples
+  resources :eco_parameters
 
   if Rails.env == 'development'
     scope '/translate' do
