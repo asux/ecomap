@@ -18,7 +18,7 @@ User.blueprint do
 end
 
 Sample.blueprint do
-  kind { Sample::KINDS.first }
+  kind { Ecomap::HasSampleKinds::KINDS.first }
   object_name { "пр. Григоренко 15" }
   lng { 30.62920957803727 }
   lat { 50.40988188370294 }

@@ -1,9 +1,10 @@
 class Sample < ActiveRecord::Base
-  KINDS = %w(water soil)
-  KIND_INSTANCES = KINDS.map {|kind| SampleKind.new(kind)}
-  belongs_to :owner, :class_name => "User"
+  include Ecomap::HasSampleKinds
 
-  validates :kind, :presence => true, :inclusion => {:in => KINDS}
+  belongs_to :owner, :class_name => "User"
+  has_many :eco_parameters, :through => :eco_properties
+  has_many :eco_properties
+
   validates :lng, :presence => true
   validates :lat, :presence => true
   validates :owner, :presence => true
@@ -18,10 +19,6 @@ class Sample < ActiveRecord::Base
 
   def to_s
     self.class.human_attribute_name(:to_s, :id => id)
-  end
-
-  def kind_instance
-    SampleKind.new(kind)
   end
 
   def latlng
