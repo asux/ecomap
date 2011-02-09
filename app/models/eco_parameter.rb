@@ -7,8 +7,6 @@ class EcoParameter < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => {:scope => :kind}
   validates :unit, :presence => true
 
-  scope :only_kind, lambda { |kind| where(:kind => kind) }
-
   def to_s
     "#{kind_instance.human_name}: #{name} (#{unit})"
   end
