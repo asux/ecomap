@@ -12,4 +12,5 @@ nbproject/*
 *.kdev4
 .eric4project**
 .redcar*
+.project
 config/database.yml
