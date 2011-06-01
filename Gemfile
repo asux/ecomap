@@ -1,7 +1,6 @@
 source :rubygems
 
-gem 'rake', '0.8.7'
-gem 'rails', '~> 3.0.7'
+gem 'rails', '~> 3.0.8.rc2'
 gem 'sqlite3'
 gem 'mysql2', :group => :staging
 gem 'pg', :group => [:development, :test, :production]
