@@ -2,6 +2,8 @@ require 'yaml'
 require 'erb'
 require 'ostruct'
 
+YAML::ENGINE.yamler = 'syck' if defined?(YAML::ENGINE)
+
 class YAMLConfiguration
   # YAMLConfiguration is class for getting settings from ERB enabled +config/application.yml+ file.
   # Example:
