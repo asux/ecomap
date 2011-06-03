@@ -1,13 +1,18 @@
-module Ecomap
-  module HasSampleKinds
-    KINDS = %w(water soil)
-    KIND_INSTANCES = KINDS.map {|kind| SampleKind.new(kind)}
+module Ecomap::HasSampleKinds
+  extend ActiveSupport::Concern
+  
+  KINDS = %w(water soil)
+  KIND_INSTANCES = KINDS.map {|kind| SampleKind.new(kind)}
 
-    def self.included(base)
-      base.class_eval do
-        validates :kind, :presence => true, :inclusion => {:in => KINDS}
-        scope :only_kind, lambda { |kind| where(:kind => kind) }
-      end
+  module ClassMethods
+    def kind
+      name.gsub(superclass.name, '').underscore
+    end
+  end
+
+  module InstanceMethods
+    def kind
+      self.class.kind
     end
 
     def kind_instance

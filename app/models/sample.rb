@@ -13,6 +13,10 @@ class Sample < ActiveRecord::Base
 
   before_validation :geocode
   
+  def self.related_eco_parameters
+    EcoParameter.where(:type => "#{self.kind.camelize}EcoParameter")
+  end
+
   def name
     object_name
   end
@@ -23,10 +27,6 @@ class Sample < ActiveRecord::Base
 
   def latlng
     @latlng ||= GeoKit::LatLng.new(lat, lng)
-  end
-  
-  def related_eco_parameters
-    eco_parameters.eco_parameters_by_kind(kind)
   end
 
   protected
