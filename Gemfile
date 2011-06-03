@@ -4,6 +4,7 @@ gem 'rails', '~> 3.0.8.rc2'
 gem 'sqlite3'
 gem 'mysql2', :group => :staging
 gem 'pg', :group => [:development, :test, :production]
+gem 'yard', :group => :development
 gem 'racc'
 gem 'devise'
 gem 'sass'
