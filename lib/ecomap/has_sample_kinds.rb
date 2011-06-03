@@ -14,6 +14,10 @@ module Ecomap::HasSampleKinds
     def kind
       self.class.kind
     end
+    
+    def kind=(value)
+      self.type = value.to_s.camelize + self.class.name
+    end
 
     def kind_instance
       SampleKind.new(kind)
